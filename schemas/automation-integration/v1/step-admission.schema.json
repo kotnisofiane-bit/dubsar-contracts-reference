@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/step-admission.schema.json",
+  "title": "step-admission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "admission_request_id",
+    "mission_ref",
+    "automation_run_id",
+    "step_id",
+    "step_instance_id",
+    "execution_id",
+    "request_digest",
+    "authority_ref",
+    "engine_permit_ref",
+    "engine_generation",
+    "tool_permit_ref",
+    "tool_binding",
+    "expires_at",
+    "issuance_state"
+  ],
+  "properties": {
+    "contract": {
+      "const": "dubsar.automation.step-admission/1"
+    },
+    "admission_request_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "mission_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "automation_run_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "step_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "step_instance_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "execution_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "request_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "authority_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "engine_permit_ref": {
+      "oneOf": [
+        {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "engine_generation": {
+      "$ref": "common.schema.json#/$defs/int"
+    },
+    "tool_permit_ref": {
+      "oneOf": [
+        {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "tool_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "principal",
+        "execution_id",
+        "capability_id",
+        "catalog_revision",
+        "connection_ref",
+        "connection_revision",
+        "input_hash"
+      ],
+      "properties": {
+        "principal": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "execution_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "capability_id": {
+          "const": "dubsar.capability.github.list_issues"
+        },
+        "catalog_revision": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "connection_ref": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "connection_revision": {
+          "$ref": "common.schema.json#/$defs/ref"
+        },
+        "input_hash": {
+          "$ref": "common.schema.json#/$defs/digest"
+        }
+      }
+    },
+    "expires_at": {
+      "$ref": "common.schema.json#/$defs/time"
+    },
+    "issuance_state": {
+      "enum": [
+        "preparing",
+        "ready",
+        "closed_uncertain",
+        "rejected"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "issuance_state": {
+              "enum": [
+                "preparing",
+                "closed_uncertain"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "issuance_state": {
+              "enum": [
+                "ready",
+                "rejected"
+              ]
+            },
+            "engine_permit_ref": {
+              "$ref": "common.schema.json#/$defs/ref"
+            },
+            "tool_permit_ref": {
+              "$ref": "common.schema.json#/$defs/ref"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

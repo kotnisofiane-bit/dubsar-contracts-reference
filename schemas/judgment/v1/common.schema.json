@@ -1,0 +1,670 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/judgment/v1/common.schema.json",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$"
+    },
+    "opaqueRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f\\u2028\\u2029|]+$"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "description": "Judgment-owned technical SHA-256 identities; never normalize inherited digests to this format."
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "digest",
+        "digest_scheme"
+      ],
+      "properties": {
+        "ref": {
+          "$ref": "common.schema.json#/$defs/opaqueRef"
+        },
+        "digest": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/$defs/nativeHexDigest"
+            },
+            {
+              "$ref": "common.schema.json#/$defs/sourcePrefixedDigest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "digest_scheme": {
+          "enum": [
+            null,
+            "sha256-canonical-json-agent-context-v1",
+            "dubsar.automation.run-event.v1",
+            "memory-v2-content-digest",
+            "dubsar.oc.observation.v1",
+            "sha256-bytes"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "digest": {
+              "type": "null"
+            },
+            "digest_scheme": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "properties": {
+            "digest_scheme": {
+              "const": "sha256-canonical-json-agent-context-v1"
+            },
+            "digest": {
+              "$ref": "common.schema.json#/$defs/nativeHexDigest"
+            }
+          }
+        },
+        {
+          "properties": {
+            "digest_scheme": {
+              "const": "dubsar.automation.run-event.v1"
+            },
+            "digest": {
+              "$ref": "common.schema.json#/$defs/nativeHexDigest"
+            }
+          }
+        },
+        {
+          "properties": {
+            "digest_scheme": {
+              "const": "memory-v2-content-digest"
+            },
+            "digest": {
+              "$ref": "common.schema.json#/$defs/nativeHexDigest"
+            }
+          }
+        },
+        {
+          "properties": {
+            "digest_scheme": {
+              "const": "dubsar.oc.observation.v1"
+            },
+            "digest": {
+              "$ref": "common.schema.json#/$defs/sourcePrefixedDigest"
+            }
+          }
+        },
+        {
+          "properties": {
+            "digest_scheme": {
+              "const": "sha256-bytes"
+            },
+            "digest": {
+              "$ref": "common.schema.json#/$defs/sourcePrefixedDigest"
+            }
+          }
+        }
+      ]
+    },
+    "ids": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/id"
+      },
+      "maxItems": 32,
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "status": {
+      "enum": [
+        "supported",
+        "not_supported",
+        "undetermined",
+        "conflicted"
+      ]
+    },
+    "move": {
+      "enum": [
+        "consult",
+        "conclude",
+        "clarify",
+        "revise",
+        "stop"
+      ]
+    },
+    "stopCause": {
+      "enum": [
+        "insufficient_evidence",
+        "limit_reached",
+        "budget_exhausted",
+        "source_absent",
+        "contradiction",
+        "clarification_required",
+        "no_useful_consultation"
+      ]
+    },
+    "estimate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "method",
+        "basis"
+      ],
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "method": {
+          "enum": [
+            "measured",
+            "estimated",
+            "unknown"
+          ]
+        },
+        "basis": {
+          "enum": [
+            "server_policy",
+            "prior_measurement",
+            "provider_quote",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origin_id",
+        "reference"
+      ],
+      "properties": {
+        "origin_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "reference": {
+          "$ref": "common.schema.json#/$defs/reference"
+        }
+      }
+    },
+    "limit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "limit_id",
+        "code",
+        "detail",
+        "mandatory"
+      ],
+      "properties": {
+        "limit_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "code": {
+          "enum": [
+            "SOURCE_MISSING",
+            "SOURCE_UNAVAILABLE",
+            "STALE",
+            "FRESHNESS_UNKNOWN",
+            "REFERENCE_NOT_READ",
+            "VERIFICATION_FAILED",
+            "PROVENANCE_INCOMPLETE",
+            "HISTORICAL_ONLY",
+            "MISSION_CRITERIA_NOT_EVALUATED",
+            "CONTRADICTION",
+            "OMITTED",
+            "TRUNCATED",
+            "NON_ATOMIC_SNAPSHOTS",
+            "BUDGET_UNKNOWN",
+            "SCOPE_AMBIGUOUS",
+            "SNAPSHOT_CHANGED",
+            "RESULT_NOT_DOCUMENTED",
+            "OTHER_SOURCE_LIMIT"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "mandatory": {
+          "type": "boolean"
+        }
+      }
+    },
+    "element": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "element_id",
+        "source",
+        "kind",
+        "reference",
+        "availability",
+        "content_verification",
+        "text",
+        "freshness",
+        "temporal_scope",
+        "source_observed_at",
+        "origin_ids",
+        "provenance_complete",
+        "limit_ids",
+        "facts"
+      ],
+      "properties": {
+        "element_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "source": {
+          "enum": [
+            "memory",
+            "my_work",
+            "operational_context",
+            "evidence"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "mission",
+            "memory_relation",
+            "memory_history",
+            "accepted_context",
+            "oc_state",
+            "oc_observation",
+            "automation_result",
+            "evidence"
+          ]
+        },
+        "reference": {
+          "$ref": "common.schema.json#/$defs/reference"
+        },
+        "availability": {
+          "enum": [
+            "available",
+            "missing",
+            "unavailable",
+            "not_applicable"
+          ]
+        },
+        "content_verification": {
+          "enum": [
+            "matched",
+            "not_checked",
+            "failed"
+          ]
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2048
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "freshness": {
+          "enum": [
+            "current",
+            "stale",
+            "unknown"
+          ]
+        },
+        "temporal_scope": {
+          "enum": [
+            "current",
+            "historical",
+            "unknown"
+          ]
+        },
+        "source_observed_at": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/$defs/time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "origin_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "maxItems": 8,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "provenance_complete": {
+          "type": "boolean"
+        },
+        "limit_ids": {
+          "$ref": "common.schema.json#/$defs/ids"
+        },
+        "facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "automation",
+            "oc"
+          ],
+          "properties": {
+            "automation": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "run_id",
+                    "event_id",
+                    "state",
+                    "result",
+                    "mission_criteria",
+                    "reference_contents_read",
+                    "reference_availability"
+                  ],
+                  "properties": {
+                    "run_id": {
+                      "$ref": "common.schema.json#/$defs/id"
+                    },
+                    "event_id": {
+                      "anyOf": [
+                        {
+                          "$ref": "common.schema.json#/$defs/id"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "state": {
+                      "enum": [
+                        "running",
+                        "succeeded",
+                        "failed",
+                        "rejected",
+                        "indeterminate"
+                      ]
+                    },
+                    "result": {
+                      "enum": [
+                        "documented",
+                        "missing",
+                        "omitted"
+                      ]
+                    },
+                    "mission_criteria": {
+                      "const": "not_evaluated"
+                    },
+                    "reference_contents_read": {
+                      "const": false
+                    },
+                    "reference_availability": {
+                      "const": "not_checked"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "oc": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "property",
+                    "value",
+                    "eligible"
+                  ],
+                  "properties": {
+                    "property": {
+                      "$ref": "common.schema.json#/$defs/opaqueRef"
+                    },
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 512
+                        },
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "eligible": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "kind",
+        "statement",
+        "candidate_element_ids",
+        "required_limit_ids",
+        "requirements"
+      ],
+      "properties": {
+        "claim_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "automation_result",
+            "mission_criteria",
+            "current_state",
+            "relevance",
+            "evidence_sufficiency",
+            "source_consistency"
+          ]
+        },
+        "statement": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "candidate_element_ids": {
+          "$ref": "common.schema.json#/$defs/ids"
+        },
+        "required_limit_ids": {
+          "$ref": "common.schema.json#/$defs/ids"
+        },
+        "requirements": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "min_independent_origins",
+            "requires_current",
+            "requires_verified_content"
+          ],
+          "properties": {
+            "min_independent_origins": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 8
+            },
+            "requires_current": {
+              "type": "boolean"
+            },
+            "requires_verified_content": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "missing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "missing_id",
+        "kind",
+        "detail",
+        "blocking"
+      ],
+      "properties": {
+        "missing_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "kind": {
+          "enum": [
+            "objective",
+            "criterion",
+            "source",
+            "user_selection",
+            "scope_ambiguity"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512
+        },
+        "blocking": {
+          "type": "boolean"
+        }
+      }
+    },
+    "consultEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consult_id",
+        "target_element_id",
+        "read_kind",
+        "purpose",
+        "state",
+        "expected_freshness",
+        "cost_microusd",
+        "latency_ms"
+      ],
+      "properties": {
+        "consult_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "target_element_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "read_kind": {
+          "enum": [
+            "mission",
+            "memory_relation",
+            "memory_history",
+            "oc_observation",
+            "automation_e5",
+            "evidence_content"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "state": {
+          "enum": [
+            "available",
+            "already_consulted",
+            "unavailable"
+          ]
+        },
+        "expected_freshness": {
+          "enum": [
+            "current",
+            "stale",
+            "unknown"
+          ]
+        },
+        "cost_microusd": {
+          "$ref": "common.schema.json#/$defs/estimate"
+        },
+        "latency_ms": {
+          "$ref": "common.schema.json#/$defs/estimate"
+        }
+      }
+    },
+    "advisory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "content_trust",
+        "ignored_by_authority",
+        "text"
+      ],
+      "properties": {
+        "content_trust": {
+          "const": "advisory_data"
+        },
+        "ignored_by_authority": {
+          "const": true
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        }
+      }
+    },
+    "nativeHexDigest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "agentContextDigest": {
+      "$ref": "common.schema.json#/$defs/nativeHexDigest",
+      "description": "Native agentContextDigest result (source codec/exclusions unchanged)."
+    },
+    "sourcePrefixedDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "description": "Native OC observation/Evidence bytes format; not a Judgment-owned hash."
+    }
+  }
+}

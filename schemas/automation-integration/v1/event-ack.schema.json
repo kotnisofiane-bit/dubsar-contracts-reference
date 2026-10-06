@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/event-ack.schema.json",
+  "title": "event-ack",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_sequence",
+    "event_digest",
+    "accepted",
+    "duplicate"
+  ],
+  "properties": {
+    "event_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "event_sequence": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "event_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "accepted": {
+      "const": true
+    },
+    "duplicate": {
+      "type": "boolean"
+    }
+  }
+}

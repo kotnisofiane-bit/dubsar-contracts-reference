@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/task-runtime-s1/signed-envelope.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "header",
+    "payload"
+  ],
+  "properties": {
+    "header": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "alg",
+        "kid",
+        "typ",
+        "v"
+      ],
+      "properties": {
+        "alg": {
+          "const": "EdDSA"
+        },
+        "kid": {
+          "type": "string",
+          "pattern": "^core-key_[a-z0-9][a-z0-9_-]{7,63}$"
+        },
+        "typ": {
+          "const": "DUBSAR-TASK-LEASE+JSON"
+        },
+        "v": {
+          "const": 2
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exp",
+        "iat",
+        "issuer",
+        "lease",
+        "lease_digest",
+        "nbf",
+        "policy_digest",
+        "schema"
+      ],
+      "properties": {
+        "exp": {
+          "type": "integer"
+        },
+        "iat": {
+          "type": "integer"
+        },
+        "issuer": {
+          "const": "dubsar-governance-core"
+        },
+        "lease": {
+          "$ref": "./task-lease.schema.json"
+        },
+        "lease_digest": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "nbf": {
+          "type": "integer"
+        },
+        "policy_digest": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "schema": {
+          "const": "dubsar.signed-task-lease.v2"
+        }
+      }
+    }
+  }
+}

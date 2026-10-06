@@ -1,0 +1,19 @@
+{
+  "format": "synthetic-exact-action-message/1",
+  "synthetic_public_fixture": true,
+  "status": "CANDIDATE_ONLY_NO_AUTHORITY",
+  "sender": "sender@fixture.invalid",
+  "to": [
+    "recipient@fixture.invalid"
+  ],
+  "cc": [],
+  "bcc": [],
+  "subject": "Fixture message 0001",
+  "body": "Synthetic fixture body line one.\nSynthetic fixture body line two.\n",
+  "thread_ref": "thread-fixture-0001",
+  "attachment": {
+    "asset": "fixture-note.txt",
+    "filename": "fixture-note.txt",
+    "media_type": "text/plain; charset=utf-8"
+  }
+}

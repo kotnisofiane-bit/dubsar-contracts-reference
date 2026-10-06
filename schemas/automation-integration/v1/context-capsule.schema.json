@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/context-capsule.schema.json",
+  "title": "context-capsule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "context_ref",
+    "context_digest",
+    "captured_at",
+    "expires_at",
+    "items"
+  ],
+  "properties": {
+    "context_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "context_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "captured_at": {
+      "$ref": "common.schema.json#/$defs/time"
+    },
+    "expires_at": {
+      "$ref": "common.schema.json#/$defs/time"
+    },
+    "items": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "source_ref",
+          "source_digest",
+          "captured_at",
+          "policy_ref",
+          "required",
+          "qualification",
+          "payload"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "oc",
+              "memory",
+              "mission"
+            ]
+          },
+          "source_ref": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "source_digest": {
+            "$ref": "common.schema.json#/$defs/digest"
+          },
+          "captured_at": {
+            "$ref": "common.schema.json#/$defs/time"
+          },
+          "policy_ref": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "qualification": {
+            "enum": [
+              "qualified",
+              "advisory"
+            ]
+          },
+          "payload": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

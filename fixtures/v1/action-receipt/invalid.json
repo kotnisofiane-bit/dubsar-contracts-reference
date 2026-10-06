@@ -1,0 +1,18 @@
+{
+  "schema": "dubsar.action-receipt.v1",
+  "contract_version": "1.0.0",
+  "receipt_id": "receipt_ticketpilot_001",
+  "proposal_id": "proposal_ticketpilot_001",
+  "run_id": "run_ticketpilot_001",
+  "step_id": "step_create_ticket_001",
+  "workflow_digest": "sha256:e58d82aba2903c47e3006468c5fa0f28d659b72f7d876da5a2c4c8895593be6d",
+  "action": {"kind": "connector_action", "connector": {"name": "dubsar.ticketing", "version": "1.2.3"}, "operation": "create_ticket"},
+  "broker_identity": {"workload_id": "workload_broker_demo_001", "instance_id": "instance_broker_demo_001"},
+  "core_decision": {"decision_id": "decision_ticketpilot_001", "approval_id": "approval_ticketpilot_001", "policy_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"},
+  "capability_jti": "jti_abcdefghijklmnopqrstuvwxyz0123456789",
+  "before_state": "INDETERMINATE",
+  "after_state": "FAILED_RETRYABLE",
+  "result": {"kind": "error", "error": {"code": "PROVIDER_UNCERTAIN", "category": "PROVIDER", "retryable": true, "detail_digest": "sha256:6666666666666666666666666666666666666666666666666666666666666666"}},
+  "recorded_at": "2026-08-14T10:00:02.000Z",
+  "evidence_chain": {"event_id": "event_ticketpilot_001", "previous_event_digest": null, "event_digest": "sha256:5555555555555555555555555555555555555555555555555555555555555555"}
+}

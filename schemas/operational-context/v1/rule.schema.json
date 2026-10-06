@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v1/rule.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract", "rule_ref", "version", "freshness_max_age_ms"],
+  "properties": {
+    "contract": { "const": "dubsar.operational-context.rule/1" },
+    "rule_ref": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "version": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+    "freshness_max_age_ms": { "type": "integer", "minimum": 0, "maximum": 315360000000 }
+  }
+}

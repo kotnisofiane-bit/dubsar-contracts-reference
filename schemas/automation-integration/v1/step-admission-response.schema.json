@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/step-admission-response.schema.json",
+  "title": "step-admission-response",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "admission_request_id",
+    "automation_run_id",
+    "step_instance_id",
+    "execution_id",
+    "state",
+    "engine_permit_ref",
+    "tool_permit_ref",
+    "request_digest",
+    "expires_at"
+  ],
+  "properties": {
+    "admission_request_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "automation_run_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "step_instance_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "execution_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "state": {
+      "enum": [
+        "ready",
+        "rejected",
+        "indeterminate"
+      ]
+    },
+    "engine_permit_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "tool_permit_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "request_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "expires_at": {
+      "$ref": "common.schema.json#/$defs/time"
+    }
+  }
+}

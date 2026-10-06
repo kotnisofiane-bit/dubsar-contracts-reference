@@ -1,0 +1,51 @@
+{
+  "schema": "dubsar.s1.hash-vectors.v1",
+  "derivation": "Independent Python stdlib SHA-256 over the canonical integer-only ASCII fixtures; no product hashing code used.",
+  "algorithm": "sha256(UTF8(domain) || 0x00 || UTF8(canonical_json))",
+  "header_canonical": "{\"alg\":\"EdDSA\",\"kid\":\"core-key_s1_probe_vector_001\",\"typ\":\"DUBSAR-TASK-LEASE+JSON\",\"v\":2}",
+  "request_canonical": "{\"context_id\":\"ctx-s1-synthetic\",\"messages\":[{\"content\":\"Return exactly S1_OK.\",\"role\":\"user\"}],\"model\":\"dubsar-s1-synthetic\",\"profile_id\":\"dubsar.s1.synthetic.v1\",\"stream\":false}",
+  "vectors": {
+    "request": {
+      "domain": "dubsar.s1.gateway-request.v1",
+      "canonical_bytes": 179,
+      "digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7"
+    },
+    "policy": {
+      "domain": "dubsar.s1.egress-policy.v1",
+      "canonical_bytes": 794,
+      "digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc"
+    },
+    "profile": {
+      "domain": "dubsar.task-profile.v2",
+      "canonical_bytes": 2531,
+      "digest": "sha256:160695f459409cd37e8e9bfb142f4f72c378d3550dffac7c017e66358ff01bc4"
+    },
+    "lease": {
+      "domain": "dubsar.contract.task-lease.v2",
+      "canonical_bytes": 2737,
+      "digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f"
+    },
+    "receipt": {
+      "domain": "dubsar.s1.egress-receipt.v1",
+      "canonical_bytes": 3531,
+      "digest": "sha256:33a980ffc208338342942578345f5e16be4c3070de14fd90b0edecebc757f50f"
+    }
+  },
+  "receipt_examples": {
+    "synthetic_declared": {
+      "domain": "dubsar.s1.egress-receipt.v1",
+      "canonical_bytes": 5388,
+      "digest": "sha256:495a7b99a2b19ea1b22d5bccf50e07e52ba41723f19c417e02ac7013dbd52515"
+    },
+    "denied_expired": {
+      "domain": "dubsar.s1.egress-receipt.v1",
+      "canonical_bytes": 2557,
+      "digest": "sha256:da312ce9c6d519e9fbf3726bd5a11c3f5a1d6e883f27cf3e9abed157922ddedc"
+    },
+    "denied_revoked_before_activation": {
+      "domain": "dubsar.s1.egress-receipt.v1",
+      "canonical_bytes": 2579,
+      "digest": "sha256:48ca2ece1ba1e5718f91eb500ba0999717d1ed302b975ebbf63f28abb246b5ab"
+    }
+  }
+}

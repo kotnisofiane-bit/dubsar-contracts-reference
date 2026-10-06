@@ -1,0 +1,144 @@
+{
+  "format": "dubsar.judgment.input/1",
+  "authority": "none",
+  "content_trust": "advisory_data",
+  "text_role": "data",
+  "truth": "not_selected",
+  "executable": false,
+  "scope": {
+    "project_id": "project-fixture",
+    "mission_id": "mission-fixture",
+    "ticket_id": "DUB-900"
+  },
+  "question": "Ce résultat technique exact est-il documenté ?",
+  "context": {
+    "agent_context_digest": null,
+    "snapshot_atomic": false,
+    "elements": [
+      {
+        "element_id": "e_memory_1",
+        "source": "memory",
+        "kind": "memory_relation",
+        "reference": {
+          "ref": "relation:00000000-0000-4000-8000-000000000001",
+          "digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "digest_scheme": "memory-v2-content-digest"
+        },
+        "availability": "available",
+        "content_verification": "matched",
+        "text": "Cette route de lecture est accessible.",
+        "freshness": "unknown",
+        "temporal_scope": "historical",
+        "source_observed_at": "2026-10-04T00:00:00.000Z",
+        "origin_ids": [
+          "origin_1"
+        ],
+        "provenance_complete": true,
+        "limit_ids": [
+          "l_history",
+          "l_unknown"
+        ],
+        "facts": {
+          "automation": null,
+          "oc": null
+        }
+      },
+      {
+        "element_id": "e_memory_2",
+        "source": "memory",
+        "kind": "memory_relation",
+        "reference": {
+          "ref": "relation:00000000-0000-4000-8000-000000000002",
+          "digest": "2222222222222222222222222222222222222222222222222222222222222222",
+          "digest_scheme": "memory-v2-content-digest"
+        },
+        "availability": "available",
+        "content_verification": "matched",
+        "text": "Cette route de lecture est inaccessible.",
+        "freshness": "unknown",
+        "temporal_scope": "historical",
+        "source_observed_at": "2026-10-04T00:00:00.000Z",
+        "origin_ids": [
+          "origin_2"
+        ],
+        "provenance_complete": true,
+        "limit_ids": [
+          "l_history",
+          "l_unknown"
+        ],
+        "facts": {
+          "automation": null,
+          "oc": null
+        }
+      }
+    ],
+    "origins": [
+      {
+        "origin_id": "origin_1",
+        "reference": {
+          "ref": "relation:00000000-0000-4000-8000-000000000001",
+          "digest": "1111111111111111111111111111111111111111111111111111111111111111",
+          "digest_scheme": "memory-v2-content-digest"
+        }
+      },
+      {
+        "origin_id": "origin_2",
+        "reference": {
+          "ref": "relation:00000000-0000-4000-8000-000000000002",
+          "digest": "2222222222222222222222222222222222222222222222222222222222222222",
+          "digest_scheme": "memory-v2-content-digest"
+        }
+      }
+    ],
+    "limits": [
+      {
+        "limit_id": "l_history",
+        "code": "HISTORICAL_ONLY",
+        "detail": "La date source décrit un événement historique.",
+        "mandatory": true
+      },
+      {
+        "limit_id": "l_unknown",
+        "code": "FRESHNESS_UNKNOWN",
+        "detail": "La fraîcheur de cette source est inconnue.",
+        "mandatory": true
+      }
+    ],
+    "omissions": {
+      "elements": 0,
+      "claims": 0,
+      "consults": 0,
+      "truncated": false
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "c_consistency",
+      "kind": "source_consistency",
+      "statement": "Le résultat exact est documenté.",
+      "candidate_element_ids": [
+        "e_memory_1",
+        "e_memory_2"
+      ],
+      "required_limit_ids": [],
+      "requirements": {
+        "min_independent_origins": 2,
+        "requires_current": false,
+        "requires_verified_content": true
+      }
+    }
+  ],
+  "missing_information": [],
+  "consult_catalog": {
+    "owner": "server",
+    "effect": "readonly",
+    "entries": []
+  },
+  "budget": {
+    "consults_remaining": 2,
+    "tokens_remaining": 512,
+    "cost_remaining_microusd": null,
+    "latency_remaining_ms": null
+  },
+  "previous_judgment": null
+}

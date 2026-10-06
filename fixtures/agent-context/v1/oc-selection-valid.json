@@ -1,0 +1,13 @@
+{
+  "format":"dubsar.my-work-oc-selection/1",
+  "availability":"available",
+  "selection_id":"mywork.release.current_sha",
+  "project_id":"project-fixture",
+  "mission_id":"mission-fixture",
+  "resource_ref":"ocr_00000000000000000000000000000002",
+  "property":"mywork.release.current_sha",
+  "relation_depth":0,
+  "source":"trusted_mapping",
+  "mapping_version":1,
+  "limits":[]
+}

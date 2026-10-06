@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/v1/approval-record.schema.json",
+  "title": "DUBSAR Workflow Approval Record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contract_version", "approval_id", "workflow", "scope", "approver", "policy_evaluation", "issued_at", "expires_at", "revoked_at", "revocation_reason"],
+  "properties": {
+    "schema": {
+      "const": "dubsar.approval-record.v1"
+    },
+    "contract_version": {
+      "$ref": "./common.schema.json#/$defs/contractVersion"
+    },
+    "approval_id": {
+      "type": "string",
+      "pattern": "^approval_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "workflow": {
+      "$ref": "./common.schema.json#/$defs/workflowBinding"
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["node_ids", "connection_refs", "destinations", "max_actions", "max_duration_seconds"],
+      "properties": {
+        "node_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1024,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^node_[a-z0-9][a-z0-9_-]{3,127}$"
+          }
+        },
+        "connection_refs": {
+          "type": "array",
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "./common.schema.json#/$defs/connectionRef"
+          }
+        },
+        "destinations": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "$ref": "./common.schema.json#/$defs/destination"
+          }
+        },
+        "max_actions": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "max_duration_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        }
+      }
+    },
+    "approver": {
+      "$ref": "./common.schema.json#/$defs/principal"
+    },
+    "policy_evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "policy_id", "policy_version", "policy_digest", "decision", "evaluated_at"],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "pattern": "^decision_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "policy_id": {
+          "type": "string",
+          "pattern": "^policy_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "policy_version": {
+          "$ref": "./common.schema.json#/$defs/semver"
+        },
+        "policy_digest": {
+          "$ref": "./common.schema.json#/$defs/digest"
+        },
+        "decision": {
+          "const": "ALLOW"
+        },
+        "evaluated_at": {
+          "$ref": "./common.schema.json#/$defs/timestamp"
+        }
+      }
+    },
+    "issued_at": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "expires_at": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "revoked_at": {
+      "oneOf": [
+        {
+          "$ref": "./common.schema.json#/$defs/timestamp"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "revocation_reason": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

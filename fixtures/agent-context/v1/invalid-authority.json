@@ -1,0 +1,10 @@
+{
+  "format": "dubsar.agent-context/1",
+  "kind": "agent_context_view",
+  "authority": "human",
+  "content_trust": "advisory_data",
+  "text_role": "data",
+  "truth": "not_selected",
+  "captured_at": null,
+  "context_digest": "0000000000000000000000000000000000000000000000000000000000000000"
+}

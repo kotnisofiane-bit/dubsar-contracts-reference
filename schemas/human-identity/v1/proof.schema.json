@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false, "required": ["claims", "signature"],
+  "properties": {
+    "signature": {"type": "string", "pattern": "^[A-Za-z0-9_-]{86}$"},
+    "claims": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "issuer", "audience", "subject", "session", "kind", "issued_at", "expires_at"],
+      "properties": {
+        "schema": {"const": "dubsar.human-proof/1"}, "kind": {"const": "human"},
+        "issuer": {"type": "string", "minLength": 1, "maxLength": 256},
+        "audience": {"type": "string", "minLength": 1, "maxLength": 256},
+        "subject": {"type": "string", "minLength": 1, "maxLength": 256},
+        "session": {"type": "string", "minLength": 1, "maxLength": 256},
+        "issued_at": {"type": "integer", "minimum": 0}, "expires_at": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/task-runtime-s1/egress-receipt.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "lease_id",
+    "task_id",
+    "action_id",
+    "tenant_id",
+    "mission_id",
+    "evidence_correlation_id",
+    "lease_digest",
+    "policy_digest",
+    "profile_digest",
+    "runtime_lock_digest",
+    "requested_policy_digest",
+    "sandbox_id",
+    "session_id",
+    "requested_policy",
+    "effective_policy",
+    "effective_policy_digest",
+    "destination",
+    "route",
+    "recorded_at",
+    "window",
+    "operation",
+    "enforcement"
+  ],
+  "properties": {
+    "schema": {
+      "const": "dubsar.s1.egress-receipt.v1"
+    },
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "lease_id": {
+      "type": "string",
+      "pattern": "^lease_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^task_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "action_id": {
+      "type": "string",
+      "pattern": "^action_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^tenant_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "mission_id": {
+      "type": "string",
+      "pattern": "^mission_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "evidence_correlation_id": {
+      "type": "string",
+      "pattern": "^evidence_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "lease_digest": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+    },
+    "policy_digest": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+    },
+    "profile_digest": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+    },
+    "runtime_lock_digest": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+    },
+    "requested_policy_digest": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+    },
+    "sandbox_id": {
+      "type": "string",
+      "pattern": "^sandbox_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^egress_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "requested_policy": {
+      "$ref": "./egress-policy.schema.json"
+    },
+    "effective_policy": {
+      "oneOf": [
+        {
+          "$ref": "./egress-policy.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "effective_policy_digest": {
+      "oneOf": [
+        {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "destination": {
+      "const": {
+        "service_ref": "dubsar.gateway",
+        "scheme": "https",
+        "peer_ref": "dubsar.gateway.s1"
+      }
+    },
+    "route": {
+      "const": {
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sandbox_created_at",
+        "not_before",
+        "expires_at",
+        "revoked_at"
+      ],
+      "properties": {
+        "sandbox_created_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$",
+          "format": "date-time"
+        },
+        "not_before": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$",
+          "format": "date-time"
+        },
+        "revoked_at": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "started_at",
+        "finished_at",
+        "duration_ms",
+        "attempts",
+        "forwarded",
+        "request_bytes",
+        "response_bytes",
+        "generation_tokens",
+        "request_digest",
+        "response_digest",
+        "gateway_receipt_ref",
+        "result"
+      ],
+      "properties": {
+        "started_at": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "finished_at": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "duration_ms": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "forwarded": {
+          "type": "boolean"
+        },
+        "request_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4096
+        },
+        "response_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16384
+        },
+        "generation_tokens": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 128
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "request_digest": {
+          "const": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7"
+        },
+        "response_digest": {
+          "oneOf": [
+            {
+              "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gateway_receipt_ref": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^gateway-receipt_[a-z0-9][a-z0-9_-]{7,127}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "result": {
+          "enum": [
+            "SIMULATED",
+            "SUCCEEDED",
+            "DENIED",
+            "FAILED",
+            "INDETERMINATE"
+          ]
+        }
+      }
+    },
+    "enforcement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "policy_applied",
+        "declared_observations",
+        "observations_status",
+        "proof_acquired"
+      ],
+      "properties": {
+        "level": {
+          "enum": [
+            "MODEL_ONLY",
+            "DECLARED_ONLY",
+            "NOT_PROVEN"
+          ]
+        },
+        "policy_applied": {
+          "const": false
+        },
+        "declared_observations": {
+          "type": "array",
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "source",
+              "evidence_digest",
+              "effective_policy_digest",
+              "lease_digest",
+              "sandbox_id",
+              "session_id",
+              "observed_at"
+            ],
+            "properties": {
+              "kind": {
+                "enum": [
+                  "MEDIATOR_POLICY_READBACK",
+                  "NETWORK_FENCE_READBACK",
+                  "GATEWAY_PEER",
+                  "BYPASS_PROBES"
+                ]
+              },
+              "source": {
+                "enum": [
+                  "MEDIATOR",
+                  "HOST_ENFORCER",
+                  "QUALIFIER"
+                ]
+              },
+              "evidence_digest": {
+                "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+              },
+              "effective_policy_digest": {
+                "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+              },
+              "lease_digest": {
+                "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+              },
+              "sandbox_id": {
+                "type": "string",
+                "pattern": "^sandbox_[a-z0-9][a-z0-9_-]{7,127}$"
+              },
+              "session_id": {
+                "type": "string",
+                "pattern": "^egress_[a-z0-9][a-z0-9_-]{7,127}$"
+              },
+              "observed_at": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "observations_status": {
+          "enum": [
+            "NONE",
+            "STRUCTURALLY_VALID"
+          ]
+        },
+        "proof_acquired": {
+          "const": false
+        }
+      }
+    },
+    "recorded_at": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d\\.\\d{3}Z$",
+      "format": "date-time"
+    }
+  }
+}

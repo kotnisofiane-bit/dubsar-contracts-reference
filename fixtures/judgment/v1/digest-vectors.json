@@ -1,0 +1,301 @@
+{
+  "format": "dubsar.judgment.digest-vectors/1",
+  "canonical_codec": "src/canonical-json.mjs",
+  "domain_separator": "UTF8(domain) + NUL + canonical UTF8",
+  "vectors": [
+    {
+      "vector_id": "unicode_codec",
+      "kind": "input",
+      "value": {
+        "message": "DUBSAR café 🧭\nreadonly",
+        "n": 9007199254740991,
+        "flag": false,
+        "nullable": null,
+        "items": [
+          "α",
+          "β"
+        ]
+      },
+      "canonical_utf8": "{\"flag\":false,\"items\":[\"α\",\"β\"],\"message\":\"DUBSAR café 🧭\\nreadonly\",\"n\":9007199254740991,\"nullable\":null}",
+      "bytes_digest": "sha256:dfd849c0806092bfaff0eaca24e5f850623e03a0d166a37fc4f0c75734438929",
+      "canonical_digest": "sha256:0678f6ec262ff0096cf19a378c608a82de6b86248b1423bfc45567a54c2138ca"
+    },
+    {
+      "vector_id": "historical_input",
+      "kind": "input",
+      "value": {
+        "format": "dubsar.judgment.input/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "scope": {
+          "project_id": "project-fixture",
+          "mission_id": "mission-fixture",
+          "ticket_id": "DUB-900"
+        },
+        "question": "Ce résultat technique exact est-il documenté ?",
+        "context": {
+          "agent_context_digest": null,
+          "snapshot_atomic": false,
+          "elements": [
+            {
+              "element_id": "e_e5",
+              "source": "my_work",
+              "kind": "automation_result",
+              "reference": {
+                "ref": "event_run_fixture_example_1",
+                "digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+                "digest_scheme": "dubsar.automation.run-event.v1"
+              },
+              "availability": "available",
+              "content_verification": "matched",
+              "text": "E5 succeeded accepté ; mission_criteria=not_evaluated.",
+              "freshness": "unknown",
+              "temporal_scope": "historical",
+              "source_observed_at": "2026-09-28T19:00:00.000Z",
+              "origin_ids": [
+                "origin_e5"
+              ],
+              "provenance_complete": true,
+              "limit_ids": [
+                "l_history",
+                "l_mission"
+              ],
+              "facts": {
+                "automation": {
+                  "run_id": "run_fixture_example",
+                  "event_id": "event_run_fixture_example_1",
+                  "state": "succeeded",
+                  "result": "documented",
+                  "mission_criteria": "not_evaluated",
+                  "reference_contents_read": false,
+                  "reference_availability": "not_checked"
+                },
+                "oc": null
+              }
+            }
+          ],
+          "origins": [
+            {
+              "origin_id": "origin_e5",
+              "reference": {
+                "ref": "event_run_fixture_example_1",
+                "digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+                "digest_scheme": "dubsar.automation.run-event.v1"
+              }
+            }
+          ],
+          "limits": [
+            {
+              "limit_id": "l_history",
+              "code": "HISTORICAL_ONLY",
+              "detail": "La date source décrit un événement historique.",
+              "mandatory": true
+            },
+            {
+              "limit_id": "l_mission",
+              "code": "MISSION_CRITERIA_NOT_EVALUATED",
+              "detail": "Résultat de run distinct des critères de mission.",
+              "mandatory": true
+            }
+          ],
+          "omissions": {
+            "elements": 0,
+            "claims": 0,
+            "consults": 0,
+            "truncated": false
+          }
+        },
+        "claims": [
+          {
+            "claim_id": "c_run",
+            "kind": "automation_result",
+            "statement": "Le résultat exact est documenté.",
+            "candidate_element_ids": [
+              "e_e5"
+            ],
+            "required_limit_ids": [],
+            "requirements": {
+              "min_independent_origins": 1,
+              "requires_current": false,
+              "requires_verified_content": true
+            }
+          },
+          {
+            "claim_id": "c_mission",
+            "kind": "mission_criteria",
+            "statement": "Le résultat exact est documenté.",
+            "candidate_element_ids": [
+              "e_e5"
+            ],
+            "required_limit_ids": [],
+            "requirements": {
+              "min_independent_origins": 1,
+              "requires_current": false,
+              "requires_verified_content": true
+            }
+          }
+        ],
+        "missing_information": [],
+        "consult_catalog": {
+          "owner": "server",
+          "effect": "readonly",
+          "entries": []
+        },
+        "budget": {
+          "consults_remaining": 2,
+          "tokens_remaining": 512,
+          "cost_remaining_microusd": null,
+          "latency_remaining_ms": null
+        },
+        "previous_judgment": null
+      },
+      "canonical_utf8": "{\"authority\":\"none\",\"budget\":{\"consults_remaining\":2,\"cost_remaining_microusd\":null,\"latency_remaining_ms\":null,\"tokens_remaining\":512},\"claims\":[{\"candidate_element_ids\":[\"e_e5\"],\"claim_id\":\"c_run\",\"kind\":\"automation_result\",\"required_limit_ids\":[],\"requirements\":{\"min_independent_origins\":1,\"requires_current\":false,\"requires_verified_content\":true},\"statement\":\"Le résultat exact est documenté.\"},{\"candidate_element_ids\":[\"e_e5\"],\"claim_id\":\"c_mission\",\"kind\":\"mission_criteria\",\"required_limit_ids\":[],\"requirements\":{\"min_independent_origins\":1,\"requires_current\":false,\"requires_verified_content\":true},\"statement\":\"Le résultat exact est documenté.\"}],\"consult_catalog\":{\"effect\":\"readonly\",\"entries\":[],\"owner\":\"server\"},\"content_trust\":\"advisory_data\",\"context\":{\"agent_context_digest\":null,\"elements\":[{\"availability\":\"available\",\"content_verification\":\"matched\",\"element_id\":\"e_e5\",\"facts\":{\"automation\":{\"event_id\":\"event_run_fixture_example_1\",\"mission_criteria\":\"not_evaluated\",\"reference_availability\":\"not_checked\",\"reference_contents_read\":false,\"result\":\"documented\",\"run_id\":\"run_fixture_example\",\"state\":\"succeeded\"},\"oc\":null},\"freshness\":\"unknown\",\"kind\":\"automation_result\",\"limit_ids\":[\"l_history\",\"l_mission\"],\"origin_ids\":[\"origin_e5\"],\"provenance_complete\":true,\"reference\":{\"digest\":\"95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7\",\"digest_scheme\":\"dubsar.automation.run-event.v1\",\"ref\":\"event_run_fixture_example_1\"},\"source\":\"my_work\",\"source_observed_at\":\"2026-09-28T19:00:00.000Z\",\"temporal_scope\":\"historical\",\"text\":\"E5 succeeded accepté ; mission_criteria=not_evaluated.\"}],\"limits\":[{\"code\":\"HISTORICAL_ONLY\",\"detail\":\"La date source décrit un événement historique.\",\"limit_id\":\"l_history\",\"mandatory\":true},{\"code\":\"MISSION_CRITERIA_NOT_EVALUATED\",\"detail\":\"Résultat de run distinct des critères de mission.\",\"limit_id\":\"l_mission\",\"mandatory\":true}],\"omissions\":{\"claims\":0,\"consults\":0,\"elements\":0,\"truncated\":false},\"origins\":[{\"origin_id\":\"origin_e5\",\"reference\":{\"digest\":\"95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7\",\"digest_scheme\":\"dubsar.automation.run-event.v1\",\"ref\":\"event_run_fixture_example_1\"}}],\"snapshot_atomic\":false},\"executable\":false,\"format\":\"dubsar.judgment.input/1\",\"missing_information\":[],\"previous_judgment\":null,\"question\":\"Ce résultat technique exact est-il documenté ?\",\"scope\":{\"mission_id\":\"mission-fixture\",\"project_id\":\"project-fixture\",\"ticket_id\":\"DUB-900\"},\"text_role\":\"data\",\"truth\":\"not_selected\"}",
+      "bytes_digest": "sha256:fae2cb6c5735f7a06e339bab1b3047e92881abd82ce9ead27d232f3c9754e9c9",
+      "canonical_digest": "sha256:08726edfeed19d2cc20ee8f2fdb76c42b382a1ac45fd208abb94e37fce9d6be2"
+    },
+    {
+      "vector_id": "closed_output",
+      "kind": "output",
+      "value": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "supported",
+          "claim_ids": [
+            "c_run"
+          ],
+          "element_ids": [
+            "e_e5"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission"
+          ]
+        }
+      },
+      "canonical_utf8": "{\"authority\":\"none\",\"content_trust\":\"advisory_data\",\"executable\":false,\"format\":\"dubsar.judgment.output/1\",\"move\":\"conclude\",\"payload\":{\"claim_ids\":[\"c_run\"],\"element_ids\":[\"e_e5\"],\"limit_ids\":[\"l_history\",\"l_mission\"],\"status\":\"supported\"},\"text_role\":\"data\",\"truth\":\"not_selected\"}",
+      "bytes_digest": "sha256:0642f7eb614130ef111dd721adc5353f47cfcb1241b797fd757e69032a29777e",
+      "canonical_digest": "sha256:15f8893eff996d974e394033617b478e3dfcdcb0f51237aad1bf775d2edd75f3"
+    },
+    {
+      "vector_id": "technical_trace",
+      "kind": "trajectory",
+      "value": {
+        "format": "dubsar.judgment.trajectory/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "trajectory_id": "trajectory_fixture",
+        "request_id": "request_fixture",
+        "turn_id": "turn_001",
+        "session_ref": "session:fixture-no-runtime",
+        "runtime_ref": "runtime:fixture-no-inference",
+        "previous_turn_digest": null,
+        "versions": {
+          "input_contract": "dubsar.judgment.input/1",
+          "output_contract": "dubsar.judgment.output/1",
+          "prompt": {
+            "ref": "prompt:judgment-v1-fixture",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "digest_scheme": "sha256-bytes"
+          },
+          "model": {
+            "model_ref": "model:fixture",
+            "revision": null
+          }
+        },
+        "input": {
+          "sent_utf8": "{\"authority\":\"none\",\"budget\":{\"consults_remaining\":2,\"cost_remaining_microusd\":null,\"latency_remaining_ms\":null,\"tokens_remaining\":512},\"claims\":[{\"candidate_element_ids\":[\"e_e5\"],\"claim_id\":\"c_run\",\"kind\":\"automation_result\",\"required_limit_ids\":[],\"requirements\":{\"min_independent_origins\":1,\"requires_current\":false,\"requires_verified_content\":true},\"statement\":\"Le résultat exact est documenté.\"},{\"candidate_element_ids\":[\"e_e5\"],\"claim_id\":\"c_mission\",\"kind\":\"mission_criteria\",\"required_limit_ids\":[],\"requirements\":{\"min_independent_origins\":1,\"requires_current\":false,\"requires_verified_content\":true},\"statement\":\"Le résultat exact est documenté.\"}],\"consult_catalog\":{\"effect\":\"readonly\",\"entries\":[],\"owner\":\"server\"},\"content_trust\":\"advisory_data\",\"context\":{\"agent_context_digest\":null,\"elements\":[{\"availability\":\"available\",\"content_verification\":\"matched\",\"element_id\":\"e_e5\",\"facts\":{\"automation\":{\"event_id\":\"event_run_fixture_example_1\",\"mission_criteria\":\"not_evaluated\",\"reference_availability\":\"not_checked\",\"reference_contents_read\":false,\"result\":\"documented\",\"run_id\":\"run_fixture_example\",\"state\":\"succeeded\"},\"oc\":null},\"freshness\":\"unknown\",\"kind\":\"automation_result\",\"limit_ids\":[\"l_history\",\"l_mission\"],\"origin_ids\":[\"origin_e5\"],\"provenance_complete\":true,\"reference\":{\"digest\":\"95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7\",\"digest_scheme\":\"dubsar.automation.run-event.v1\",\"ref\":\"event_run_fixture_example_1\"},\"source\":\"my_work\",\"source_observed_at\":\"2026-09-28T19:00:00.000Z\",\"temporal_scope\":\"historical\",\"text\":\"E5 succeeded accepté ; mission_criteria=not_evaluated.\"}],\"limits\":[{\"code\":\"HISTORICAL_ONLY\",\"detail\":\"La date source décrit un événement historique.\",\"limit_id\":\"l_history\",\"mandatory\":true},{\"code\":\"MISSION_CRITERIA_NOT_EVALUATED\",\"detail\":\"Résultat de run distinct des critères de mission.\",\"limit_id\":\"l_mission\",\"mandatory\":true}],\"omissions\":{\"claims\":0,\"consults\":0,\"elements\":0,\"truncated\":false},\"origins\":[{\"origin_id\":\"origin_e5\",\"reference\":{\"digest\":\"95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7\",\"digest_scheme\":\"dubsar.automation.run-event.v1\",\"ref\":\"event_run_fixture_example_1\"}}],\"snapshot_atomic\":false},\"executable\":false,\"format\":\"dubsar.judgment.input/1\",\"missing_information\":[],\"previous_judgment\":null,\"question\":\"Ce résultat technique exact est-il documenté ?\",\"scope\":{\"mission_id\":\"mission-fixture\",\"project_id\":\"project-fixture\",\"ticket_id\":\"DUB-900\"},\"text_role\":\"data\",\"truth\":\"not_selected\"}",
+          "sent_digest": "sha256:fae2cb6c5735f7a06e339bab1b3047e92881abd82ce9ead27d232f3c9754e9c9",
+          "canonical_digest": "sha256:08726edfeed19d2cc20ee8f2fdb76c42b382a1ac45fd208abb94e37fce9d6be2"
+        },
+        "response": {
+          "response_ref": "response_001",
+          "raw_utf8": "{\"authority\":\"none\",\"content_trust\":\"advisory_data\",\"executable\":false,\"format\":\"dubsar.judgment.output/1\",\"move\":\"conclude\",\"payload\":{\"claim_ids\":[\"c_run\"],\"element_ids\":[\"e_e5\"],\"limit_ids\":[\"l_history\",\"l_mission\"],\"status\":\"supported\"},\"text_role\":\"data\",\"truth\":\"not_selected\"}",
+          "raw_digest": "sha256:0642f7eb614130ef111dd721adc5353f47cfcb1241b797fd757e69032a29777e",
+          "validation": {
+            "status": "validated",
+            "output": {
+              "format": "dubsar.judgment.output/1",
+              "authority": "none",
+              "content_trust": "advisory_data",
+              "text_role": "data",
+              "truth": "not_selected",
+              "executable": false,
+              "move": "conclude",
+              "payload": {
+                "status": "supported",
+                "claim_ids": [
+                  "c_run"
+                ],
+                "element_ids": [
+                  "e_e5"
+                ],
+                "limit_ids": [
+                  "l_history",
+                  "l_mission"
+                ]
+              }
+            },
+            "error_codes": []
+          }
+        },
+        "consultations": [],
+        "origins": [
+          {
+            "origin_id": "origin_e5",
+            "reference": {
+              "ref": "event_run_fixture_example_1",
+              "digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+              "digest_scheme": "dubsar.automation.run-event.v1"
+            }
+          }
+        ],
+        "limits": [
+          {
+            "limit_id": "l_history",
+            "code": "HISTORICAL_ONLY",
+            "detail": "La date source décrit un événement historique.",
+            "mandatory": true
+          },
+          {
+            "limit_id": "l_mission",
+            "code": "MISSION_CRITERIA_NOT_EVALUATED",
+            "detail": "Résultat de run distinct des critères de mission.",
+            "mandatory": true
+          }
+        ],
+        "usage": {
+          "tokens": {
+            "input": null,
+            "output": null,
+            "method": "not_measured"
+          },
+          "latency_ms": {
+            "value": null,
+            "method": "not_measured"
+          },
+          "cost": {
+            "microusd": null,
+            "method": "not_measured",
+            "pricing_ref": null
+          }
+        },
+        "human_feedback": null
+      },
+      "canonical_utf8": "{\"authority\":\"none\",\"consultations\":[],\"content_trust\":\"advisory_data\",\"executable\":false,\"format\":\"dubsar.judgment.trajectory/1\",\"human_feedback\":null,\"input\":{\"canonical_digest\":\"sha256:08726edfeed19d2cc20ee8f2fdb76c42b382a1ac45fd208abb94e37fce9d6be2\",\"sent_digest\":\"sha256:fae2cb6c5735f7a06e339bab1b3047e92881abd82ce9ead27d232f3c9754e9c9\",\"sent_utf8\":\"{\\\"authority\\\":\\\"none\\\",\\\"budget\\\":{\\\"consults_remaining\\\":2,\\\"cost_remaining_microusd\\\":null,\\\"latency_remaining_ms\\\":null,\\\"tokens_remaining\\\":512},\\\"claims\\\":[{\\\"candidate_element_ids\\\":[\\\"e_e5\\\"],\\\"claim_id\\\":\\\"c_run\\\",\\\"kind\\\":\\\"automation_result\\\",\\\"required_limit_ids\\\":[],\\\"requirements\\\":{\\\"min_independent_origins\\\":1,\\\"requires_current\\\":false,\\\"requires_verified_content\\\":true},\\\"statement\\\":\\\"Le résultat exact est documenté.\\\"},{\\\"candidate_element_ids\\\":[\\\"e_e5\\\"],\\\"claim_id\\\":\\\"c_mission\\\",\\\"kind\\\":\\\"mission_criteria\\\",\\\"required_limit_ids\\\":[],\\\"requirements\\\":{\\\"min_independent_origins\\\":1,\\\"requires_current\\\":false,\\\"requires_verified_content\\\":true},\\\"statement\\\":\\\"Le résultat exact est documenté.\\\"}],\\\"consult_catalog\\\":{\\\"effect\\\":\\\"readonly\\\",\\\"entries\\\":[],\\\"owner\\\":\\\"server\\\"},\\\"content_trust\\\":\\\"advisory_data\\\",\\\"context\\\":{\\\"agent_context_digest\\\":null,\\\"elements\\\":[{\\\"availability\\\":\\\"available\\\",\\\"content_verification\\\":\\\"matched\\\",\\\"element_id\\\":\\\"e_e5\\\",\\\"facts\\\":{\\\"automation\\\":{\\\"event_id\\\":\\\"event_run_fixture_example_1\\\",\\\"mission_criteria\\\":\\\"not_evaluated\\\",\\\"reference_availability\\\":\\\"not_checked\\\",\\\"reference_contents_read\\\":false,\\\"result\\\":\\\"documented\\\",\\\"run_id\\\":\\\"run_fixture_example\\\",\\\"state\\\":\\\"succeeded\\\"},\\\"oc\\\":null},\\\"freshness\\\":\\\"unknown\\\",\\\"kind\\\":\\\"automation_result\\\",\\\"limit_ids\\\":[\\\"l_history\\\",\\\"l_mission\\\"],\\\"origin_ids\\\":[\\\"origin_e5\\\"],\\\"provenance_complete\\\":true,\\\"reference\\\":{\\\"digest\\\":\\\"95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7\\\",\\\"digest_scheme\\\":\\\"dubsar.automation.run-event.v1\\\",\\\"ref\\\":\\\"event_run_fixture_example_1\\\"},\\\"source\\\":\\\"my_work\\\",\\\"source_observed_at\\\":\\\"2026-09-28T19:00:00.000Z\\\",\\\"temporal_scope\\\":\\\"historical\\\",\\\"text\\\":\\\"E5 succeeded accepté ; mission_criteria=not_evaluated.\\\"}],\\\"limits\\\":[{\\\"code\\\":\\\"HISTORICAL_ONLY\\\",\\\"detail\\\":\\\"La date source décrit un événement historique.\\\",\\\"limit_id\\\":\\\"l_history\\\",\\\"mandatory\\\":true},{\\\"code\\\":\\\"MISSION_CRITERIA_NOT_EVALUATED\\\",\\\"detail\\\":\\\"Résultat de run distinct des critères de mission.\\\",\\\"limit_id\\\":\\\"l_mission\\\",\\\"mandatory\\\":true}],\\\"omissions\\\":{\\\"claims\\\":0,\\\"consults\\\":0,\\\"elements\\\":0,\\\"truncated\\\":false},\\\"origins\\\":[{\\\"origin_id\\\":\\\"origin_e5\\\",\\\"reference\\\":{\\\"digest\\\":\\\"95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7\\\",\\\"digest_scheme\\\":\\\"dubsar.automation.run-event.v1\\\",\\\"ref\\\":\\\"event_run_fixture_example_1\\\"}}],\\\"snapshot_atomic\\\":false},\\\"executable\\\":false,\\\"format\\\":\\\"dubsar.judgment.input/1\\\",\\\"missing_information\\\":[],\\\"previous_judgment\\\":null,\\\"question\\\":\\\"Ce résultat technique exact est-il documenté ?\\\",\\\"scope\\\":{\\\"mission_id\\\":\\\"mission-fixture\\\",\\\"project_id\\\":\\\"project-fixture\\\",\\\"ticket_id\\\":\\\"DUB-900\\\"},\\\"text_role\\\":\\\"data\\\",\\\"truth\\\":\\\"not_selected\\\"}\"},\"limits\":[{\"code\":\"HISTORICAL_ONLY\",\"detail\":\"La date source décrit un événement historique.\",\"limit_id\":\"l_history\",\"mandatory\":true},{\"code\":\"MISSION_CRITERIA_NOT_EVALUATED\",\"detail\":\"Résultat de run distinct des critères de mission.\",\"limit_id\":\"l_mission\",\"mandatory\":true}],\"origins\":[{\"origin_id\":\"origin_e5\",\"reference\":{\"digest\":\"95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7\",\"digest_scheme\":\"dubsar.automation.run-event.v1\",\"ref\":\"event_run_fixture_example_1\"}}],\"previous_turn_digest\":null,\"request_id\":\"request_fixture\",\"response\":{\"raw_digest\":\"sha256:0642f7eb614130ef111dd721adc5353f47cfcb1241b797fd757e69032a29777e\",\"raw_utf8\":\"{\\\"authority\\\":\\\"none\\\",\\\"content_trust\\\":\\\"advisory_data\\\",\\\"executable\\\":false,\\\"format\\\":\\\"dubsar.judgment.output/1\\\",\\\"move\\\":\\\"conclude\\\",\\\"payload\\\":{\\\"claim_ids\\\":[\\\"c_run\\\"],\\\"element_ids\\\":[\\\"e_e5\\\"],\\\"limit_ids\\\":[\\\"l_history\\\",\\\"l_mission\\\"],\\\"status\\\":\\\"supported\\\"},\\\"text_role\\\":\\\"data\\\",\\\"truth\\\":\\\"not_selected\\\"}\",\"response_ref\":\"response_001\",\"validation\":{\"error_codes\":[],\"output\":{\"authority\":\"none\",\"content_trust\":\"advisory_data\",\"executable\":false,\"format\":\"dubsar.judgment.output/1\",\"move\":\"conclude\",\"payload\":{\"claim_ids\":[\"c_run\"],\"element_ids\":[\"e_e5\"],\"limit_ids\":[\"l_history\",\"l_mission\"],\"status\":\"supported\"},\"text_role\":\"data\",\"truth\":\"not_selected\"},\"status\":\"validated\"}},\"runtime_ref\":\"runtime:fixture-no-inference\",\"session_ref\":\"session:fixture-no-runtime\",\"text_role\":\"data\",\"trajectory_id\":\"trajectory_fixture\",\"truth\":\"not_selected\",\"turn_id\":\"turn_001\",\"usage\":{\"cost\":{\"method\":\"not_measured\",\"microusd\":null,\"pricing_ref\":null},\"latency_ms\":{\"method\":\"not_measured\",\"value\":null},\"tokens\":{\"input\":null,\"method\":\"not_measured\",\"output\":null}},\"versions\":{\"input_contract\":\"dubsar.judgment.input/1\",\"model\":{\"model_ref\":\"model:fixture\",\"revision\":null},\"output_contract\":\"dubsar.judgment.output/1\",\"prompt\":{\"digest\":\"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"digest_scheme\":\"sha256-bytes\",\"ref\":\"prompt:judgment-v1-fixture\"}}}",
+      "bytes_digest": "sha256:cbdf9267bd5a1cec059c09f737718992d0e8550aa8cc071a32d743a81d48537a",
+      "canonical_digest": "sha256:b4e2ab1c6f81e5f4db63e27e6399306d975774cc6ecde24f369e3b90a5f4acb9"
+    }
+  ]
+}

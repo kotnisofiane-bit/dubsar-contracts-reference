@@ -1,0 +1,174 @@
+{
+  "schema": "dubsar.s1.alterations.v1",
+  "basis": "valid-vector.json",
+  "vectors": [
+    {
+      "id": "destination",
+      "target": "policy",
+      "path": "/destination/service_ref",
+      "value": "github",
+      "expected_code": "S1_POLICY_DESTINATION_INVALID"
+    },
+    {
+      "id": "route",
+      "target": "policy",
+      "path": "/operation/path",
+      "value": "/v1/actions/authorize",
+      "expected_code": "S1_POLICY_ROUTE_INVALID"
+    },
+    {
+      "id": "request_digest",
+      "target": "policy",
+      "path": "/request_digest",
+      "value": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "expected_code": "S1_POLICY_REQUEST_DIGEST_MISMATCH"
+    },
+    {
+      "id": "attempt_budget",
+      "target": "policy",
+      "path": "/bounds/max_attempts",
+      "value": 2,
+      "expected_code": "S1_POLICY_BUDGET_INVALID"
+    },
+    {
+      "id": "request_budget",
+      "target": "policy",
+      "path": "/bounds/max_request_bytes",
+      "value": 4097,
+      "expected_code": "S1_POLICY_BUDGET_INVALID"
+    },
+    {
+      "id": "response_budget",
+      "target": "policy",
+      "path": "/bounds/max_response_bytes",
+      "value": 16385,
+      "expected_code": "S1_POLICY_BUDGET_INVALID"
+    },
+    {
+      "id": "generation_budget",
+      "target": "policy",
+      "path": "/bounds/max_generation_tokens",
+      "value": 129,
+      "expected_code": "S1_POLICY_BUDGET_INVALID"
+    },
+    {
+      "id": "duration",
+      "target": "policy",
+      "path": "/bounds/window_seconds",
+      "value": 31,
+      "expected_code": "S1_POLICY_DURATION_INVALID"
+    },
+    {
+      "id": "request_timeout",
+      "target": "policy",
+      "path": "/bounds/request_timeout_ms",
+      "value": 2001,
+      "expected_code": "S1_POLICY_DURATION_INVALID"
+    },
+    {
+      "id": "version",
+      "target": "header",
+      "path": "/v",
+      "value": 1,
+      "expected_code": "S1_ENVELOPE_VERSION_INVALID"
+    },
+    {
+      "id": "lease_version",
+      "target": "lease",
+      "path": "/schema",
+      "value": "dubsar.task-lease.v1",
+      "expected_code": "S1_LEASE_VERSION_INVALID"
+    },
+    {
+      "id": "policy_effective",
+      "target": "receipt",
+      "path": "/effective_policy/operation/path",
+      "value": "/v1/actions/authorize",
+      "expected_code": "S1_EFFECTIVE_POLICY_MISMATCH"
+    },
+    {
+      "id": "enforcement_proof",
+      "target": "receipt",
+      "path": "/enforcement/policy_applied",
+      "value": true,
+      "expected_code": "S1_ENFORCEMENT_NOT_PROVEN"
+    },
+    {
+      "id": "retry",
+      "target": "policy",
+      "path": "/protocol/retry",
+      "value": true,
+      "expected_code": "S1_POLICY_PROTOCOL_INVALID"
+    },
+    {
+      "id": "redirect",
+      "target": "policy",
+      "path": "/protocol/redirect",
+      "value": true,
+      "expected_code": "S1_POLICY_PROTOCOL_INVALID"
+    },
+    {
+      "id": "connect",
+      "target": "policy",
+      "path": "/protocol/connect",
+      "value": true,
+      "expected_code": "S1_POLICY_PROTOCOL_INVALID"
+    },
+    {
+      "id": "streaming",
+      "target": "policy",
+      "path": "/protocol/streaming",
+      "value": true,
+      "expected_code": "S1_POLICY_PROTOCOL_INVALID"
+    },
+    {
+      "id": "tools",
+      "target": "policy",
+      "path": "/protocol/tools",
+      "value": true,
+      "expected_code": "S1_POLICY_PROTOCOL_INVALID"
+    },
+    {
+      "id": "context",
+      "target": "policy",
+      "path": "/gateway_scope/context_id",
+      "value": "ctx-untrusted",
+      "expected_code": "S1_POLICY_CONTEXT_INVALID"
+    },
+    {
+      "id": "core_policy_digest",
+      "target": "receipt",
+      "path": "/policy_digest",
+      "value": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+      "expected_code": "S1_RECEIPT_BINDING_MISMATCH"
+    },
+    {
+      "id": "single_use",
+      "target": "lease",
+      "path": "/replay_protection/single_use",
+      "value": false,
+      "expected_code": "S1_LEASE_INVALID"
+    },
+    {
+      "id": "lease_duration",
+      "target": "lease",
+      "path": "/expires_at",
+      "value": "2026-10-04T16:05:01.000Z",
+      "expected_code": "S1_LEASE_TEMPORAL_INVALID"
+    },
+    {
+      "id": "proof_acquired",
+      "target": "receipt",
+      "path": "/enforcement/proof_acquired",
+      "value": true,
+      "expected_code": "S1_ENFORCEMENT_PROOF_UNAVAILABLE"
+    },
+    {
+      "id": "structural_status",
+      "target": "receipt",
+      "path": "/enforcement/observations_status",
+      "value": "STRUCTURALLY_VALID",
+      "expected_code": "S1_ENFORCEMENT_NOT_PROVEN"
+    }
+  ]
+}

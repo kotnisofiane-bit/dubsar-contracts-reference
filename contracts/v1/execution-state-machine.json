@@ -1,0 +1,67 @@
+{
+  "schema": "dubsar.execution-state-machine.v1",
+  "contract_version": "1.0.0",
+  "initial_state": "RECEIVED",
+  "states": [
+    "AUTHORIZED",
+    "DENIED",
+    "EXPIRED",
+    "FAILED_FINAL",
+    "FAILED_RETRYABLE",
+    "HUMAN_DECISION_REQUIRED",
+    "INDETERMINATE",
+    "IN_FLIGHT",
+    "RECEIVED",
+    "RECONCILED_FAILED",
+    "RECONCILED_SUCCEEDED",
+    "SUCCEEDED"
+  ],
+  "allowed_transitions": [
+    {
+      "from": "AUTHORIZED",
+      "to": "IN_FLIGHT"
+    },
+    {
+      "from": "INDETERMINATE",
+      "to": "HUMAN_DECISION_REQUIRED"
+    },
+    {
+      "from": "INDETERMINATE",
+      "to": "RECONCILED_FAILED"
+    },
+    {
+      "from": "INDETERMINATE",
+      "to": "RECONCILED_SUCCEEDED"
+    },
+    {
+      "from": "IN_FLIGHT",
+      "to": "FAILED_FINAL"
+    },
+    {
+      "from": "IN_FLIGHT",
+      "to": "FAILED_RETRYABLE"
+    },
+    {
+      "from": "IN_FLIGHT",
+      "to": "INDETERMINATE"
+    },
+    {
+      "from": "IN_FLIGHT",
+      "to": "SUCCEEDED"
+    },
+    {
+      "from": "RECEIVED",
+      "to": "AUTHORIZED"
+    },
+    {
+      "from": "RECEIVED",
+      "to": "DENIED"
+    },
+    {
+      "from": "RECEIVED",
+      "to": "EXPIRED"
+    }
+  ],
+  "undeclared_transition_policy": "REJECT",
+  "indeterminate_retry_policy": "HUMAN_OR_RECONCILIATION_ONLY"
+}

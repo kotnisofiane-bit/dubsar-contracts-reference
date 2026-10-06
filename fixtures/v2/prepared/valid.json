@@ -1,0 +1,25 @@
+{
+  "schema": "dubsar.prepared-action.v2",
+  "binding_digest": "sha256:a20528cc70942d3e09c3d357482a2a3e1e88d048b05505f0d64be75d8d5042b7",
+  "proposal_digest": "sha256:92c76ff7855bc14ff30298db4043ab204b7cc35cf386eb2fb784e22fe3693cc1",
+  "approval_digest": "sha256:2d4a796cd15b6048d049161767a4414e19aa7d90cd20abcf3218f0d256ecaabc",
+  "artifact": {
+    "ref": "artifact:content:1",
+    "digest": "sha256:b89aee94d00c89a55d19a3c9fe9e2e6fb9326f514f8030998baf2cf39aac8e37"
+  },
+  "material": {
+    "adapter_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "configuration_digest": "sha256:5b1e10d918c25043e46db2b5391a57a8f1e06035b7826529af92909ee7c74ac1",
+    "configuration": {
+      "mode": "instrumented",
+      "defaults": {}
+    }
+  },
+  "display": {
+    "ref": "artifact:display:1",
+    "digest": "sha256:acfe0f14c347332142b438c3ae53824c97583adecbb979f4a7152196e5ec78e8"
+  },
+  "expected_effect": "Instrumented exact content capture",
+  "issued_at": "2026-08-14T10:00:00.000Z",
+  "expires_at": "2026-08-14T10:01:30.000Z"
+}

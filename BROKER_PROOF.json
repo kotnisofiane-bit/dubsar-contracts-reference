@@ -1,0 +1,44 @@
+{
+  "schema": "dubsar.in-memory-broker-proof.v1",
+  "contract_version": "1.0.0",
+  "contract_set_aggregate_digest": "sha256:ba7c7d6618530a0e7509c11861c597d7710f318fab23461d44f8b35f520626b0",
+  "source_files": [
+    {
+      "path": "src/broker/broker-error.mjs",
+      "sha256": "cbfe54049f9cd75cfc080c7adc5591f012087b93197f0c4c68c360f07eb8e007"
+    },
+    {
+      "path": "src/broker/contract-only-capability-verifier.mjs",
+      "sha256": "4e2193dc44ee89f5485b6bb0fc85f91cf7d8169d25e6208cbba3fa352d78915f"
+    },
+    {
+      "path": "src/broker/deterministic-pilot-executor.mjs",
+      "sha256": "c31c34a858d140d94f77c0592fe8fd2e1d5d10da7855852d48c9340b236b6aef"
+    },
+    {
+      "path": "src/broker/in-memory-action-broker.mjs",
+      "sha256": "9616a612c5c256c3ac4f245f5b64d52091c5724be8f1e62cb1caf0fbc9221b6d"
+    },
+    {
+      "path": "src/broker/in-memory-action-state-store.mjs",
+      "sha256": "cd9f12d79c430c4e20f509c0b9df6aaca36d182ed23d59dc55473b0541acb8fc"
+    }
+  ],
+  "source_aggregate_digest": "sha256:aa0b71828b6b841ae07cfefa7b46c608d6284993d401ee359fd02f666cf69de8",
+  "pilot": {
+    "proposal_digest": "sha256:bf571d70353d80f670bac40734c05a4888390af5f762409ae73a2c8dd1acdf0e",
+    "capability_digest": "sha256:49e0d1ade2c76424fa00232a20b48d864fcc533a34d9b96be1440ac23b94e983",
+    "receipt_contract_digest": "sha256:ecd75218f4608a594c798567ee29b1cc25ed48789f97361953b1eedcf77ba531",
+    "receipt_file_sha256": "edfc68d4d5c5c94bd5ea698d2871d8d75dd70015be6328ab42be53c6cbb2823d",
+    "evidence_event_digest": "sha256:2ba69933370ea9fa7b0b362dac36311c3793a9d04f7409d5e83c72b1ac47f0f5",
+    "final_state": "SUCCEEDED",
+    "transitions": 3,
+    "executions": 1
+  },
+  "boundaries": {
+    "authority_verifier": "contract_only_injected_non_cryptographic",
+    "evidence_plane": "previous_digest_only_no_independent_plane",
+    "external_effects": "none",
+    "storage": "process_memory_only"
+  }
+}

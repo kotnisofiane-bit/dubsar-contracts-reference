@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/v1/action-proposal.schema.json",
+  "title": "DUBSAR Action Proposal v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contract_version", "proposal_id", "run_id", "step_id", "workflow_id", "workflow_digest", "approval_id", "action", "connection_ref", "destination", "context", "idempotency_key", "workload_identity"],
+  "properties": {
+    "schema": {
+      "const": "dubsar.action-proposal.v1"
+    },
+    "contract_version": {
+      "$ref": "./common.schema.json#/$defs/contractVersion"
+    },
+    "proposal_id": {
+      "type": "string",
+      "pattern": "^proposal_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "step_id": {
+      "type": "string",
+      "pattern": "^step_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "workflow_id": {
+      "type": "string",
+      "pattern": "^wf_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "workflow_digest": {
+      "$ref": "./common.schema.json#/$defs/digest"
+    },
+    "approval_id": {
+      "type": "string",
+      "pattern": "^approval_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "action": {
+      "$ref": "./common.schema.json#/$defs/actionIdentity"
+    },
+    "payload": {
+      "$ref": "./common.schema.json#/$defs/jsonValue"
+    },
+    "payload_digest": {
+      "$ref": "./common.schema.json#/$defs/digest"
+    },
+    "connection_ref": {
+      "oneOf": [
+        {
+          "$ref": "./common.schema.json#/$defs/connectionRef"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "destination": {
+      "$ref": "./common.schema.json#/$defs/destination"
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tenant_ref", "project_ref"],
+      "properties": {
+        "tenant_ref": {
+          "type": "string",
+          "pattern": "^tenant_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "project_ref": {
+          "type": "string",
+          "pattern": "^project_[a-z0-9][a-z0-9_-]{7,127}$"
+        }
+      }
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^idem_[A-Za-z0-9_-]{16,128}$"
+    },
+    "workload_identity": {
+      "$ref": "./common.schema.json#/$defs/workload"
+    }
+  },
+  "oneOf": [
+    {
+      "required": ["payload"],
+      "not": {
+        "required": ["payload_digest"]
+      }
+    },
+    {
+      "required": ["payload_digest"],
+      "not": {
+        "required": ["payload"]
+      }
+    }
+  ]
+}

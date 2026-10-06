@@ -1,0 +1,2 @@
+Synthetic fixture attachment.
+Line two: é ü ✓ (UTF-8 roundtrip check).

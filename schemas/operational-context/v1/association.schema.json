@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v1/association.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract", "association_type", "left", "right"],
+  "properties": {
+    "contract": { "const": "dubsar.operational-context.association/1" },
+    "association_type": { "enum": ["related_to", "same_resource"] },
+    "left": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/resource.schema.json" },
+    "right": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/resource.schema.json" },
+    "expected_version": { "type": "integer", "minimum": 1, "maximum": 2147483647 }
+  }
+}

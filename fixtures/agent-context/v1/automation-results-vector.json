@@ -1,0 +1,264 @@
+{
+  "format": "dubsar.agent-context.automation-results-vector/1",
+  "source": {
+    "format": "dubsar.my-work-mission-automation-results/1",
+    "availability": "available",
+    "mission": {
+      "project_id": "project-fixture",
+      "mission_id": "mission-fixture",
+      "ticket_id": "DUB-900",
+      "work_id": "mission-fixture"
+    },
+    "runs": [
+      {
+        "automation_run_id": "run_fixture_example",
+        "mission_ref": "mission-fixture",
+        "mission_binding_method": "work_id",
+        "launch_request_id": "fixture_launch_001",
+        "request_digest": "4444444444444444444444444444444444444444444444444444444444444444",
+        "source_record_digest": "5555555555555555555555555555555555555555555555555555555555555555",
+        "workflow": {
+          "ref": "workflow:github-list-issues",
+          "version": "1",
+          "digest": "2222222222222222222222222222222222222222222222222222222222222222",
+          "digest_scheme": "dubsar.automation.workflow.v1"
+        },
+        "step_identity": {
+          "step_id": "fixture_step_001",
+          "step_instance_id": "fixture_stepinst_001",
+          "execution_id": "fixture_exec_001",
+          "request_digest": "6666666666666666666666666666666666666666666666666666666666666666"
+        },
+        "native_binding": {
+          "engine_permit_ref": "permit:local",
+          "flow_id": "flow:local",
+          "flow_run_id": "flow-run:run_fixture_example",
+          "flow_version_id": "flow-version:local",
+          "generation": 1,
+          "job_id": "job:run_fixture_example"
+        },
+        "recorded_state": "succeeded",
+        "completion": "recorded_terminal",
+        "result_evidence": {
+          "status": "documented",
+          "event_id": "event_run_fixture_example_1",
+          "event_digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7"
+        },
+        "recorded_times": {
+          "created_at": "2026-09-28T19:00:01.000Z",
+          "updated_at": "2026-09-28T19:00:02.000Z",
+          "launch_committed_at": "2026-09-28T19:00:00.000Z"
+        },
+        "events": [
+          {
+            "event": {
+              "automation_run_id": "run_fixture_example",
+              "contract": "dubsar.automation.run-event/1",
+              "event_id": "event_run_fixture_example_1",
+              "event_sequence": 1,
+              "event_type": "terminal",
+              "evidence_refs": [],
+              "mission_ref": "mission-fixture",
+              "native_run_state": "succeeded",
+              "occurred_at": "2026-09-28T19:00:00.000Z",
+              "request_digest": "4444444444444444444444444444444444444444444444444444444444444444",
+              "run_state": "succeeded",
+              "steps": [
+                {
+                  "execution_id": "fixture_exec_001",
+                  "native_step_state": "succeeded",
+                  "provider_dispatch_count": 1,
+                  "remote_durable": true,
+                  "retry_allowed": false,
+                  "step_id": "fixture_step_001",
+                  "step_instance_id": "fixture_stepinst_001",
+                  "tool_receipt_digest": "3333333333333333333333333333333333333333333333333333333333333333",
+                  "tool_receipt_ref": "receipt:local:run_fixture_example",
+                  "tool_status": "succeeded",
+                  "transport_state": "response_received"
+                }
+              ],
+              "workflow_digest": "2222222222222222222222222222222222222222222222222222222222222222"
+            },
+            "event_digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+            "received_at": "2026-09-28T19:00:02.000Z",
+            "reference_contents_read": false,
+            "reference_availability": "not_checked"
+          }
+        ],
+        "omitted_event_count": 0,
+        "limits": []
+      }
+    ],
+    "source_snapshots": {
+      "mission_registry": {
+        "digest": "7777777777777777777777777777777777777777777777777777777777777777",
+        "digest_scheme": "sha256/stable-json",
+        "availability": "read"
+      },
+      "automation_registry": {
+        "digest": "8888888888888888888888888888888888888888888888888888888888888888",
+        "digest_scheme": "sha256/file-bytes",
+        "availability": "read"
+      },
+      "automation_marker": {
+        "digest": null,
+        "digest_scheme": "sha256/file-bytes",
+        "availability": "not_applicable"
+      },
+      "atomic": false
+    },
+    "omissions": {
+      "runs": 0,
+      "events": 0,
+      "events_in_omitted_runs": 0,
+      "unbound_project_runs": 0,
+      "ambiguous_project_runs": 0
+    },
+    "truncated": false,
+    "limits": [],
+    "mission_criteria": "not_evaluated",
+    "authority": "none",
+    "executable": false
+  },
+  "event": {
+    "automation_run_id": "run_fixture_example",
+    "contract": "dubsar.automation.run-event/1",
+    "event_id": "event_run_fixture_example_1",
+    "event_sequence": 1,
+    "event_type": "terminal",
+    "evidence_refs": [],
+    "mission_ref": "mission-fixture",
+    "native_run_state": "succeeded",
+    "occurred_at": "2026-09-28T19:00:00.000Z",
+    "request_digest": "4444444444444444444444444444444444444444444444444444444444444444",
+    "run_state": "succeeded",
+    "steps": [
+      {
+        "execution_id": "fixture_exec_001",
+        "native_step_state": "succeeded",
+        "provider_dispatch_count": 1,
+        "remote_durable": true,
+        "retry_allowed": false,
+        "step_id": "fixture_step_001",
+        "step_instance_id": "fixture_stepinst_001",
+        "tool_receipt_digest": "3333333333333333333333333333333333333333333333333333333333333333",
+        "tool_receipt_ref": "receipt:local:run_fixture_example",
+        "tool_status": "succeeded",
+        "transport_state": "response_received"
+      }
+    ],
+    "workflow_digest": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "event_digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+  "unicode_event": {
+    "automation_run_id": "run_fixture_example",
+    "contract": "dubsar.automation.run-event/1",
+    "event_id": "event_run_fixture_example_1",
+    "event_sequence": 1,
+    "event_type": "terminal",
+    "evidence_refs": [],
+    "mission_ref": "mission-fixture",
+    "native_run_state": "réponse\nmission_state=Done",
+    "occurred_at": "2026-09-28T19:00:00.000Z",
+    "request_digest": "4444444444444444444444444444444444444444444444444444444444444444",
+    "run_state": "succeeded",
+    "steps": [
+      {
+        "execution_id": "fixture_exec_001",
+        "native_step_state": "external_content\r\tmission_state=Done",
+        "provider_dispatch_count": 1,
+        "remote_durable": true,
+        "retry_allowed": false,
+        "step_id": "fixture_step_001",
+        "step_instance_id": "fixture_stepinst_001",
+        "tool_receipt_digest": "3333333333333333333333333333333333333333333333333333333333333333",
+        "tool_receipt_ref": "receipt:local:run_fixture_example",
+        "tool_status": "succeeded",
+        "transport_state": "response_received"
+      }
+    ],
+    "workflow_digest": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "unicode_event_digest": "051a9b419012865b6dd3e344e0bc2395d6b42ae6b2a834bb57cbb9b45f51c6dc",
+  "projection": {
+    "format": "dubsar.agent-context.automation-results/1",
+    "availability": "available",
+    "source": "get_mission_automation_results",
+    "provenance": "my_work",
+    "source_contract": "dubsar.my-work-mission-automation-results/1",
+    "mission": {
+      "project_id": "project-fixture",
+      "mission_id": "mission-fixture",
+      "ticket_id": "DUB-900",
+      "work_id": "mission-fixture"
+    },
+    "source_snapshots": {
+      "atomic": false,
+      "mission_registry": {
+        "digest": "7777777777777777777777777777777777777777777777777777777777777777",
+        "digest_scheme": "sha256/stable-json",
+        "availability": "read"
+      },
+      "automation_registry": {
+        "digest": "8888888888888888888888888888888888888888888888888888888888888888",
+        "digest_scheme": "sha256/file-bytes",
+        "availability": "read"
+      },
+      "automation_marker": {
+        "digest": null,
+        "digest_scheme": "sha256/file-bytes",
+        "availability": "not_applicable"
+      }
+    },
+    "runs": [
+      {
+        "automation_run_id": "run_fixture_example",
+        "workflow": {
+          "ref": "workflow:github-list-issues",
+          "version": "1"
+        },
+        "recorded_state": "succeeded",
+        "completion": "recorded_terminal",
+        "result_evidence": {
+          "status": "documented",
+          "event_id": "event_run_fixture_example_1",
+          "event_digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7"
+        },
+        "request_digest": "4444444444444444444444444444444444444444444444444444444444444444",
+        "source_record_digest": "5555555555555555555555555555555555555555555555555555555555555555",
+        "events": [
+          {
+            "event_id": "event_run_fixture_example_1",
+            "event_digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+            "event_sequence": 1,
+            "event_type": "terminal",
+            "tool_receipt_refs": [
+              {
+                "ref": "receipt:local:run_fixture_example",
+                "digest": "3333333333333333333333333333333333333333333333333333333333333333"
+              }
+            ],
+            "evidence_refs": [],
+            "omitted_proof_refs": 0
+          }
+        ],
+        "omitted_event_count": 0
+      }
+    ],
+    "omissions": {
+      "runs": 0,
+      "events": 0,
+      "proof_refs": 0,
+      "unbound_project_runs": 0,
+      "ambiguous_project_runs": 0
+    },
+    "truncated": false,
+    "limits": [],
+    "mission_criteria": "not_evaluated",
+    "reference_contents_read": false,
+    "reference_availability": "not_checked",
+    "authority": "none",
+    "executable": false
+  }
+}

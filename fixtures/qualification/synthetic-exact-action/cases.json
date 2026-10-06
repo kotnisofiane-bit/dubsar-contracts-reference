@@ -1,0 +1,32 @@
+{
+  "format": "synthetic-exact-action-cases/1",
+  "synthetic_public_fixture": true,
+  "cases": [
+    { "id": "SX09", "property": "exact preparation has no effect; refused content cannot consume" },
+    { "id": "SX10", "property": "an edit produces a new display; the old approval and capability stay unusable",
+      "edit": { "field": "body", "value": "Synthetic fixture body, edited after approval.\n" } },
+    { "id": "SX11", "property": "recipient alteration denies issuance and admission",
+      "variants": [
+        { "field": "to", "value": ["other-recipient@fixture.invalid"] },
+        { "field": "cc", "value": ["copy@fixture.invalid"] },
+        { "field": "bcc", "value": ["hidden@fixture.invalid"] }
+      ] },
+    { "id": "SX12", "property": "attachment alteration denies issuance and admission",
+      "variants": [
+        { "field": "attachment.asset", "value": "fixture-note-altered.txt" },
+        { "field": "attachment.filename", "value": "renamed-note.txt" },
+        { "field": "attachment.media_type", "value": "application/octet-stream" }
+      ] },
+    { "id": "SX13", "property": "sender/subject/body alteration denies issuance and admission",
+      "variants": [
+        { "field": "sender", "value": "other-sender@fixture.invalid" },
+        { "field": "subject", "value": "Fixture message 0002" },
+        { "field": "body", "value": "Synthetic replacement body.\n" }
+      ] },
+    { "id": "SX14", "property": "refused or revoked decision denies previously signed content with no consumption",
+      "variants": ["refused", "revoked"] },
+    { "id": "SX15", "property": "observed PostgreSQL claim lock wait crosses expiry and rolls back every admission row" },
+    { "id": "SX16", "property": "two independent PostgreSQL gates resume one exact request with one admission and dispatch" },
+    { "id": "SX17", "property": "hidden provider acceptance and lost response recover as INDETERMINATE without a second dispatch" }
+  ]
+}

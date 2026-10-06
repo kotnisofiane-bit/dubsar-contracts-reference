@@ -1,0 +1,27 @@
+{
+  "format": "dubsar.judgment.source-digest-interop/1",
+  "vectors": [
+    {
+      "vector_id": "native_agent_context",
+      "source_fixture": "fixtures/agent-context/v1/valid.json",
+      "source_function": "agentContextDigest",
+      "source_digest_field": "context_digest",
+      "reference": {
+        "ref": "agent-context:interop-fixture",
+        "digest": "08c5a5b549da8f64bddc4e5af8c20379d8339cb9b328f93a2e8aeb13b29c3cd1",
+        "digest_scheme": "sha256-canonical-json-agent-context-v1"
+      }
+    },
+    {
+      "vector_id": "native_automation_event",
+      "source_fixture": "fixtures/agent-context/v1/automation-results-vector.json",
+      "source_function": "hashAutomationContract('event', event)",
+      "source_digest_field": "event_digest",
+      "reference": {
+        "ref": "event_run_fixture_example_1",
+        "digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+        "digest_scheme": "dubsar.automation.run-event.v1"
+      }
+    }
+  ]
+}

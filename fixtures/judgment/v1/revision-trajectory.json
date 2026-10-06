@@ -1,0 +1,229 @@
+{
+  "format": "dubsar.judgment.trajectory-vector/1",
+  "turns": [
+    {
+      "format": "dubsar.judgment.trajectory/1",
+      "authority": "none",
+      "content_trust": "advisory_data",
+      "text_role": "data",
+      "truth": "not_selected",
+      "executable": false,
+      "trajectory_id": "trajectory_fixture",
+      "request_id": "request_fixture",
+      "turn_id": "turn_001",
+      "session_ref": "session:fixture-no-runtime",
+      "runtime_ref": "runtime:fixture-no-inference",
+      "previous_turn_digest": null,
+      "versions": {
+        "input_contract": "dubsar.judgment.input/1",
+        "output_contract": "dubsar.judgment.output/1",
+        "prompt": {
+          "ref": "prompt:judgment-v1-fixture",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "digest_scheme": "sha256-bytes"
+        },
+        "model": {
+          "model_ref": "model:fixture",
+          "revision": null
+        }
+      },
+      "input": {
+        "sent_utf8": "{\"authority\":\"none\",\"budget\":{\"consults_remaining\":2,\"cost_remaining_microusd\":null,\"latency_remaining_ms\":null,\"tokens_remaining\":512},\"claims\":[{\"candidate_element_ids\":[\"e_oc\"],\"claim_id\":\"c_current\",\"kind\":\"current_state\",\"required_limit_ids\":[],\"requirements\":{\"min_independent_origins\":1,\"requires_current\":true,\"requires_verified_content\":true},\"statement\":\"La valeur courante de mywork.release.current_sha est documentée.\"}],\"consult_catalog\":{\"effect\":\"readonly\",\"entries\":[],\"owner\":\"server\"},\"content_trust\":\"advisory_data\",\"context\":{\"agent_context_digest\":null,\"elements\":[{\"availability\":\"available\",\"content_verification\":\"matched\",\"element_id\":\"e_oc\",\"facts\":{\"automation\":null,\"oc\":{\"eligible\":false,\"property\":\"mywork.release.current_sha\",\"value\":null}},\"freshness\":\"stale\",\"kind\":\"oc_state\",\"limit_ids\":[\"l_history\",\"l_stale\"],\"origin_ids\":[\"origin_old\"],\"provenance_complete\":true,\"reference\":{\"digest\":\"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"digest_scheme\":\"sha256-bytes\",\"ref\":\"oc-state:mywork.release.current_sha:old-snapshot\"},\"source\":\"operational_context\",\"source_observed_at\":\"2026-10-04T00:00:00.000Z\",\"temporal_scope\":\"historical\",\"text\":\"La sélection de release est stale ; aucune valeur courante n’est affirmée.\"}],\"limits\":[{\"code\":\"HISTORICAL_ONLY\",\"detail\":\"La date source décrit un événement historique.\",\"limit_id\":\"l_history\",\"mandatory\":true},{\"code\":\"STALE\",\"detail\":\"La donnée est périmée selon la qualification de sa source.\",\"limit_id\":\"l_stale\",\"mandatory\":true}],\"omissions\":{\"claims\":0,\"consults\":0,\"elements\":0,\"truncated\":false},\"origins\":[{\"origin_id\":\"origin_old\",\"reference\":{\"digest\":\"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"digest_scheme\":\"sha256-bytes\",\"ref\":\"oc-state:mywork.release.current_sha:old-snapshot\"}}],\"snapshot_atomic\":false},\"executable\":false,\"format\":\"dubsar.judgment.input/1\",\"missing_information\":[],\"previous_judgment\":null,\"question\":\"La valeur courante de mywork.release.current_sha est-elle documentée ?\",\"scope\":{\"mission_id\":\"mission-fixture\",\"project_id\":\"project-fixture\",\"ticket_id\":\"DUB-900\"},\"text_role\":\"data\",\"truth\":\"not_selected\"}",
+        "sent_digest": "sha256:5ac75a2de9388ab743e1d8aaa9ed27101b384188daaee06513a1a527fd774b94",
+        "canonical_digest": "sha256:c464bf82a0641cc8189e64f15a6d40ef3ef20b4e0e7b54111635f2c18c9bb07a"
+      },
+      "response": {
+        "response_ref": "response_prior",
+        "raw_utf8": "{\"authority\":\"none\",\"content_trust\":\"advisory_data\",\"executable\":false,\"format\":\"dubsar.judgment.output/1\",\"move\":\"conclude\",\"payload\":{\"claim_ids\":[\"c_current\"],\"element_ids\":[\"e_oc\"],\"limit_ids\":[\"l_history\",\"l_stale\"],\"status\":\"undetermined\"},\"text_role\":\"data\",\"truth\":\"not_selected\"}",
+        "raw_digest": "sha256:098bc4adb0308737b9d9eac2fae7fc15c6a4f4532a1444b444bfcc92ed7f637a",
+        "validation": {
+          "status": "validated",
+          "output": {
+            "format": "dubsar.judgment.output/1",
+            "authority": "none",
+            "content_trust": "advisory_data",
+            "text_role": "data",
+            "truth": "not_selected",
+            "executable": false,
+            "move": "conclude",
+            "payload": {
+              "status": "undetermined",
+              "claim_ids": [
+                "c_current"
+              ],
+              "element_ids": [
+                "e_oc"
+              ],
+              "limit_ids": [
+                "l_history",
+                "l_stale"
+              ]
+            }
+          },
+          "error_codes": []
+        }
+      },
+      "consultations": [],
+      "origins": [
+        {
+          "origin_id": "origin_old",
+          "reference": {
+            "ref": "oc-state:mywork.release.current_sha:old-snapshot",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "digest_scheme": "sha256-bytes"
+          }
+        }
+      ],
+      "limits": [
+        {
+          "limit_id": "l_history",
+          "code": "HISTORICAL_ONLY",
+          "detail": "La date source décrit un événement historique.",
+          "mandatory": true
+        },
+        {
+          "limit_id": "l_stale",
+          "code": "STALE",
+          "detail": "La donnée est périmée selon la qualification de sa source.",
+          "mandatory": true
+        }
+      ],
+      "usage": {
+        "tokens": {
+          "input": null,
+          "output": null,
+          "method": "not_measured"
+        },
+        "latency_ms": {
+          "value": null,
+          "method": "not_measured"
+        },
+        "cost": {
+          "microusd": null,
+          "method": "not_measured",
+          "pricing_ref": null
+        }
+      },
+      "human_feedback": null
+    },
+    {
+      "format": "dubsar.judgment.trajectory/1",
+      "authority": "none",
+      "content_trust": "advisory_data",
+      "text_role": "data",
+      "truth": "not_selected",
+      "executable": false,
+      "trajectory_id": "trajectory_fixture",
+      "request_id": "request_fixture",
+      "turn_id": "turn_002",
+      "session_ref": "session:fixture-no-runtime",
+      "runtime_ref": "runtime:fixture-after-restart",
+      "previous_turn_digest": "sha256:fe331b37a1ab3598cd26db419e9ee3cdef83ffd4eb531f5f49976818852ef5eb",
+      "versions": {
+        "input_contract": "dubsar.judgment.input/1",
+        "output_contract": "dubsar.judgment.output/1",
+        "prompt": {
+          "ref": "prompt:judgment-v1-fixture",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "digest_scheme": "sha256-bytes"
+        },
+        "model": {
+          "model_ref": "model:fixture",
+          "revision": null
+        }
+      },
+      "input": {
+        "sent_utf8": "{\"authority\":\"none\",\"budget\":{\"consults_remaining\":2,\"cost_remaining_microusd\":null,\"latency_remaining_ms\":null,\"tokens_remaining\":512},\"claims\":[{\"candidate_element_ids\":[\"e_now\"],\"claim_id\":\"c_current\",\"kind\":\"current_state\",\"required_limit_ids\":[],\"requirements\":{\"min_independent_origins\":1,\"requires_current\":true,\"requires_verified_content\":true},\"statement\":\"La valeur courante de mywork.release.current_sha est documentée.\"}],\"consult_catalog\":{\"effect\":\"readonly\",\"entries\":[],\"owner\":\"server\"},\"content_trust\":\"advisory_data\",\"context\":{\"agent_context_digest\":null,\"elements\":[{\"availability\":\"available\",\"content_verification\":\"matched\",\"element_id\":\"e_oc\",\"facts\":{\"automation\":null,\"oc\":{\"eligible\":false,\"property\":\"mywork.release.current_sha\",\"value\":null}},\"freshness\":\"stale\",\"kind\":\"oc_state\",\"limit_ids\":[\"l_history\",\"l_stale\"],\"origin_ids\":[\"origin_old\"],\"provenance_complete\":true,\"reference\":{\"digest\":\"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"digest_scheme\":\"sha256-bytes\",\"ref\":\"oc-state:mywork.release.current_sha:old-snapshot\"},\"source\":\"operational_context\",\"source_observed_at\":\"2026-10-04T00:00:00.000Z\",\"temporal_scope\":\"historical\",\"text\":\"La sélection de release est stale ; aucune valeur courante n’est affirmée.\"},{\"availability\":\"available\",\"content_verification\":\"matched\",\"element_id\":\"e_now\",\"facts\":{\"automation\":null,\"oc\":{\"eligible\":true,\"property\":\"mywork.release.current_sha\",\"value\":\"1111111111111111111111111111111111111111\"}},\"freshness\":\"current\",\"kind\":\"oc_state\",\"limit_ids\":[],\"origin_ids\":[\"origin_now\"],\"provenance_complete\":true,\"reference\":{\"digest\":\"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"digest_scheme\":\"sha256-bytes\",\"ref\":\"oc-state:mywork.release.current_sha\"},\"source\":\"operational_context\",\"source_observed_at\":\"2026-10-04T00:00:00.000Z\",\"temporal_scope\":\"current\",\"text\":\"mywork.release.current_sha=1111111111111111111111111111111111111111\"}],\"limits\":[{\"code\":\"HISTORICAL_ONLY\",\"detail\":\"La date source décrit un événement historique.\",\"limit_id\":\"l_history\",\"mandatory\":true},{\"code\":\"STALE\",\"detail\":\"La donnée est périmée selon la qualification de sa source.\",\"limit_id\":\"l_stale\",\"mandatory\":true}],\"omissions\":{\"claims\":0,\"consults\":0,\"elements\":0,\"truncated\":false},\"origins\":[{\"origin_id\":\"origin_old\",\"reference\":{\"digest\":\"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"digest_scheme\":\"sha256-bytes\",\"ref\":\"oc-state:mywork.release.current_sha:old-snapshot\"}},{\"origin_id\":\"origin_now\",\"reference\":{\"digest\":\"sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"digest_scheme\":\"sha256-bytes\",\"ref\":\"oc-state:mywork.release.current_sha\"}}],\"snapshot_atomic\":false},\"executable\":false,\"format\":\"dubsar.judgment.input/1\",\"missing_information\":[],\"previous_judgment\":{\"claim_ids\":[\"c_current\"],\"element_ids\":[\"e_oc\"],\"response_ref\":\"response_prior\",\"status\":\"undetermined\"},\"question\":\"La valeur courante de mywork.release.current_sha est-elle documentée ?\",\"scope\":{\"mission_id\":\"mission-fixture\",\"project_id\":\"project-fixture\",\"ticket_id\":\"DUB-900\"},\"text_role\":\"data\",\"truth\":\"not_selected\"}",
+        "sent_digest": "sha256:27c6bbd72128053d55d29183f99c9dce087db71a35cf99b5b2b256428871c65f",
+        "canonical_digest": "sha256:7cac7f2d0cc8f1e8e7105cfc7e2257604470f681139be0725de694843d959db1"
+      },
+      "response": {
+        "response_ref": "response_new",
+        "raw_utf8": "{\"authority\":\"none\",\"content_trust\":\"advisory_data\",\"executable\":false,\"format\":\"dubsar.judgment.output/1\",\"move\":\"revise\",\"payload\":{\"change\":\"strengthened\",\"claim_ids\":[\"c_current\"],\"element_ids\":[\"e_now\"],\"limit_ids\":[\"l_history\",\"l_stale\"],\"new_element_ids\":[\"e_now\"],\"previous_response_ref\":\"response_prior\",\"status\":\"supported\"},\"text_role\":\"data\",\"truth\":\"not_selected\"}",
+        "raw_digest": "sha256:75e3e51c6fa6836581041a5f158ff6d60c6ae955ce1c30d0b272733e3e86fe4e",
+        "validation": {
+          "status": "validated",
+          "output": {
+            "format": "dubsar.judgment.output/1",
+            "authority": "none",
+            "content_trust": "advisory_data",
+            "text_role": "data",
+            "truth": "not_selected",
+            "executable": false,
+            "move": "revise",
+            "payload": {
+              "previous_response_ref": "response_prior",
+              "change": "strengthened",
+              "status": "supported",
+              "claim_ids": [
+                "c_current"
+              ],
+              "element_ids": [
+                "e_now"
+              ],
+              "new_element_ids": [
+                "e_now"
+              ],
+              "limit_ids": [
+                "l_history",
+                "l_stale"
+              ]
+            }
+          },
+          "error_codes": []
+        }
+      },
+      "consultations": [],
+      "origins": [
+        {
+          "origin_id": "origin_old",
+          "reference": {
+            "ref": "oc-state:mywork.release.current_sha:old-snapshot",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "digest_scheme": "sha256-bytes"
+          }
+        },
+        {
+          "origin_id": "origin_now",
+          "reference": {
+            "ref": "oc-state:mywork.release.current_sha",
+            "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "digest_scheme": "sha256-bytes"
+          }
+        }
+      ],
+      "limits": [
+        {
+          "limit_id": "l_history",
+          "code": "HISTORICAL_ONLY",
+          "detail": "La date source décrit un événement historique.",
+          "mandatory": true
+        },
+        {
+          "limit_id": "l_stale",
+          "code": "STALE",
+          "detail": "La donnée est périmée selon la qualification de sa source.",
+          "mandatory": true
+        }
+      ],
+      "usage": {
+        "tokens": {
+          "input": null,
+          "output": null,
+          "method": "not_measured"
+        },
+        "latency_ms": {
+          "value": null,
+          "method": "not_measured"
+        },
+        "cost": {
+          "microusd": null,
+          "method": "not_measured",
+          "pricing_ref": null
+        }
+      },
+      "human_feedback": null
+    }
+  ],
+  "expected_error_codes": []
+}

@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/v1/common.schema.json",
+  "$defs": {
+    "contractVersion": {
+      "const": "1.0.0"
+    },
+    "digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$"
+    },
+    "connector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._/-]{1,127}$"
+        },
+        "version": {
+          "$ref": "#/$defs/semver"
+        }
+      }
+    },
+    "connectionRef": {
+      "type": "string",
+      "pattern": "^conn_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "destination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scheme", "host", "port", "path_prefix", "methods"],
+      "properties": {
+        "scheme": {
+          "const": "https"
+        },
+        "host": {
+          "type": "string",
+          "pattern": "^[a-z0-9](?:[a-z0-9.-]{0,251}[a-z0-9])?$",
+          "maxLength": 253
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "path_prefix": {
+          "type": "string",
+          "pattern": "^/",
+          "maxLength": 512
+        },
+        "methods": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["DELETE", "GET", "PATCH", "POST", "PUT"]
+          }
+        }
+      }
+    },
+    "jsonValue": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        {
+          "type": "string",
+          "maxLength": 8192
+        },
+        {
+          "type": "array",
+          "maxItems": 256,
+          "items": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        },
+        {
+          "type": "object",
+          "maxProperties": 256,
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]{1,128}$"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/jsonValue"
+          }
+        }
+      ]
+    },
+    "principal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["principal_id", "role"],
+      "properties": {
+        "principal_id": {
+          "type": "string",
+          "pattern": "^principal_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "role": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        }
+      }
+    },
+    "workload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workload_id", "instance_id"],
+      "properties": {
+        "workload_id": {
+          "type": "string",
+          "pattern": "^workload_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "instance_id": {
+          "type": "string",
+          "pattern": "^instance_[a-z0-9][a-z0-9_-]{7,127}$"
+        }
+      }
+    },
+    "workflowBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow_id", "workflow_version", "workflow_digest"],
+      "properties": {
+        "workflow_id": {
+          "type": "string",
+          "pattern": "^wf_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "workflow_version": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        "workflow_digest": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "actionIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "connector", "operation"],
+      "properties": {
+        "kind": {
+          "const": "connector_action"
+        },
+        "connector": {
+          "$ref": "#/$defs/connector"
+        },
+        "operation": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{1,127}$"
+        }
+      }
+    },
+    "policyBounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["timeout_ms", "max_attempts", "max_payload_bytes", "allowed_destinations"],
+      "properties": {
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 300000
+        },
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "max_payload_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10485760
+        },
+        "allowed_destinations": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/destination"
+          }
+        }
+      }
+    },
+    "sanitizedError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "category", "retryable", "detail_digest"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "category": {
+          "enum": ["AUTHORIZATION", "CONFLICT", "PROVIDER", "RATE_LIMIT", "TIMEOUT", "TRANSPORT", "VALIDATION"]
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "detail_digest": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    }
+  }
+}

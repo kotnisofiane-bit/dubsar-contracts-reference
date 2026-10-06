@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/task-runtime-s1/egress-policy.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "policy_id",
+    "destination",
+    "operation",
+    "gateway_scope",
+    "request_digest",
+    "bounds",
+    "protocol",
+    "authentication",
+    "revocation"
+  ],
+  "properties": {
+    "schema": {
+      "const": "dubsar.s1.egress-policy.v1"
+    },
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "policy_id": {
+      "const": "dubsar.gateway.probe.v1"
+    },
+    "destination": {
+      "const": {
+        "service_ref": "dubsar.gateway",
+        "scheme": "https",
+        "peer_ref": "dubsar.gateway.s1"
+      }
+    },
+    "operation": {
+      "const": {
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      }
+    },
+    "gateway_scope": {
+      "const": {
+        "profile_id": "dubsar.s1.synthetic.v1",
+        "context_id": "ctx-s1-synthetic",
+        "model": "dubsar-s1-synthetic"
+      }
+    },
+    "request_digest": {
+      "const": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7"
+    },
+    "bounds": {
+      "const": {
+        "max_attempts": 1,
+        "window_seconds": 30,
+        "request_timeout_ms": 2000,
+        "max_request_bytes": 4096,
+        "max_response_bytes": 16384,
+        "max_generation_tokens": 128
+      }
+    },
+    "protocol": {
+      "const": {
+        "retry": false,
+        "redirect": false,
+        "connect": false,
+        "streaming": false,
+        "tools": false
+      }
+    },
+    "authentication": {
+      "const": "outside_workload_ephemeral"
+    },
+    "revocation": {
+      "const": "core_bound_session"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://contracts.dubsar.invalid/agent-context/v1/hermes-oc-context-read-request.schema.json",
+  "title":"dubsar.hermes-oc-context-read-request/1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["format","request_id"],
+  "properties":{
+    "format":{"const":"dubsar.hermes-oc-context-read-request/1"},
+    "request_id":{"anyOf":[{"type":"string","minLength":1,"maxLength":128},{"type":"null"}]}
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "execution_id": "exec_00000001",
+  "capability_id": "dubsar.capability.github.list_issues",
+  "connection_ref": "connection:github-read",
+  "input": {
+    "owner": "example-org",
+    "repo": "example-repo"
+  },
+  "correlation_id": "corr_00000001",
+  "idempotency_key": "idem_00000001"
+}

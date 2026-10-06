@@ -1,0 +1,430 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/judgment/v1/trajectory.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authority",
+    "content_trust",
+    "text_role",
+    "truth",
+    "executable",
+    "trajectory_id",
+    "request_id",
+    "turn_id",
+    "session_ref",
+    "runtime_ref",
+    "previous_turn_digest",
+    "versions",
+    "input",
+    "response",
+    "consultations",
+    "origins",
+    "limits",
+    "usage",
+    "human_feedback"
+  ],
+  "properties": {
+    "format": {
+      "const": "dubsar.judgment.trajectory/1"
+    },
+    "authority": {
+      "const": "none"
+    },
+    "content_trust": {
+      "const": "advisory_data"
+    },
+    "text_role": {
+      "const": "data"
+    },
+    "truth": {
+      "const": "not_selected"
+    },
+    "executable": {
+      "const": false
+    },
+    "trajectory_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "request_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "turn_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "session_ref": {
+      "$ref": "common.schema.json#/$defs/opaqueRef"
+    },
+    "runtime_ref": {
+      "$ref": "common.schema.json#/$defs/opaqueRef"
+    },
+    "previous_turn_digest": {
+      "anyOf": [
+        {
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_contract",
+        "output_contract",
+        "prompt",
+        "model"
+      ],
+      "properties": {
+        "input_contract": {
+          "const": "dubsar.judgment.input/1"
+        },
+        "output_contract": {
+          "const": "dubsar.judgment.output/1"
+        },
+        "prompt": {
+          "$ref": "common.schema.json#/$defs/reference"
+        },
+        "model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "model_ref",
+            "revision"
+          ],
+          "properties": {
+            "model_ref": {
+              "$ref": "common.schema.json#/$defs/opaqueRef"
+            },
+            "revision": {
+              "anyOf": [
+                {
+                  "$ref": "common.schema.json#/$defs/opaqueRef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sent_utf8",
+        "sent_digest",
+        "canonical_digest"
+      ],
+      "properties": {
+        "sent_utf8": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32768
+        },
+        "sent_digest": {
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        "canonical_digest": {
+          "$ref": "common.schema.json#/$defs/digest"
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "response_ref",
+        "raw_utf8",
+        "raw_digest",
+        "validation"
+      ],
+      "properties": {
+        "response_ref": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "raw_utf8": {
+          "type": "string",
+          "maxLength": 16384
+        },
+        "raw_digest": {
+          "$ref": "common.schema.json#/$defs/digest"
+        },
+        "validation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "output",
+            "error_codes"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "validated",
+                "rejected"
+              ]
+            },
+            "output": {
+              "anyOf": [
+                {
+                  "$ref": "output.schema.json"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "error_codes": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/id"
+              },
+              "maxItems": 32,
+              "minItems": 0,
+              "uniqueItems": true
+            }
+          }
+        }
+      }
+    },
+    "consultations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "consult_id",
+          "status",
+          "result",
+          "limit_ids"
+        ],
+        "properties": {
+          "consult_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "status": {
+            "enum": [
+              "requested",
+              "read",
+              "denied",
+              "unavailable"
+            ]
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "common.schema.json#/$defs/element"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "limit_ids": {
+            "$ref": "common.schema.json#/$defs/ids"
+          }
+        }
+      },
+      "maxItems": 1,
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "origins": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/origin"
+      },
+      "maxItems": 64,
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "limits": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/limit"
+      },
+      "maxItems": 32,
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tokens",
+        "latency_ms",
+        "cost"
+      ],
+      "properties": {
+        "tokens": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "input",
+            "output",
+            "method"
+          ],
+          "properties": {
+            "input": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "output": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "method": {
+              "enum": [
+                "provider_usage",
+                "tokenizer",
+                "not_measured"
+              ]
+            }
+          }
+        },
+        "latency_ms": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "method"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "method": {
+              "enum": [
+                "monotonic_clock",
+                "not_measured"
+              ]
+            }
+          }
+        },
+        "cost": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "microusd",
+            "method",
+            "pricing_ref"
+          ],
+          "properties": {
+            "microusd": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "method": {
+              "enum": [
+                "provider_bill",
+                "token_price_estimate",
+                "not_measured"
+              ]
+            },
+            "pricing_ref": {
+              "anyOf": [
+                {
+                  "$ref": "common.schema.json#/$defs/opaqueRef"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "human_feedback": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "effect_approval",
+            "reference",
+            "rating",
+            "expected_move",
+            "advisory"
+          ],
+          "properties": {
+            "kind": {
+              "const": "judgment_feedback"
+            },
+            "effect_approval": {
+              "const": false
+            },
+            "reference": {
+              "$ref": "common.schema.json#/$defs/reference"
+            },
+            "rating": {
+              "enum": [
+                "useful",
+                "unhelpful",
+                "correct",
+                "incorrect",
+                "unclear"
+              ]
+            },
+            "expected_move": {
+              "anyOf": [
+                {
+                  "$ref": "common.schema.json#/$defs/move"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "advisory": {
+              "$ref": "common.schema.json#/$defs/advisory"
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

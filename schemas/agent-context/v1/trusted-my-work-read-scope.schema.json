@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/agent-context/v1/trusted-my-work-read-scope.schema.json",
+  "title": "Transport-owned scope for the Hermes My Work Automation read port",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "start",
+    "allocation_root",
+    "project_id"
+  ],
+  "properties": {
+    "start": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f]+$"
+    },
+    "allocation_root": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096,
+      "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f]+$"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[^\\u0000-\\u001f\\u007f-\\u009f]+$"
+    }
+  }
+}

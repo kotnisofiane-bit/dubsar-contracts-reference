@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/rpc-request.schema.json",
+  "title": "rpc-request",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "operation",
+        "payload"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "operation": {
+          "const": "submit_run"
+        },
+        "payload": {
+          "$ref": "submit-run.schema.json"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "operation",
+        "payload"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "operation": {
+          "const": "lookup_run"
+        },
+        "payload": {
+          "$ref": "lookup-run.schema.json"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "operation",
+        "payload"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "operation": {
+          "const": "read_events"
+        },
+        "payload": {
+          "$ref": "read-events.schema.json"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "operation",
+        "payload"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "operation": {
+          "const": "accept_run_event"
+        },
+        "payload": {
+          "$ref": "accept-run-event.schema.json"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "operation",
+        "payload"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "operation": {
+          "const": "prepare_step"
+        },
+        "payload": {
+          "$ref": "prepare-step.schema.json"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "operation",
+        "payload"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "operation": {
+          "const": "inspect_step"
+        },
+        "payload": {
+          "$ref": "inspect-step.schema.json"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "operation",
+        "payload"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "operation": {
+          "const": "recover_run"
+        },
+        "payload": {
+          "$ref": "recover-run.schema.json"
+        }
+      }
+    }
+  ]
+}

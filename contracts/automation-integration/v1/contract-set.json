@@ -1,0 +1,27 @@
+{
+  "contract_set": "dubsar.automation-integration/1",
+  "json_schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+  "opt_in": true,
+  "schemas": [
+    "accept-run-event.schema.json",
+    "common.schema.json",
+    "context-capsule.schema.json",
+    "event-ack.schema.json",
+    "inspect-step.schema.json",
+    "lookup-run.schema.json",
+    "mission-results-view.schema.json",
+    "prepare-step.schema.json",
+    "read-events.schema.json",
+    "recover-run.schema.json",
+    "rpc-request.schema.json",
+    "rpc-result.schema.json",
+    "run-event.schema.json",
+    "run-request.schema.json",
+    "step-admission-response.schema.json",
+    "step-admission.schema.json",
+    "step-plan.schema.json",
+    "submit-run.schema.json",
+    "tool-invocation.schema.json"
+  ],
+  "native_contracts_are_references_not_copies": true
+}

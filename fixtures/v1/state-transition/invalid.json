@@ -1,0 +1,11 @@
+{
+  "schema": "dubsar.state-transition.v1",
+  "contract_version": "1.0.0",
+  "transition_id": "transition_ticketpilot_001",
+  "action_id": "action_ticketpilot_001",
+  "from_state": "INDETERMINATE",
+  "to_state": "FAILED_RETRYABLE",
+  "actor": {"authority": "BROKER", "identity_ref": "broker_runtime_001"},
+  "reason_code": "AUTOMATIC_RETRY",
+  "observed_at": "2026-08-14T10:00:03.000Z"
+}

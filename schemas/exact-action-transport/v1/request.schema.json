@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema", "generation", "request_id", "operation", "params"],
+  "properties": {
+    "schema": {"const": "dubsar.exact-ipc/1"},
+    "generation": {"type": "string", "minLength": 1, "maxLength": 256},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "operation": {"enum": ["prepare", "view", "decide"]},
+    "params": {"type": "object"}
+  }
+}

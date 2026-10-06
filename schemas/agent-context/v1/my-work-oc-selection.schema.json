@@ -1,0 +1,20 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://contracts.dubsar.invalid/agent-context/v1/my-work-oc-selection.schema.json",
+  "title":"dubsar.my-work-oc-selection/1",
+  "type":"object","additionalProperties":false,
+  "required":["format","availability","selection_id","project_id","mission_id","resource_ref","property","relation_depth","source","mapping_version","limits"],
+  "properties":{
+    "format":{"const":"dubsar.my-work-oc-selection/1"},
+    "availability":{"enum":["available","not_applicable"]},
+    "selection_id":{"anyOf":[{"type":"string","minLength":1,"maxLength":128},{"type":"null"}]},
+    "project_id":{"type":"string","minLength":1,"maxLength":64},
+    "mission_id":{"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},
+    "resource_ref":{"anyOf":[{"type":"string","minLength":1,"maxLength":256},{"type":"null"}]},
+    "property":{"anyOf":[{"type":"string","minLength":1,"maxLength":256},{"type":"null"}]},
+    "relation_depth":{"anyOf":[{"type":"integer","minimum":0,"maximum":1},{"type":"null"}]},
+    "source":{"const":"trusted_mapping"},
+    "mapping_version":{"const":1},
+    "limits":{"type":"array","maxItems":16,"items":{"type":"object","additionalProperties":false,"required":["code","detail"],"properties":{"code":{"type":"string","pattern":"^[A-Z0-9_]+$","maxLength":96},"detail":{"type":"string","minLength":1,"maxLength":256}}}}
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "algorithm": "sha256-canonical-json-agent-context-v1",
+  "basis_fixture": "valid.json",
+  "excluded_fields": [
+    "context_digest",
+    "bounds.render_chars",
+    "bounds.serialized_bytes"
+  ],
+  "expected_digest": "08c5a5b549da8f64bddc4e5af8c20379d8339cb9b328f93a2e8aeb13b29c3cd1"
+}

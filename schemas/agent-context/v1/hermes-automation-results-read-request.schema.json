@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/agent-context/v1/hermes-automation-results-read-request.schema.json",
+  "title": "Hermes readonly mission Automation request; project scope is transport-owned",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format"
+  ],
+  "properties": {
+    "format": {
+      "const": "dubsar.hermes-automation-results-read-request/1"
+    }
+  }
+}

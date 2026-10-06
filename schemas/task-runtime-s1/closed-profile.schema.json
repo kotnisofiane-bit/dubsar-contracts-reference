@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/task-runtime-s1/closed-profile.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "allowed_operations",
+    "allowed_outputs",
+    "capabilities",
+    "commands",
+    "effect",
+    "entrypoint",
+    "filesystem",
+    "identity",
+    "image",
+    "input_digest",
+    "input_root",
+    "limits",
+    "network",
+    "output_root",
+    "profile_id",
+    "runtime_lock"
+  ],
+  "properties": {
+    "allowed_operations": {
+      "const": [
+        "collect",
+        "create",
+        "execute",
+        "inspect",
+        "terminate"
+      ]
+    },
+    "allowed_outputs": {
+      "const": [
+        "/workspace/out/result.json"
+      ]
+    },
+    "capabilities": {
+      "const": {
+        "drop": [
+          "ALL"
+        ],
+        "add": [
+          "CHOWN",
+          "KILL",
+          "SETGID",
+          "SETUID"
+        ]
+      }
+    },
+    "commands": {
+      "const": {
+        "pilot": "python3 /workspace/run_gateway_probe.py"
+      }
+    },
+    "effect": {
+      "const": "none"
+    },
+    "entrypoint": {
+      "const": [
+        "timeout",
+        "70",
+        "tail",
+        "-f",
+        "/dev/null"
+      ]
+    },
+    "filesystem": {
+      "const": {
+        "rootfs_read_only": true,
+        "mounts": [
+          {
+            "path": "/run",
+            "kind": "tmpfs",
+            "size_bytes": 2097152,
+            "flags": [
+              "nodev",
+              "noexec",
+              "nosuid"
+            ]
+          },
+          {
+            "path": "/tmp",
+            "kind": "tmpfs",
+            "size_bytes": 8388608,
+            "flags": [
+              "nodev",
+              "noexec",
+              "nosuid"
+            ]
+          },
+          {
+            "path": "/workspace",
+            "kind": "tmpfs",
+            "size_bytes": 16777216,
+            "flags": [
+              "nodev",
+              "nosuid"
+            ]
+          }
+        ]
+      }
+    },
+    "identity": {
+      "const": {
+        "uid": 65532,
+        "gid": 65532
+      }
+    },
+    "image": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+    },
+    "input_digest": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+    },
+    "input_root": {
+      "const": "/workspace"
+    },
+    "limits": {
+      "const": {
+        "cpu_millicores": 500,
+        "memory_bytes": 134217728,
+        "pids": 256,
+        "disk_bytes": 27262976,
+        "ttl_seconds": 60,
+        "command_timeout_ms": 20000,
+        "output_bytes": 1048576
+      }
+    },
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy",
+        "enforcer_ref",
+        "enforcer_digest",
+        "egress_policy"
+      ],
+      "properties": {
+        "policy": {
+          "const": "egress_mediated_gateway"
+        },
+        "enforcer_ref": {
+          "const": "dubsar.mediated.egress.v1"
+        },
+        "enforcer_digest": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "egress_policy": {
+          "$ref": "./egress-policy.schema.json"
+        }
+      }
+    },
+    "output_root": {
+      "const": "/workspace/out"
+    },
+    "profile_id": {
+      "const": "dubsar.gateway.probe.v1"
+    },
+    "runtime_lock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adapter_image",
+        "execd_image",
+        "opensandbox_commit",
+        "server_image",
+        "task_image"
+      ],
+      "properties": {
+        "adapter_image": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "execd_image": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "opensandbox_commit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "server_image": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "task_image": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        }
+      }
+    }
+  }
+}

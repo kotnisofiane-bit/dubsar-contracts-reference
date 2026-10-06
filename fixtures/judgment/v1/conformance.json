@@ -1,0 +1,614 @@
+{
+  "format": "dubsar.judgment.conformance/1",
+  "cases": [
+    {
+      "case_id": "e5_succeeded_mission_not_evaluated",
+      "input_fixture": "historical-run-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "supported",
+          "claim_ids": [
+            "c_run"
+          ],
+          "element_ids": [
+            "e_e5"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    },
+    {
+      "case_id": "run_success_does_not_complete_mission",
+      "input_fixture": "historical-run-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "supported",
+          "claim_ids": [
+            "c_mission"
+          ],
+          "element_ids": [
+            "e_e5"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "MISSION_CRITERIA_NOT_EVALUATED"
+        ]
+      }
+    },
+    {
+      "case_id": "stale_observation_keeps_limit",
+      "input_fixture": "historical-oc-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "undetermined",
+          "claim_ids": [
+            "c_current"
+          ],
+          "element_ids": [
+            "e_oc"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_stale"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    },
+    {
+      "case_id": "stale_is_not_current",
+      "input_fixture": "historical-oc-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "supported",
+          "claim_ids": [
+            "c_current"
+          ],
+          "element_ids": [
+            "e_oc"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_stale"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "CURRENT_STATE_NOT_QUALIFIED"
+        ]
+      }
+    },
+    {
+      "case_id": "reference_without_verified_content",
+      "input_fixture": "consultable-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "undetermined",
+          "claim_ids": [
+            "c_proof"
+          ],
+          "element_ids": [
+            "e_proof"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_reference"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    },
+    {
+      "case_id": "reference_does_not_prove_content",
+      "input_fixture": "consultable-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "supported",
+          "claim_ids": [
+            "c_proof"
+          ],
+          "element_ids": [
+            "e_proof"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_reference"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "CONTENT_NOT_VERIFIED"
+        ]
+      }
+    },
+    {
+      "case_id": "contradiction",
+      "input_fixture": "contradiction-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "conflicted",
+          "claim_ids": [
+            "c_consistency"
+          ],
+          "element_ids": [
+            "e_memory_1",
+            "e_memory_2"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_unknown"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    },
+    {
+      "case_id": "relevant_source_not_yet_consulted",
+      "input_fixture": "consultable-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "consult",
+        "payload": {
+          "consult_id": "consult_proof",
+          "reason": "verify_reference",
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_reference"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    },
+    {
+      "case_id": "consult_outside_catalog",
+      "input_fixture": "consultable-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "consult",
+        "payload": {
+          "consult_id": "not_in_catalog",
+          "reason": "verify_reference",
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_reference"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "CONSULT_NOT_IN_CATALOG"
+        ]
+      }
+    },
+    {
+      "case_id": "unnecessary_repeated_consult",
+      "input_fixture": "consultable-input.json",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/consult_catalog/entries/0/state",
+          "value": "already_consulted"
+        }
+      ],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "consult",
+        "payload": {
+          "consult_id": "consult_proof",
+          "reason": "verify_reference",
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_reference"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "CONSULT_REPEATED"
+        ]
+      }
+    },
+    {
+      "case_id": "clarification_required",
+      "input_fixture": "historical-run-input.json",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/missing_information",
+          "value": [
+            {
+              "missing_id": "m_objective",
+              "kind": "objective",
+              "detail": "Quel critère précis faut-il apprécier ?",
+              "blocking": true
+            }
+          ]
+        }
+      ],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "clarify",
+        "payload": {
+          "missing_ids": [
+            "m_objective"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    },
+    {
+      "case_id": "blocking_information_cannot_be_ignored",
+      "input_fixture": "historical-run-input.json",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/missing_information",
+          "value": [
+            {
+              "missing_id": "m_objective",
+              "kind": "objective",
+              "detail": "Quel critère précis faut-il apprécier ?",
+              "blocking": true
+            }
+          ]
+        }
+      ],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "supported",
+          "claim_ids": [
+            "c_run"
+          ],
+          "element_ids": [
+            "e_e5"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "CLARIFICATION_REQUIRED"
+        ]
+      }
+    },
+    {
+      "case_id": "budget_exhausted",
+      "input_fixture": "consultable-input.json",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/budget/consults_remaining",
+          "value": 0
+        }
+      ],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "stop",
+        "payload": {
+          "cause": "budget_exhausted",
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_reference"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    },
+    {
+      "case_id": "budget_prevents_consult",
+      "input_fixture": "consultable-input.json",
+      "input_patch": [
+        {
+          "op": "replace",
+          "path": "/budget/consults_remaining",
+          "value": 0
+        }
+      ],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "consult",
+        "payload": {
+          "consult_id": "consult_proof",
+          "reason": "verify_reference",
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_reference"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "BUDGET_EXHAUSTED"
+        ]
+      }
+    },
+    {
+      "case_id": "unjustified_conclusion",
+      "input_fixture": "historical-run-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "supported",
+          "claim_ids": [
+            "c_run"
+          ],
+          "element_ids": [],
+          "limit_ids": [
+            "l_history",
+            "l_mission"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "UNJUSTIFIED_CONCLUSION",
+          "CLAIM_SUPPORT_MISMATCH",
+          "INSUFFICIENT_INDEPENDENT_ORIGINS"
+        ]
+      }
+    },
+    {
+      "case_id": "correct_revision_after_new_observation",
+      "input_fixture": "revision-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "revise",
+        "payload": {
+          "previous_response_ref": "response_prior",
+          "change": "strengthened",
+          "status": "supported",
+          "claim_ids": [
+            "c_current"
+          ],
+          "element_ids": [
+            "e_now"
+          ],
+          "new_element_ids": [
+            "e_now"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_stale"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    },
+    {
+      "case_id": "e5_oc_shared_origin_not_independent",
+      "input_fixture": "historical-oc-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "supported",
+          "claim_ids": [
+            "c_two_sources"
+          ],
+          "element_ids": [
+            "e_e5",
+            "e_oc"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_stale"
+          ]
+        }
+      },
+      "expected": {
+        "valid": false,
+        "error_codes": [
+          "INSUFFICIENT_INDEPENDENT_ORIGINS"
+        ]
+      }
+    },
+    {
+      "case_id": "e5_oc_same_origin_retained",
+      "input_fixture": "historical-oc-input.json",
+      "input_patch": [],
+      "output": {
+        "format": "dubsar.judgment.output/1",
+        "authority": "none",
+        "content_trust": "advisory_data",
+        "text_role": "data",
+        "truth": "not_selected",
+        "executable": false,
+        "move": "conclude",
+        "payload": {
+          "status": "undetermined",
+          "claim_ids": [
+            "c_two_sources"
+          ],
+          "element_ids": [
+            "e_e5",
+            "e_oc"
+          ],
+          "limit_ids": [
+            "l_history",
+            "l_mission",
+            "l_stale"
+          ]
+        }
+      },
+      "expected": {
+        "valid": true,
+        "error_codes": []
+      }
+    }
+  ]
+}

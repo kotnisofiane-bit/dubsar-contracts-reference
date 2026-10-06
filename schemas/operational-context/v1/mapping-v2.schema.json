@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v2/mapping.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "mapping_ref",
+    "version",
+    "property",
+    "value_type",
+    "producer_id",
+    "source_instance_id",
+    "temporal_mode"
+  ],
+  "properties": {
+    "contract": {
+      "const": "dubsar.operational-context.mapping/2"
+    },
+    "mapping_ref": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "property": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "value_type": {
+      "const": "string"
+    },
+    "producer_id": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "source_instance_id": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "temporal_mode": {
+      "const": "ordered_snapshot"
+    }
+  }
+}

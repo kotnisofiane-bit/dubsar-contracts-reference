@@ -1,0 +1,20 @@
+{
+  "schema": "dubsar.execution-lease.v1",
+  "contract_version": "1.0.0",
+  "lease_id": "lease_ticketpilot_001",
+  "authority": "DUBSAR_CORE",
+  "run_id": "run_ticketpilot_001",
+  "step_id": "step_create_ticket_001",
+  "workflow": {"workflow_id": "wf_ticketpilot_001", "workflow_version": 1, "workflow_digest": "sha256:e58d82aba2903c47e3006468c5fa0f28d659b72f7d876da5a2c4c8895593be6d"},
+  "approval_id": "approval_ticketpilot_001",
+  "expected_action": {
+    "node_id": "node_create_ticket",
+    "action": {"kind": "connector_action", "connector": {"name": "dubsar.ticketing", "version": "1.2.3"}, "operation": "create_ticket"}
+  },
+  "worker": {"workload_id": "workload_worker_demo_001", "instance_id": "instance_worker_demo_001"},
+  "issued_at": "2026-08-14T10:00:00.000Z",
+  "not_before": "2026-08-14T10:00:00.000Z",
+  "expires_at": "2026-08-14T10:01:00.000Z",
+  "nonce": "nonce_abcdefghijklmnopqrstuvwxyz012345",
+  "replay_protection": {"replay_key": "replay_abcdefghijklmnopqrstuvwxyz012345", "single_use": true}
+}

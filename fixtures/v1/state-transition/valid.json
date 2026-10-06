@@ -1,0 +1,11 @@
+{
+  "schema": "dubsar.state-transition.v1",
+  "contract_version": "1.0.0",
+  "transition_id": "transition_ticketpilot_001",
+  "action_id": "action_ticketpilot_001",
+  "from_state": "RECEIVED",
+  "to_state": "AUTHORIZED",
+  "actor": {"authority": "CORE", "identity_ref": "core_governance_001"},
+  "reason_code": "POLICY_ALLOWED",
+  "observed_at": "2026-08-14T10:00:00.000Z"
+}

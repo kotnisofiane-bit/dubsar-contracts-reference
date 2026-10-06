@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v2/state-binding.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "binding_ref",
+    "version",
+    "tenant_id",
+    "environment_id",
+    "resource_local_ref",
+    "property",
+    "producer_id",
+    "source_instance_id",
+    "producer_epoch",
+    "mapping_ref",
+    "mapping_version",
+    "rule_ref",
+    "rule_version",
+    "effective_at",
+    "legacy_observation_refs",
+    "supersedes"
+  ],
+  "properties": {
+    "supersedes": {
+      "oneOf": [
+        { "type": "object", "additionalProperties": false, "required": ["absence"], "properties": { "absence": { "const": "initial" } } },
+        { "type": "object", "additionalProperties": false, "required": ["binding_ref", "version"], "properties": {
+          "binding_ref": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+          "version": { "type": "integer", "minimum": 1, "maximum": 2147483647 }
+        } }
+      ]
+    },
+    "contract": {
+      "const": "dubsar.operational-context.state-binding/1"
+    },
+    "binding_ref": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "tenant_id": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "environment_id": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "resource_local_ref": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "property": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "producer_id": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "source_instance_id": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "producer_epoch": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "mapping_ref": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "mapping_version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "rule_ref": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "rule_version": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "effective_at": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/timestamp"
+    },
+    "legacy_observation_refs": {
+      "type": "array",
+      "maxItems": 200,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+      }
+    }
+  }
+}

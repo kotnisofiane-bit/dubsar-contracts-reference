@@ -1,0 +1,102 @@
+{
+  "schema": "dubsar.contract-hashes.v1",
+  "contract_version": "1.0.0",
+  "files": [
+    {
+      "path": "contracts/v1/contract-set.json",
+      "sha256": "4981f01aeeb129e5ac134b0be52c0f6f7488fc7b5521310a23ee57795f9071d5"
+    },
+    {
+      "path": "contracts/v1/execution-state-machine.json",
+      "sha256": "2de8ee41997afae277b05a1c9c7ff0f6271bd520a03ab04e19fe1f6e91393793"
+    },
+    {
+      "path": "schemas/v1/action-proposal.schema.json",
+      "sha256": "2e11c296d7b8e4c31df223f16d9fcf1512f2c583d4b7441835a94d48c611bc6a"
+    },
+    {
+      "path": "schemas/v1/action-receipt.schema.json",
+      "sha256": "26988f4a5e0a6e02609dbcbad94040d0b91dbfd292839e6245f4b93b738a70db"
+    },
+    {
+      "path": "schemas/v1/approval-record.schema.json",
+      "sha256": "177566c6815542a9116114beb34be52adccd433a5b666ae3564242ff1e1efd09"
+    },
+    {
+      "path": "schemas/v1/capability-claims.schema.json",
+      "sha256": "fc36b2c4d713e2aac2c8b96b9c2cc22da72a77963b5b6b701f8da8717c303787"
+    },
+    {
+      "path": "schemas/v1/common.schema.json",
+      "sha256": "da697011e893ede321223181c44b50063d256481a7b44983820dfdd6492d1e88"
+    },
+    {
+      "path": "schemas/v1/execution-lease.schema.json",
+      "sha256": "ec1c35e2b31a79d79ca3da37852c2c847912c2cfd675dab7a41205624a1ad317"
+    },
+    {
+      "path": "schemas/v1/state-transition.schema.json",
+      "sha256": "571ba6705af27442179004219cdf11c5b549603d49c4899a61b0890f00b03047"
+    },
+    {
+      "path": "schemas/v1/task-lease.schema.json",
+      "sha256": "c10b9e829553dcb5b1b5d8c5dc9781ec10e2c8303ab6bf760667e59e3156058e"
+    },
+    {
+      "path": "schemas/v1/workflow-ir.schema.json",
+      "sha256": "60801c8e32ba3734d615f597e3879b67bf867fd7ecc60987e97d569dd48a5b13"
+    },
+    {
+      "path": "fixtures/v1/task-lease/closed-profile.json",
+      "sha256": "700feae4e7de6c6a4c99196b9f5e86f03fa046581c609e5e51261c2c5bb6eac6"
+    },
+    {
+      "path": "fixtures/v1/task-lease/signed-vector.json",
+      "sha256": "48744af0cf0ba2b6fbc6482680b309a7a15082442e2038a9a37601f6b460e212"
+    }
+  ],
+  "fixture_contract_digests": [
+    {
+      "kind": "action-proposal",
+      "path": "fixtures/v1/action-proposal/valid.json",
+      "digest": "sha256:bf571d70353d80f670bac40734c05a4888390af5f762409ae73a2c8dd1acdf0e"
+    },
+    {
+      "kind": "action-receipt",
+      "path": "fixtures/v1/action-receipt/valid.json",
+      "digest": "sha256:031f1fd2cb75854ed0298653b42b0c8f4901126a87913d4e3c153d9435f48063"
+    },
+    {
+      "kind": "approval-record",
+      "path": "fixtures/v1/approval-record/valid.json",
+      "digest": "sha256:2d4a796cd15b6048d049161767a4414e19aa7d90cd20abcf3218f0d256ecaabc"
+    },
+    {
+      "kind": "capability-claims",
+      "path": "fixtures/v1/capability-claims/valid.json",
+      "digest": "sha256:49e0d1ade2c76424fa00232a20b48d864fcc533a34d9b96be1440ac23b94e983"
+    },
+    {
+      "kind": "execution-lease",
+      "path": "fixtures/v1/execution-lease/valid.json",
+      "digest": "sha256:4de89a794a5a86f21017c8a8047e414478057aa9dcd1dcba65b94378759aff22"
+    },
+    {
+      "kind": "state-transition",
+      "path": "fixtures/v1/state-transition/valid.json",
+      "digest": "sha256:1c165c0739a72508376deec92a80611c1b1eb73309d4c7801b3bca2b398ce5ed"
+    },
+    {
+      "kind": "task-lease",
+      "path": "fixtures/v1/task-lease/valid.json",
+      "digest": "sha256:cf866447228eaeca3e517556f82b216c2c856e1d0c25c8a995197f9481afd898"
+    },
+    {
+      "kind": "workflow-ir",
+      "path": "fixtures/v1/workflow-ir/valid.json",
+      "digest": "sha256:e58d82aba2903c47e3006468c5fa0f28d659b72f7d876da5a2c4c8895593be6d"
+    }
+  ],
+  "payload_fixture_digest": "sha256:65c7a677e2d0dac7623ec68e2ce46877229590e352966b22f5ec28931a4cd335",
+  "aggregate_digest": "sha256:ba7c7d6618530a0e7509c11861c597d7710f318fab23461d44f8b35f520626b0"
+}

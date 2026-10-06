@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/v1/action-receipt.schema.json",
+  "title": "DUBSAR Action Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contract_version", "receipt_id", "proposal_id", "run_id", "step_id", "workflow_digest", "action", "broker_identity", "core_decision", "capability_jti", "before_state", "after_state", "result", "recorded_at", "evidence_chain"],
+  "properties": {
+    "schema": {
+      "const": "dubsar.action-receipt.v1"
+    },
+    "contract_version": {
+      "$ref": "./common.schema.json#/$defs/contractVersion"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^receipt_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "proposal_id": {
+      "type": "string",
+      "pattern": "^proposal_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "step_id": {
+      "type": "string",
+      "pattern": "^step_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "workflow_digest": {
+      "$ref": "./common.schema.json#/$defs/digest"
+    },
+    "action": {
+      "$ref": "./common.schema.json#/$defs/actionIdentity"
+    },
+    "broker_identity": {
+      "$ref": "./common.schema.json#/$defs/workload"
+    },
+    "core_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "approval_id", "policy_digest"],
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "pattern": "^decision_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "approval_id": {
+          "type": "string",
+          "pattern": "^approval_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "policy_digest": {
+          "$ref": "./common.schema.json#/$defs/digest"
+        }
+      }
+    },
+    "capability_jti": {
+      "type": "string",
+      "pattern": "^jti_[A-Za-z0-9_-]{32,128}$"
+    },
+    "before_state": {
+      "$ref": "./state-transition.schema.json#/$defs/state"
+    },
+    "after_state": {
+      "$ref": "./state-transition.schema.json#/$defs/state"
+    },
+    "result": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/successResult"
+        },
+        {
+          "$ref": "#/$defs/errorResult"
+        }
+      ]
+    },
+    "recorded_at": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "evidence_chain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event_id", "previous_event_digest", "event_digest"],
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "pattern": "^event_[a-z0-9][a-z0-9_-]{7,127}$"
+        },
+        "previous_event_digest": {
+          "oneOf": [
+            {
+              "$ref": "./common.schema.json#/$defs/digest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "event_digest": {
+          "$ref": "./common.schema.json#/$defs/digest"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "successResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "outcome_digest", "provider_status"],
+      "properties": {
+        "kind": {
+          "const": "success"
+        },
+        "outcome_digest": {
+          "$ref": "./common.schema.json#/$defs/digest"
+        },
+        "provider_status": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 599
+        }
+      }
+    },
+    "errorResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "error"],
+      "properties": {
+        "kind": {
+          "const": "error"
+        },
+        "error": {
+          "$ref": "./common.schema.json#/$defs/sanitizedError"
+        }
+      }
+    }
+  }
+}

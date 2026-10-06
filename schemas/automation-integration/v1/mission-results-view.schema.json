@@ -1,0 +1,559 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/mission-results-view.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "availability",
+    "mission",
+    "runs",
+    "source_snapshots",
+    "omissions",
+    "truncated",
+    "limits",
+    "mission_criteria",
+    "authority",
+    "executable"
+  ],
+  "properties": {
+    "format": {
+      "const": "dubsar.my-work-mission-automation-results/1"
+    },
+    "availability": {
+      "enum": [
+        "available",
+        "missing",
+        "unavailable"
+      ]
+    },
+    "mission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "mission_id",
+        "ticket_id",
+        "work_id"
+      ],
+      "properties": {
+        "project_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "mission_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ticket_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^DUB-[0-9]{3}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "work_id": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 300
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "runs": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "automation_run_id",
+          "mission_ref",
+          "mission_binding_method",
+          "launch_request_id",
+          "request_digest",
+          "source_record_digest",
+          "workflow",
+          "step_identity",
+          "native_binding",
+          "recorded_state",
+          "completion",
+          "result_evidence",
+          "recorded_times",
+          "events",
+          "omitted_event_count",
+          "limits"
+        ],
+        "properties": {
+          "automation_run_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "mission_ref": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "mission_binding_method": {
+            "enum": [
+              "work_id",
+              "ticket_id"
+            ]
+          },
+          "launch_request_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "request_digest": {
+            "$ref": "common.schema.json#/$defs/digest"
+          },
+          "source_record_digest": {
+            "$ref": "common.schema.json#/$defs/digest"
+          },
+          "workflow": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ref",
+              "version",
+              "digest",
+              "digest_scheme"
+            ],
+            "properties": {
+              "ref": {
+                "$ref": "common.schema.json#/$defs/ref"
+              },
+              "version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "digest": {
+                "$ref": "common.schema.json#/$defs/digest"
+              },
+              "digest_scheme": {
+                "const": "dubsar.automation.workflow.v1"
+              }
+            }
+          },
+          "step_identity": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "step_id",
+              "step_instance_id",
+              "execution_id",
+              "request_digest"
+            ],
+            "properties": {
+              "step_id": {
+                "$ref": "common.schema.json#/$defs/id"
+              },
+              "step_instance_id": {
+                "$ref": "common.schema.json#/$defs/id"
+              },
+              "execution_id": {
+                "$ref": "common.schema.json#/$defs/id"
+              },
+              "request_digest": {
+                "$ref": "common.schema.json#/$defs/digest"
+              }
+            }
+          },
+          "native_binding": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "flow_id",
+                  "flow_version_id",
+                  "flow_run_id",
+                  "job_id",
+                  "engine_permit_ref",
+                  "generation"
+                ],
+                "properties": {
+                  "flow_id": {
+                    "$ref": "common.schema.json#/$defs/ref"
+                  },
+                  "flow_version_id": {
+                    "$ref": "common.schema.json#/$defs/ref"
+                  },
+                  "flow_run_id": {
+                    "$ref": "common.schema.json#/$defs/ref"
+                  },
+                  "job_id": {
+                    "$ref": "common.schema.json#/$defs/ref"
+                  },
+                  "engine_permit_ref": {
+                    "$ref": "common.schema.json#/$defs/ref"
+                  },
+                  "generation": {
+                    "$ref": "common.schema.json#/$defs/int"
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "recorded_state": {
+            "enum": [
+              "prepared",
+              "launch_committed",
+              "running",
+              "succeeded",
+              "failed",
+              "rejected",
+              "indeterminate"
+            ]
+          },
+          "completion": {
+            "enum": [
+              "recorded_terminal",
+              "not_recorded_terminal",
+              "indeterminate"
+            ]
+          },
+          "result_evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "status",
+              "event_id",
+              "event_digest"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "documented",
+                  "missing",
+                  "omitted"
+                ]
+              },
+              "event_id": {
+                "oneOf": [
+                  {
+                    "$ref": "common.schema.json#/$defs/id"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "event_digest": {
+                "oneOf": [
+                  {
+                    "$ref": "common.schema.json#/$defs/digest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "recorded_times": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "created_at",
+              "updated_at",
+              "launch_committed_at"
+            ],
+            "properties": {
+              "created_at": {
+                "oneOf": [
+                  {
+                    "$ref": "common.schema.json#/$defs/time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "updated_at": {
+                "oneOf": [
+                  {
+                    "$ref": "common.schema.json#/$defs/time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "launch_committed_at": {
+                "oneOf": [
+                  {
+                    "$ref": "common.schema.json#/$defs/time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            }
+          },
+          "events": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "event",
+                "event_digest",
+                "received_at",
+                "reference_contents_read",
+                "reference_availability"
+              ],
+              "properties": {
+                "event": {
+                  "$ref": "run-event.schema.json"
+                },
+                "event_digest": {
+                  "$ref": "common.schema.json#/$defs/digest"
+                },
+                "received_at": {
+                  "oneOf": [
+                    {
+                      "$ref": "common.schema.json#/$defs/time"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "reference_contents_read": {
+                  "const": false
+                },
+                "reference_availability": {
+                  "const": "not_checked"
+                }
+              }
+            }
+          },
+          "omitted_event_count": {
+            "$ref": "common.schema.json#/$defs/int"
+          },
+          "limits": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "code",
+                "detail"
+              ],
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "detail": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "source_snapshots": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mission_registry",
+        "automation_registry",
+        "automation_marker",
+        "atomic"
+      ],
+      "properties": {
+        "mission_registry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "digest",
+            "digest_scheme",
+            "availability"
+          ],
+          "properties": {
+            "digest": {
+              "oneOf": [
+                {
+                  "$ref": "common.schema.json#/$defs/digest"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "digest_scheme": {
+              "const": "sha256/stable-json"
+            },
+            "availability": {
+              "enum": [
+                "read",
+                "unavailable"
+              ]
+            }
+          }
+        },
+        "automation_registry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "digest",
+            "digest_scheme",
+            "availability"
+          ],
+          "properties": {
+            "digest": {
+              "oneOf": [
+                {
+                  "$ref": "common.schema.json#/$defs/digest"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "digest_scheme": {
+              "const": "sha256/file-bytes"
+            },
+            "availability": {
+              "enum": [
+                "read",
+                "absent",
+                "invalid",
+                "unavailable",
+                "not_read"
+              ]
+            }
+          }
+        },
+        "automation_marker": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "digest",
+            "digest_scheme",
+            "availability"
+          ],
+          "properties": {
+            "digest": {
+              "oneOf": [
+                {
+                  "$ref": "common.schema.json#/$defs/digest"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "digest_scheme": {
+              "const": "sha256/file-bytes"
+            },
+            "availability": {
+              "enum": [
+                "read",
+                "absent",
+                "invalid",
+                "unavailable",
+                "not_applicable"
+              ]
+            }
+          }
+        },
+        "atomic": {
+          "const": false
+        }
+      }
+    },
+    "omissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runs",
+        "events",
+        "unbound_project_runs",
+        "ambiguous_project_runs",
+        "events_in_omitted_runs"
+      ],
+      "properties": {
+        "runs": {
+          "$ref": "common.schema.json#/$defs/int"
+        },
+        "events": {
+          "$ref": "common.schema.json#/$defs/int"
+        },
+        "unbound_project_runs": {
+          "$ref": "common.schema.json#/$defs/int"
+        },
+        "ambiguous_project_runs": {
+          "$ref": "common.schema.json#/$defs/int"
+        },
+        "events_in_omitted_runs": {
+          "$ref": "common.schema.json#/$defs/int"
+        }
+      }
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "limits": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "detail"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "detail": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 240
+          }
+        }
+      }
+    },
+    "mission_criteria": {
+      "const": "not_evaluated"
+    },
+    "authority": {
+      "const": "none"
+    },
+    "executable": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "allowed_operations": ["collect", "create", "execute", "inspect", "terminate"],
+  "allowed_outputs": [
+    "/workspace/out/change.patch",
+    "/workspace/out/manifest.json",
+    "/workspace/out/result.json"
+  ],
+  "capabilities": {"drop": ["ALL"], "add": ["CHOWN", "KILL", "SETGID", "SETUID"]},
+  "commands": {
+    "disk_probe": "python3 /workspace/disk_probe.py",
+    "expected_error": "python3 -c 'raise SystemExit(23)'",
+    "host_probe": "python3 /workspace/host_probe.py",
+    "network_probe": "python3 /workspace/network_probe.py",
+    "pilot": "python3 /workspace/run_task.py",
+    "resource_probe": "python3 /workspace/resource_probe.py",
+    "restart": "python3 -c 'import time; time.sleep(10)'",
+    "timeout": "/bin/sh /workspace/timeout_probe.sh",
+    "timeout_diagnostic": "/bin/sh /workspace/timeout_diagnostic_probe.sh"
+  },
+  "effect": "none",
+  "entrypoint": ["timeout", "70", "tail", "-f", "/dev/null"],
+  "filesystem": {
+    "rootfs_read_only": true,
+    "mounts": [
+      {"path": "/run", "kind": "tmpfs", "size_bytes": 2097152, "flags": ["nodev", "noexec", "nosuid"]},
+      {"path": "/tmp", "kind": "tmpfs", "size_bytes": 8388608, "flags": ["nodev", "noexec", "nosuid"]},
+      {"path": "/workspace", "kind": "tmpfs", "size_bytes": 16777216, "flags": ["nodev", "nosuid"]}
+    ]
+  },
+  "identity": {"uid": 65532, "gid": 65532},
+  "image": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "input_digest": "sha256:8df8dc7cf6fe0c133710a9291348a30e9f0bc0b79b9de482395f7769f8d813e6",
+  "input_root": "/workspace",
+  "limits": {"cpu_millicores": 500, "memory_bytes": 134217728, "pids": 256, "disk_bytes": 27262976, "ttl_seconds": 60, "command_timeout_ms": 20000, "output_bytes": 1048576},
+  "network": {"policy": "egress_none"},
+  "output_root": "/workspace/out",
+  "profile_id": "dubsar.fixture.patch.v0",
+  "runtime_lock": {
+    "adapter_image": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "execd_image": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "opensandbox_commit": "f8ed8734ce1fda69f0979f912160fb933b9bfa0c",
+    "server_image": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "task_image": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  }
+}

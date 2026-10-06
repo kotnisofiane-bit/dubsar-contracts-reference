@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/v1/execution-lease.schema.json",
+  "title": "DUBSAR Execution Lease v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contract_version", "lease_id", "authority", "run_id", "step_id", "workflow", "approval_id", "expected_action", "worker", "issued_at", "not_before", "expires_at", "nonce", "replay_protection"],
+  "properties": {
+    "schema": {
+      "const": "dubsar.execution-lease.v1"
+    },
+    "contract_version": {
+      "$ref": "./common.schema.json#/$defs/contractVersion"
+    },
+    "lease_id": {
+      "type": "string",
+      "pattern": "^lease_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "authority": {
+      "const": "DUBSAR_CORE"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^run_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "step_id": {
+      "type": "string",
+      "pattern": "^step_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "workflow": {
+      "$ref": "./common.schema.json#/$defs/workflowBinding"
+    },
+    "approval_id": {
+      "type": "string",
+      "pattern": "^approval_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "expected_action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["node_id", "action"],
+      "properties": {
+        "node_id": {
+          "type": "string",
+          "pattern": "^node_[a-z0-9][a-z0-9_-]{3,127}$"
+        },
+        "action": {
+          "$ref": "./common.schema.json#/$defs/actionIdentity"
+        }
+      }
+    },
+    "worker": {
+      "$ref": "./common.schema.json#/$defs/workload"
+    },
+    "issued_at": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "not_before": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "expires_at": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "nonce": {
+      "type": "string",
+      "pattern": "^nonce_[A-Za-z0-9_-]{32,128}$"
+    },
+    "replay_protection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["replay_key", "single_use"],
+      "properties": {
+        "replay_key": {
+          "type": "string",
+          "pattern": "^replay_[A-Za-z0-9_-]{32,128}$"
+        },
+        "single_use": {
+          "const": true
+        }
+      }
+    }
+  }
+}

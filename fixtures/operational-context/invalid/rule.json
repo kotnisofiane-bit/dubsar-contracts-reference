@@ -1,0 +1,6 @@
+{
+  "contract": "dubsar.operational-context.rule/1",
+  "rule_ref": "rule:fresh",
+  "version": 0,
+  "freshness_max_age_ms": 3600000
+}

@@ -1,0 +1,929 @@
+{
+  "schema": "dubsar.s1.conformance-vector.v1",
+  "qualification": "CONTRACT_ONLY_MODEL_ONLY",
+  "trust": {
+    "core_kid": "core-key_s1_probe_vector_001",
+    "core_public_jwk": {
+      "crv": "Ed25519",
+      "x": "UfPVSwMVlo3bCarBBRbgV_pXuLPPqVrRJP3fEhIpMgc",
+      "kty": "OKP"
+    },
+    "core_policy_digest": "sha256:2334a741ee362a5598295b85cad6a1ce50afe9c72cdbb18e3352b48d996f4277"
+  },
+  "closed_profile": {
+    "allowed_operations": [
+      "collect",
+      "create",
+      "execute",
+      "inspect",
+      "terminate"
+    ],
+    "allowed_outputs": [
+      "/workspace/out/result.json"
+    ],
+    "capabilities": {
+      "drop": [
+        "ALL"
+      ],
+      "add": [
+        "CHOWN",
+        "KILL",
+        "SETGID",
+        "SETUID"
+      ]
+    },
+    "commands": {
+      "pilot": "python3 /workspace/run_gateway_probe.py"
+    },
+    "effect": "none",
+    "entrypoint": [
+      "timeout",
+      "70",
+      "tail",
+      "-f",
+      "/dev/null"
+    ],
+    "filesystem": {
+      "rootfs_read_only": true,
+      "mounts": [
+        {
+          "path": "/run",
+          "kind": "tmpfs",
+          "size_bytes": 2097152,
+          "flags": [
+            "nodev",
+            "noexec",
+            "nosuid"
+          ]
+        },
+        {
+          "path": "/tmp",
+          "kind": "tmpfs",
+          "size_bytes": 8388608,
+          "flags": [
+            "nodev",
+            "noexec",
+            "nosuid"
+          ]
+        },
+        {
+          "path": "/workspace",
+          "kind": "tmpfs",
+          "size_bytes": 16777216,
+          "flags": [
+            "nodev",
+            "nosuid"
+          ]
+        }
+      ]
+    },
+    "identity": {
+      "uid": 65532,
+      "gid": 65532
+    },
+    "image": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "input_digest": "sha256:685369ae03ba89fa662b6eada7d3cf89bc6c046e8a5a803cadb7f9f241e8c3a5",
+    "input_root": "/workspace",
+    "limits": {
+      "cpu_millicores": 500,
+      "memory_bytes": 134217728,
+      "pids": 256,
+      "disk_bytes": 27262976,
+      "ttl_seconds": 60,
+      "command_timeout_ms": 20000,
+      "output_bytes": 1048576
+    },
+    "network": {
+      "policy": "egress_mediated_gateway",
+      "enforcer_ref": "dubsar.mediated.egress.v1",
+      "enforcer_digest": "sha256:6eee8e06ac6ac95bcd3e47ed1a4c264671a4b081e1a1956d7fe453443cbe5ffa",
+      "egress_policy": {
+        "schema": "dubsar.s1.egress-policy.v1",
+        "contract_version": "1.0.0",
+        "policy_id": "dubsar.gateway.probe.v1",
+        "destination": {
+          "service_ref": "dubsar.gateway",
+          "scheme": "https",
+          "peer_ref": "dubsar.gateway.s1"
+        },
+        "operation": {
+          "method": "POST",
+          "path": "/v1/chat/completions"
+        },
+        "gateway_scope": {
+          "profile_id": "dubsar.s1.synthetic.v1",
+          "context_id": "ctx-s1-synthetic",
+          "model": "dubsar-s1-synthetic"
+        },
+        "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+        "bounds": {
+          "max_attempts": 1,
+          "window_seconds": 30,
+          "request_timeout_ms": 2000,
+          "max_request_bytes": 4096,
+          "max_response_bytes": 16384,
+          "max_generation_tokens": 128
+        },
+        "protocol": {
+          "retry": false,
+          "redirect": false,
+          "connect": false,
+          "streaming": false,
+          "tools": false
+        },
+        "authentication": "outside_workload_ephemeral",
+        "revocation": "core_bound_session"
+      }
+    },
+    "output_root": "/workspace/out",
+    "profile_id": "dubsar.gateway.probe.v1",
+    "runtime_lock": {
+      "adapter_image": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "execd_image": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "opensandbox_commit": "f8ed8734ce1fda69f0979f912160fb933b9bfa0c",
+      "server_image": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "task_image": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  },
+  "lease": {
+    "schema": "dubsar.task-lease.v2",
+    "contract_version": "2.0.0",
+    "lease_id": "lease_s1_gateway_probe_001",
+    "authority": "DUBSAR_CORE",
+    "audience": "dubsar-task-manager",
+    "task_id": "task_s1_gateway_probe_001",
+    "action_id": "action_s1_gateway_probe_001",
+    "tenant_id": "tenant_dubsar_lab_001",
+    "mission_id": "mission_s1_gateway_probe_001",
+    "task_manager": {
+      "workload_id": "workload_task_manager_s1_001",
+      "instance_id": "instance_task_manager_s1_001"
+    },
+    "task": {
+      "profile_id": "dubsar.gateway.probe.v1",
+      "effect": "none",
+      "input_digest": "sha256:685369ae03ba89fa662b6eada7d3cf89bc6c046e8a5a803cadb7f9f241e8c3a5",
+      "runtime_lock_digest": "sha256:f9434602ef8981e214cd36d5e4190c46edf476d0afd2317dbfeb45f7b684f0ff",
+      "profile_digest": "sha256:160695f459409cd37e8e9bfb142f4f72c378d3550dffac7c017e66358ff01bc4",
+      "limits": {
+        "cpu_millicores": 500,
+        "memory_bytes": 134217728,
+        "pids": 256,
+        "disk_bytes": 27262976,
+        "ttl_seconds": 60,
+        "command_timeout_ms": 20000,
+        "output_bytes": 1048576
+      },
+      "identity": {
+        "uid": 65532,
+        "gid": 65532
+      },
+      "filesystem": {
+        "rootfs_read_only": true,
+        "mounts": [
+          {
+            "path": "/run",
+            "kind": "tmpfs",
+            "size_bytes": 2097152,
+            "flags": [
+              "nodev",
+              "noexec",
+              "nosuid"
+            ]
+          },
+          {
+            "path": "/tmp",
+            "kind": "tmpfs",
+            "size_bytes": 8388608,
+            "flags": [
+              "nodev",
+              "noexec",
+              "nosuid"
+            ]
+          },
+          {
+            "path": "/workspace",
+            "kind": "tmpfs",
+            "size_bytes": 16777216,
+            "flags": [
+              "nodev",
+              "nosuid"
+            ]
+          }
+        ]
+      },
+      "capabilities": {
+        "drop": [
+          "ALL"
+        ],
+        "add": [
+          "CHOWN",
+          "KILL",
+          "SETGID",
+          "SETUID"
+        ]
+      },
+      "network": {
+        "policy": "egress_mediated_gateway",
+        "enforcer_ref": "dubsar.mediated.egress.v1",
+        "enforcer_digest": "sha256:6eee8e06ac6ac95bcd3e47ed1a4c264671a4b081e1a1956d7fe453443cbe5ffa",
+        "egress_policy": {
+          "schema": "dubsar.s1.egress-policy.v1",
+          "contract_version": "1.0.0",
+          "policy_id": "dubsar.gateway.probe.v1",
+          "destination": {
+            "service_ref": "dubsar.gateway",
+            "scheme": "https",
+            "peer_ref": "dubsar.gateway.s1"
+          },
+          "operation": {
+            "method": "POST",
+            "path": "/v1/chat/completions"
+          },
+          "gateway_scope": {
+            "profile_id": "dubsar.s1.synthetic.v1",
+            "context_id": "ctx-s1-synthetic",
+            "model": "dubsar-s1-synthetic"
+          },
+          "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+          "bounds": {
+            "max_attempts": 1,
+            "window_seconds": 30,
+            "request_timeout_ms": 2000,
+            "max_request_bytes": 4096,
+            "max_response_bytes": 16384,
+            "max_generation_tokens": 128
+          },
+          "protocol": {
+            "retry": false,
+            "redirect": false,
+            "connect": false,
+            "streaming": false,
+            "tools": false
+          },
+          "authentication": "outside_workload_ephemeral",
+          "revocation": "core_bound_session"
+        }
+      },
+      "allowed_operations": [
+        "collect",
+        "create",
+        "execute",
+        "inspect",
+        "terminate"
+      ]
+    },
+    "evidence_correlation_id": "evidence_s1_gateway_probe_001",
+    "issued_at": "2026-10-04T16:00:00.000Z",
+    "not_before": "2026-10-04T16:00:00.000Z",
+    "expires_at": "2026-10-04T16:01:00.000Z",
+    "nonce": "nonce_s1gatewayprobe0123456789abcdefghij",
+    "replay_protection": {
+      "replay_key": "replay_s1gatewayprobe0123456789abcdefghij",
+      "single_use": true
+    }
+  },
+  "envelope": {
+    "header": {
+      "alg": "EdDSA",
+      "kid": "core-key_s1_probe_vector_001",
+      "typ": "DUBSAR-TASK-LEASE+JSON",
+      "v": 2
+    },
+    "payload": {
+      "exp": 1791129660,
+      "iat": 1791129600,
+      "issuer": "dubsar-governance-core",
+      "lease": {
+        "schema": "dubsar.task-lease.v2",
+        "contract_version": "2.0.0",
+        "lease_id": "lease_s1_gateway_probe_001",
+        "authority": "DUBSAR_CORE",
+        "audience": "dubsar-task-manager",
+        "task_id": "task_s1_gateway_probe_001",
+        "action_id": "action_s1_gateway_probe_001",
+        "tenant_id": "tenant_dubsar_lab_001",
+        "mission_id": "mission_s1_gateway_probe_001",
+        "task_manager": {
+          "workload_id": "workload_task_manager_s1_001",
+          "instance_id": "instance_task_manager_s1_001"
+        },
+        "task": {
+          "profile_id": "dubsar.gateway.probe.v1",
+          "effect": "none",
+          "input_digest": "sha256:685369ae03ba89fa662b6eada7d3cf89bc6c046e8a5a803cadb7f9f241e8c3a5",
+          "runtime_lock_digest": "sha256:f9434602ef8981e214cd36d5e4190c46edf476d0afd2317dbfeb45f7b684f0ff",
+          "profile_digest": "sha256:160695f459409cd37e8e9bfb142f4f72c378d3550dffac7c017e66358ff01bc4",
+          "limits": {
+            "cpu_millicores": 500,
+            "memory_bytes": 134217728,
+            "pids": 256,
+            "disk_bytes": 27262976,
+            "ttl_seconds": 60,
+            "command_timeout_ms": 20000,
+            "output_bytes": 1048576
+          },
+          "identity": {
+            "uid": 65532,
+            "gid": 65532
+          },
+          "filesystem": {
+            "rootfs_read_only": true,
+            "mounts": [
+              {
+                "path": "/run",
+                "kind": "tmpfs",
+                "size_bytes": 2097152,
+                "flags": [
+                  "nodev",
+                  "noexec",
+                  "nosuid"
+                ]
+              },
+              {
+                "path": "/tmp",
+                "kind": "tmpfs",
+                "size_bytes": 8388608,
+                "flags": [
+                  "nodev",
+                  "noexec",
+                  "nosuid"
+                ]
+              },
+              {
+                "path": "/workspace",
+                "kind": "tmpfs",
+                "size_bytes": 16777216,
+                "flags": [
+                  "nodev",
+                  "nosuid"
+                ]
+              }
+            ]
+          },
+          "capabilities": {
+            "drop": [
+              "ALL"
+            ],
+            "add": [
+              "CHOWN",
+              "KILL",
+              "SETGID",
+              "SETUID"
+            ]
+          },
+          "network": {
+            "policy": "egress_mediated_gateway",
+            "enforcer_ref": "dubsar.mediated.egress.v1",
+            "enforcer_digest": "sha256:6eee8e06ac6ac95bcd3e47ed1a4c264671a4b081e1a1956d7fe453443cbe5ffa",
+            "egress_policy": {
+              "schema": "dubsar.s1.egress-policy.v1",
+              "contract_version": "1.0.0",
+              "policy_id": "dubsar.gateway.probe.v1",
+              "destination": {
+                "service_ref": "dubsar.gateway",
+                "scheme": "https",
+                "peer_ref": "dubsar.gateway.s1"
+              },
+              "operation": {
+                "method": "POST",
+                "path": "/v1/chat/completions"
+              },
+              "gateway_scope": {
+                "profile_id": "dubsar.s1.synthetic.v1",
+                "context_id": "ctx-s1-synthetic",
+                "model": "dubsar-s1-synthetic"
+              },
+              "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+              "bounds": {
+                "max_attempts": 1,
+                "window_seconds": 30,
+                "request_timeout_ms": 2000,
+                "max_request_bytes": 4096,
+                "max_response_bytes": 16384,
+                "max_generation_tokens": 128
+              },
+              "protocol": {
+                "retry": false,
+                "redirect": false,
+                "connect": false,
+                "streaming": false,
+                "tools": false
+              },
+              "authentication": "outside_workload_ephemeral",
+              "revocation": "core_bound_session"
+            }
+          },
+          "allowed_operations": [
+            "collect",
+            "create",
+            "execute",
+            "inspect",
+            "terminate"
+          ]
+        },
+        "evidence_correlation_id": "evidence_s1_gateway_probe_001",
+        "issued_at": "2026-10-04T16:00:00.000Z",
+        "not_before": "2026-10-04T16:00:00.000Z",
+        "expires_at": "2026-10-04T16:01:00.000Z",
+        "nonce": "nonce_s1gatewayprobe0123456789abcdefghij",
+        "replay_protection": {
+          "replay_key": "replay_s1gatewayprobe0123456789abcdefghij",
+          "single_use": true
+        }
+      },
+      "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+      "nbf": 1791129600,
+      "policy_digest": "sha256:2334a741ee362a5598295b85cad6a1ce50afe9c72cdbb18e3352b48d996f4277",
+      "schema": "dubsar.signed-task-lease.v2"
+    },
+    "compact": "eyJhbGciOiJFZERTQSIsImtpZCI6ImNvcmUta2V5X3MxX3Byb2JlX3ZlY3Rvcl8wMDEiLCJ0eXAiOiJEVUJTQVItVEFTSy1MRUFTRStKU09OIiwidiI6Mn0.eyJleHAiOjE3OTExMjk2NjAsImlhdCI6MTc5MTEyOTYwMCwiaXNzdWVyIjoiZHVic2FyLWdvdmVybmFuY2UtY29yZSIsImxlYXNlIjp7ImFjdGlvbl9pZCI6ImFjdGlvbl9zMV9nYXRld2F5X3Byb2JlXzAwMSIsImF1ZGllbmNlIjoiZHVic2FyLXRhc2stbWFuYWdlciIsImF1dGhvcml0eSI6IkRVQlNBUl9DT1JFIiwiY29udHJhY3RfdmVyc2lvbiI6IjIuMC4wIiwiZXZpZGVuY2VfY29ycmVsYXRpb25faWQiOiJldmlkZW5jZV9zMV9nYXRld2F5X3Byb2JlXzAwMSIsImV4cGlyZXNfYXQiOiIyMDI2LTEwLTA0VDE2OjAxOjAwLjAwMFoiLCJpc3N1ZWRfYXQiOiIyMDI2LTEwLTA0VDE2OjAwOjAwLjAwMFoiLCJsZWFzZV9pZCI6ImxlYXNlX3MxX2dhdGV3YXlfcHJvYmVfMDAxIiwibWlzc2lvbl9pZCI6Im1pc3Npb25fczFfZ2F0ZXdheV9wcm9iZV8wMDEiLCJub25jZSI6Im5vbmNlX3MxZ2F0ZXdheXByb2JlMDEyMzQ1Njc4OWFiY2RlZmdoaWoiLCJub3RfYmVmb3JlIjoiMjAyNi0xMC0wNFQxNjowMDowMC4wMDBaIiwicmVwbGF5X3Byb3RlY3Rpb24iOnsicmVwbGF5X2tleSI6InJlcGxheV9zMWdhdGV3YXlwcm9iZTAxMjM0NTY3ODlhYmNkZWZnaGlqIiwic2luZ2xlX3VzZSI6dHJ1ZX0sInNjaGVtYSI6ImR1YnNhci50YXNrLWxlYXNlLnYyIiwidGFzayI6eyJhbGxvd2VkX29wZXJhdGlvbnMiOlsiY29sbGVjdCIsImNyZWF0ZSIsImV4ZWN1dGUiLCJpbnNwZWN0IiwidGVybWluYXRlIl0sImNhcGFiaWxpdGllcyI6eyJhZGQiOlsiQ0hPV04iLCJLSUxMIiwiU0VUR0lEIiwiU0VUVUlEIl0sImRyb3AiOlsiQUxMIl19LCJlZmZlY3QiOiJub25lIiwiZmlsZXN5c3RlbSI6eyJtb3VudHMiOlt7ImZsYWdzIjpbIm5vZGV2Iiwibm9leGVjIiwibm9zdWlkIl0sImtpbmQiOiJ0bXBmcyIsInBhdGgiOiIvcnVuIiwic2l6ZV9ieXRlcyI6MjA5NzE1Mn0seyJmbGFncyI6WyJub2RldiIsIm5vZXhlYyIsIm5vc3VpZCJdLCJraW5kIjoidG1wZnMiLCJwYXRoIjoiL3RtcCIsInNpemVfYnl0ZXMiOjgzODg2MDh9LHsiZmxhZ3MiOlsibm9kZXYiLCJub3N1aWQiXSwia2luZCI6InRtcGZzIiwicGF0aCI6Ii93b3Jrc3BhY2UiLCJzaXplX2J5dGVzIjoxNjc3NzIxNn1dLCJyb290ZnNfcmVhZF9vbmx5Ijp0cnVlfSwiaWRlbnRpdHkiOnsiZ2lkIjo2NTUzMiwidWlkIjo2NTUzMn0sImlucHV0X2RpZ2VzdCI6InNoYTI1Njo2ODUzNjlhZTAzYmE4OWZhNjYyYjZlYWRhN2QzY2Y4OWJjNmMwNDZlOGE1YTgwM2NhZGI3ZjlmMjQxZThjM2E1IiwibGltaXRzIjp7ImNvbW1hbmRfdGltZW91dF9tcyI6MjAwMDAsImNwdV9taWxsaWNvcmVzIjo1MDAsImRpc2tfYnl0ZXMiOjI3MjYyOTc2LCJtZW1vcnlfYnl0ZXMiOjEzNDIxNzcyOCwib3V0cHV0X2J5dGVzIjoxMDQ4NTc2LCJwaWRzIjoyNTYsInR0bF9zZWNvbmRzIjo2MH0sIm5ldHdvcmsiOnsiZWdyZXNzX3BvbGljeSI6eyJhdXRoZW50aWNhdGlvbiI6Im91dHNpZGVfd29ya2xvYWRfZXBoZW1lcmFsIiwiYm91bmRzIjp7Im1heF9hdHRlbXB0cyI6MSwibWF4X2dlbmVyYXRpb25fdG9rZW5zIjoxMjgsIm1heF9yZXF1ZXN0X2J5dGVzIjo0MDk2LCJtYXhfcmVzcG9uc2VfYnl0ZXMiOjE2Mzg0LCJyZXF1ZXN0X3RpbWVvdXRfbXMiOjIwMDAsIndpbmRvd19zZWNvbmRzIjozMH0sImNvbnRyYWN0X3ZlcnNpb24iOiIxLjAuMCIsImRlc3RpbmF0aW9uIjp7InBlZXJfcmVmIjoiZHVic2FyLmdhdGV3YXkuczEiLCJzY2hlbWUiOiJodHRwcyIsInNlcnZpY2VfcmVmIjoiZHVic2FyLmdhdGV3YXkifSwiZ2F0ZXdheV9zY29wZSI6eyJjb250ZXh0X2lkIjoiY3R4LXMxLXN5bnRoZXRpYyIsIm1vZGVsIjoiZHVic2FyLXMxLXN5bnRoZXRpYyIsInByb2ZpbGVfaWQiOiJkdWJzYXIuczEuc3ludGhldGljLnYxIn0sIm9wZXJhdGlvbiI6eyJtZXRob2QiOiJQT1NUIiwicGF0aCI6Ii92MS9jaGF0L2NvbXBsZXRpb25zIn0sInBvbGljeV9pZCI6ImR1YnNhci5nYXRld2F5LnByb2JlLnYxIiwicHJvdG9jb2wiOnsiY29ubmVjdCI6ZmFsc2UsInJlZGlyZWN0IjpmYWxzZSwicmV0cnkiOmZhbHNlLCJzdHJlYW1pbmciOmZhbHNlLCJ0b29scyI6ZmFsc2V9LCJyZXF1ZXN0X2RpZ2VzdCI6InNoYTI1Njo1NGE3ZGQ5NDFhZWVkNTk1MTE2MTZmOTgzMDUwNjEzNDBlY2RhNDZkYjgwZmIzYzg4MzYwNTZkZmEzODUxNWM3IiwicmV2b2NhdGlvbiI6ImNvcmVfYm91bmRfc2Vzc2lvbiIsInNjaGVtYSI6ImR1YnNhci5zMS5lZ3Jlc3MtcG9saWN5LnYxIn0sImVuZm9yY2VyX2RpZ2VzdCI6InNoYTI1Njo2ZWVlOGUwNmFjNmFjOTViY2QzZTQ3ZWQxYTRjMjY0NjcxYTRiMDgxZTFhMTk1NmQ3ZmU0NTM0NDNjYmU1ZmZhIiwiZW5mb3JjZXJfcmVmIjoiZHVic2FyLm1lZGlhdGVkLmVncmVzcy52MSIsInBvbGljeSI6ImVncmVzc19tZWRpYXRlZF9nYXRld2F5In0sInByb2ZpbGVfZGlnZXN0Ijoic2hhMjU2OjE2MDY5NWY0NTk0MDljZDM3ZThlOWJmYjE0MmY0ZjcyYzM3OGQzNTUwZGZmYWM3YzAxN2U2NjM1OGZmMDFiYzQiLCJwcm9maWxlX2lkIjoiZHVic2FyLmdhdGV3YXkucHJvYmUudjEiLCJydW50aW1lX2xvY2tfZGlnZXN0Ijoic2hhMjU2OmY5NDM0NjAyZWY4OTgxZTIxNGNkMzZkNWU0MTkwYzQ2ZWRmNDc2ZDBhZmQyMzE3ZGJmZWI0NWY3YjY4NGYwZmYifSwidGFza19pZCI6InRhc2tfczFfZ2F0ZXdheV9wcm9iZV8wMDEiLCJ0YXNrX21hbmFnZXIiOnsiaW5zdGFuY2VfaWQiOiJpbnN0YW5jZV90YXNrX21hbmFnZXJfczFfMDAxIiwid29ya2xvYWRfaWQiOiJ3b3JrbG9hZF90YXNrX21hbmFnZXJfczFfMDAxIn0sInRlbmFudF9pZCI6InRlbmFudF9kdWJzYXJfbGFiXzAwMSJ9LCJsZWFzZV9kaWdlc3QiOiJzaGEyNTY6YzlhNTZkYWY3OWVhMjFiNGM0ZGY1NTkwYzQxZDQxNGUxMzg1MjU0N2U2OGM3ODRhOWUxOTI5ZTA4YWJiZWM0ZiIsIm5iZiI6MTc5MTEyOTYwMCwicG9saWN5X2RpZ2VzdCI6InNoYTI1NjoyMzM0YTc0MWVlMzYyYTU1OTgyOTViODVjYWQ2YTFjZTUwYWZlOWM3MmNkYmIxOGUzMzUyYjQ4ZDk5NmY0Mjc3Iiwic2NoZW1hIjoiZHVic2FyLnNpZ25lZC10YXNrLWxlYXNlLnYyIn0.Pjm9whUXMTEtUtZ-XWpyDnZvIsSWOsvGlz08HAZhCSPR9oRa-q6gSqKQ-ZN3vuWQBy7i_fz9h7o8CZx9V9YsBA"
+  },
+  "receipt": {
+    "schema": "dubsar.s1.egress-receipt.v1",
+    "contract_version": "1.0.0",
+    "lease_id": "lease_s1_gateway_probe_001",
+    "task_id": "task_s1_gateway_probe_001",
+    "action_id": "action_s1_gateway_probe_001",
+    "tenant_id": "tenant_dubsar_lab_001",
+    "mission_id": "mission_s1_gateway_probe_001",
+    "evidence_correlation_id": "evidence_s1_gateway_probe_001",
+    "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+    "policy_digest": "sha256:2334a741ee362a5598295b85cad6a1ce50afe9c72cdbb18e3352b48d996f4277",
+    "profile_digest": "sha256:160695f459409cd37e8e9bfb142f4f72c378d3550dffac7c017e66358ff01bc4",
+    "runtime_lock_digest": "sha256:f9434602ef8981e214cd36d5e4190c46edf476d0afd2317dbfeb45f7b684f0ff",
+    "requested_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+    "sandbox_id": "sandbox_s1_gateway_probe_001",
+    "session_id": "egress_s1_gateway_probe_001",
+    "requested_policy": {
+      "schema": "dubsar.s1.egress-policy.v1",
+      "contract_version": "1.0.0",
+      "policy_id": "dubsar.gateway.probe.v1",
+      "destination": {
+        "service_ref": "dubsar.gateway",
+        "scheme": "https",
+        "peer_ref": "dubsar.gateway.s1"
+      },
+      "operation": {
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      },
+      "gateway_scope": {
+        "profile_id": "dubsar.s1.synthetic.v1",
+        "context_id": "ctx-s1-synthetic",
+        "model": "dubsar-s1-synthetic"
+      },
+      "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+      "bounds": {
+        "max_attempts": 1,
+        "window_seconds": 30,
+        "request_timeout_ms": 2000,
+        "max_request_bytes": 4096,
+        "max_response_bytes": 16384,
+        "max_generation_tokens": 128
+      },
+      "protocol": {
+        "retry": false,
+        "redirect": false,
+        "connect": false,
+        "streaming": false,
+        "tools": false
+      },
+      "authentication": "outside_workload_ephemeral",
+      "revocation": "core_bound_session"
+    },
+    "effective_policy": {
+      "schema": "dubsar.s1.egress-policy.v1",
+      "contract_version": "1.0.0",
+      "policy_id": "dubsar.gateway.probe.v1",
+      "destination": {
+        "service_ref": "dubsar.gateway",
+        "scheme": "https",
+        "peer_ref": "dubsar.gateway.s1"
+      },
+      "operation": {
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      },
+      "gateway_scope": {
+        "profile_id": "dubsar.s1.synthetic.v1",
+        "context_id": "ctx-s1-synthetic",
+        "model": "dubsar-s1-synthetic"
+      },
+      "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+      "bounds": {
+        "max_attempts": 1,
+        "window_seconds": 30,
+        "request_timeout_ms": 2000,
+        "max_request_bytes": 4096,
+        "max_response_bytes": 16384,
+        "max_generation_tokens": 128
+      },
+      "protocol": {
+        "retry": false,
+        "redirect": false,
+        "connect": false,
+        "streaming": false,
+        "tools": false
+      },
+      "authentication": "outside_workload_ephemeral",
+      "revocation": "core_bound_session"
+    },
+    "effective_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+    "destination": {
+      "service_ref": "dubsar.gateway",
+      "scheme": "https",
+      "peer_ref": "dubsar.gateway.s1"
+    },
+    "route": {
+      "method": "POST",
+      "path": "/v1/chat/completions"
+    },
+    "window": {
+      "sandbox_created_at": "2026-10-04T16:00:05.000Z",
+      "not_before": "2026-10-04T16:00:06.000Z",
+      "expires_at": "2026-10-04T16:00:36.000Z",
+      "revoked_at": null
+    },
+    "operation": {
+      "started_at": "2026-10-04T16:00:07.000Z",
+      "finished_at": "2026-10-04T16:00:07.100Z",
+      "duration_ms": 100,
+      "attempts": 1,
+      "forwarded": false,
+      "request_bytes": 179,
+      "response_bytes": 45,
+      "generation_tokens": 1,
+      "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+      "response_digest": "sha256:d12312539f9836785b559362501b78f95d62b3eaef7d3933111a4a37bd3b182b",
+      "gateway_receipt_ref": null,
+      "result": "SIMULATED"
+    },
+    "enforcement": {
+      "level": "MODEL_ONLY",
+      "policy_applied": false,
+      "declared_observations": [],
+      "observations_status": "NONE",
+      "proof_acquired": false
+    },
+    "recorded_at": "2026-10-04T16:00:07.100Z"
+  },
+  "receipt_examples": {
+    "synthetic_declared": {
+      "schema": "dubsar.s1.egress-receipt.v1",
+      "contract_version": "1.0.0",
+      "lease_id": "lease_s1_gateway_probe_001",
+      "task_id": "task_s1_gateway_probe_001",
+      "action_id": "action_s1_gateway_probe_001",
+      "tenant_id": "tenant_dubsar_lab_001",
+      "mission_id": "mission_s1_gateway_probe_001",
+      "evidence_correlation_id": "evidence_s1_gateway_probe_001",
+      "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+      "policy_digest": "sha256:2334a741ee362a5598295b85cad6a1ce50afe9c72cdbb18e3352b48d996f4277",
+      "profile_digest": "sha256:160695f459409cd37e8e9bfb142f4f72c378d3550dffac7c017e66358ff01bc4",
+      "runtime_lock_digest": "sha256:f9434602ef8981e214cd36d5e4190c46edf476d0afd2317dbfeb45f7b684f0ff",
+      "requested_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+      "sandbox_id": "sandbox_s1_gateway_probe_001",
+      "session_id": "egress_s1_gateway_probe_001",
+      "requested_policy": {
+        "schema": "dubsar.s1.egress-policy.v1",
+        "contract_version": "1.0.0",
+        "policy_id": "dubsar.gateway.probe.v1",
+        "destination": {
+          "service_ref": "dubsar.gateway",
+          "scheme": "https",
+          "peer_ref": "dubsar.gateway.s1"
+        },
+        "operation": {
+          "method": "POST",
+          "path": "/v1/chat/completions"
+        },
+        "gateway_scope": {
+          "profile_id": "dubsar.s1.synthetic.v1",
+          "context_id": "ctx-s1-synthetic",
+          "model": "dubsar-s1-synthetic"
+        },
+        "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+        "bounds": {
+          "max_attempts": 1,
+          "window_seconds": 30,
+          "request_timeout_ms": 2000,
+          "max_request_bytes": 4096,
+          "max_response_bytes": 16384,
+          "max_generation_tokens": 128
+        },
+        "protocol": {
+          "retry": false,
+          "redirect": false,
+          "connect": false,
+          "streaming": false,
+          "tools": false
+        },
+        "authentication": "outside_workload_ephemeral",
+        "revocation": "core_bound_session"
+      },
+      "effective_policy": {
+        "schema": "dubsar.s1.egress-policy.v1",
+        "contract_version": "1.0.0",
+        "policy_id": "dubsar.gateway.probe.v1",
+        "destination": {
+          "service_ref": "dubsar.gateway",
+          "scheme": "https",
+          "peer_ref": "dubsar.gateway.s1"
+        },
+        "operation": {
+          "method": "POST",
+          "path": "/v1/chat/completions"
+        },
+        "gateway_scope": {
+          "profile_id": "dubsar.s1.synthetic.v1",
+          "context_id": "ctx-s1-synthetic",
+          "model": "dubsar-s1-synthetic"
+        },
+        "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+        "bounds": {
+          "max_attempts": 1,
+          "window_seconds": 30,
+          "request_timeout_ms": 2000,
+          "max_request_bytes": 4096,
+          "max_response_bytes": 16384,
+          "max_generation_tokens": 128
+        },
+        "protocol": {
+          "retry": false,
+          "redirect": false,
+          "connect": false,
+          "streaming": false,
+          "tools": false
+        },
+        "authentication": "outside_workload_ephemeral",
+        "revocation": "core_bound_session"
+      },
+      "effective_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+      "destination": {
+        "service_ref": "dubsar.gateway",
+        "scheme": "https",
+        "peer_ref": "dubsar.gateway.s1"
+      },
+      "route": {
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      },
+      "window": {
+        "sandbox_created_at": "2026-10-04T16:00:05.000Z",
+        "not_before": "2026-10-04T16:00:06.000Z",
+        "expires_at": "2026-10-04T16:00:36.000Z",
+        "revoked_at": null
+      },
+      "operation": {
+        "started_at": "2026-10-04T16:00:07.000Z",
+        "finished_at": "2026-10-04T16:00:07.100Z",
+        "duration_ms": 100,
+        "attempts": 1,
+        "forwarded": false,
+        "request_bytes": 179,
+        "response_bytes": 45,
+        "generation_tokens": 1,
+        "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+        "response_digest": "sha256:d12312539f9836785b559362501b78f95d62b3eaef7d3933111a4a37bd3b182b",
+        "gateway_receipt_ref": null,
+        "result": "SIMULATED"
+      },
+      "enforcement": {
+        "level": "DECLARED_ONLY",
+        "policy_applied": false,
+        "declared_observations": [
+          {
+            "kind": "MEDIATOR_POLICY_READBACK",
+            "source": "MEDIATOR",
+            "evidence_digest": "sha256:90d0a75f0f774d699b8e404b01fcf1b09be4d90b5a3111aa18a4311681ed192a",
+            "effective_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+            "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+            "sandbox_id": "sandbox_s1_gateway_probe_001",
+            "session_id": "egress_s1_gateway_probe_001",
+            "observed_at": "2026-10-04T16:00:06.500Z"
+          },
+          {
+            "kind": "NETWORK_FENCE_READBACK",
+            "source": "HOST_ENFORCER",
+            "evidence_digest": "sha256:a1a2eea15b76742f8fddb56491e519a03edc2c9de43f6cdb557d8204a176902a",
+            "effective_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+            "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+            "sandbox_id": "sandbox_s1_gateway_probe_001",
+            "session_id": "egress_s1_gateway_probe_001",
+            "observed_at": "2026-10-04T16:00:06.500Z"
+          },
+          {
+            "kind": "GATEWAY_PEER",
+            "source": "MEDIATOR",
+            "evidence_digest": "sha256:61863aae522bae15f3da60b137fcb68546d274d2b5a343155759d18ad0f5906c",
+            "effective_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+            "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+            "sandbox_id": "sandbox_s1_gateway_probe_001",
+            "session_id": "egress_s1_gateway_probe_001",
+            "observed_at": "2026-10-04T16:00:06.500Z"
+          },
+          {
+            "kind": "BYPASS_PROBES",
+            "source": "QUALIFIER",
+            "evidence_digest": "sha256:c9804f3c85b4f83c85f53442f9eb36600b991a87cf02aff45bbb87a3c588f663",
+            "effective_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+            "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+            "sandbox_id": "sandbox_s1_gateway_probe_001",
+            "session_id": "egress_s1_gateway_probe_001",
+            "observed_at": "2026-10-04T16:00:06.500Z"
+          }
+        ],
+        "observations_status": "STRUCTURALLY_VALID",
+        "proof_acquired": false
+      },
+      "recorded_at": "2026-10-04T16:00:07.100Z"
+    },
+    "denied_expired": {
+      "schema": "dubsar.s1.egress-receipt.v1",
+      "contract_version": "1.0.0",
+      "lease_id": "lease_s1_gateway_probe_001",
+      "task_id": "task_s1_gateway_probe_001",
+      "action_id": "action_s1_gateway_probe_001",
+      "tenant_id": "tenant_dubsar_lab_001",
+      "mission_id": "mission_s1_gateway_probe_001",
+      "evidence_correlation_id": "evidence_s1_gateway_probe_001",
+      "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+      "policy_digest": "sha256:2334a741ee362a5598295b85cad6a1ce50afe9c72cdbb18e3352b48d996f4277",
+      "profile_digest": "sha256:160695f459409cd37e8e9bfb142f4f72c378d3550dffac7c017e66358ff01bc4",
+      "runtime_lock_digest": "sha256:f9434602ef8981e214cd36d5e4190c46edf476d0afd2317dbfeb45f7b684f0ff",
+      "requested_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+      "sandbox_id": "sandbox_s1_gateway_probe_001",
+      "session_id": "egress_s1_gateway_probe_001",
+      "requested_policy": {
+        "schema": "dubsar.s1.egress-policy.v1",
+        "contract_version": "1.0.0",
+        "policy_id": "dubsar.gateway.probe.v1",
+        "destination": {
+          "service_ref": "dubsar.gateway",
+          "scheme": "https",
+          "peer_ref": "dubsar.gateway.s1"
+        },
+        "operation": {
+          "method": "POST",
+          "path": "/v1/chat/completions"
+        },
+        "gateway_scope": {
+          "profile_id": "dubsar.s1.synthetic.v1",
+          "context_id": "ctx-s1-synthetic",
+          "model": "dubsar-s1-synthetic"
+        },
+        "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+        "bounds": {
+          "max_attempts": 1,
+          "window_seconds": 30,
+          "request_timeout_ms": 2000,
+          "max_request_bytes": 4096,
+          "max_response_bytes": 16384,
+          "max_generation_tokens": 128
+        },
+        "protocol": {
+          "retry": false,
+          "redirect": false,
+          "connect": false,
+          "streaming": false,
+          "tools": false
+        },
+        "authentication": "outside_workload_ephemeral",
+        "revocation": "core_bound_session"
+      },
+      "effective_policy": null,
+      "effective_policy_digest": null,
+      "destination": {
+        "service_ref": "dubsar.gateway",
+        "scheme": "https",
+        "peer_ref": "dubsar.gateway.s1"
+      },
+      "route": {
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      },
+      "window": {
+        "sandbox_created_at": "2026-10-04T16:00:05.000Z",
+        "not_before": "2026-10-04T16:00:06.000Z",
+        "expires_at": "2026-10-04T16:00:36.000Z",
+        "revoked_at": null
+      },
+      "operation": {
+        "started_at": null,
+        "finished_at": null,
+        "duration_ms": null,
+        "attempts": 0,
+        "forwarded": false,
+        "request_bytes": 0,
+        "response_bytes": 0,
+        "generation_tokens": null,
+        "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+        "response_digest": null,
+        "gateway_receipt_ref": null,
+        "result": "DENIED"
+      },
+      "enforcement": {
+        "level": "NOT_PROVEN",
+        "policy_applied": false,
+        "declared_observations": [],
+        "observations_status": "NONE",
+        "proof_acquired": false
+      },
+      "recorded_at": "2026-10-04T16:00:37.000Z"
+    },
+    "denied_revoked_before_activation": {
+      "schema": "dubsar.s1.egress-receipt.v1",
+      "contract_version": "1.0.0",
+      "lease_id": "lease_s1_gateway_probe_001",
+      "task_id": "task_s1_gateway_probe_001",
+      "action_id": "action_s1_gateway_probe_001",
+      "tenant_id": "tenant_dubsar_lab_001",
+      "mission_id": "mission_s1_gateway_probe_001",
+      "evidence_correlation_id": "evidence_s1_gateway_probe_001",
+      "lease_digest": "sha256:c9a56daf79ea21b4c4df5590c41d414e13852547e68c784a9e1929e08abbec4f",
+      "policy_digest": "sha256:2334a741ee362a5598295b85cad6a1ce50afe9c72cdbb18e3352b48d996f4277",
+      "profile_digest": "sha256:160695f459409cd37e8e9bfb142f4f72c378d3550dffac7c017e66358ff01bc4",
+      "runtime_lock_digest": "sha256:f9434602ef8981e214cd36d5e4190c46edf476d0afd2317dbfeb45f7b684f0ff",
+      "requested_policy_digest": "sha256:005ff7434b882c2a6f3b83e00bd35935446ec39f685ab603251b1e670086c6bc",
+      "sandbox_id": "sandbox_s1_gateway_probe_001",
+      "session_id": "egress_s1_gateway_probe_001",
+      "requested_policy": {
+        "schema": "dubsar.s1.egress-policy.v1",
+        "contract_version": "1.0.0",
+        "policy_id": "dubsar.gateway.probe.v1",
+        "destination": {
+          "service_ref": "dubsar.gateway",
+          "scheme": "https",
+          "peer_ref": "dubsar.gateway.s1"
+        },
+        "operation": {
+          "method": "POST",
+          "path": "/v1/chat/completions"
+        },
+        "gateway_scope": {
+          "profile_id": "dubsar.s1.synthetic.v1",
+          "context_id": "ctx-s1-synthetic",
+          "model": "dubsar-s1-synthetic"
+        },
+        "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+        "bounds": {
+          "max_attempts": 1,
+          "window_seconds": 30,
+          "request_timeout_ms": 2000,
+          "max_request_bytes": 4096,
+          "max_response_bytes": 16384,
+          "max_generation_tokens": 128
+        },
+        "protocol": {
+          "retry": false,
+          "redirect": false,
+          "connect": false,
+          "streaming": false,
+          "tools": false
+        },
+        "authentication": "outside_workload_ephemeral",
+        "revocation": "core_bound_session"
+      },
+      "effective_policy": null,
+      "effective_policy_digest": null,
+      "destination": {
+        "service_ref": "dubsar.gateway",
+        "scheme": "https",
+        "peer_ref": "dubsar.gateway.s1"
+      },
+      "route": {
+        "method": "POST",
+        "path": "/v1/chat/completions"
+      },
+      "window": {
+        "sandbox_created_at": "2026-10-04T16:00:05.000Z",
+        "not_before": "2026-10-04T16:00:06.000Z",
+        "expires_at": "2026-10-04T16:00:36.000Z",
+        "revoked_at": "2026-10-04T16:00:05.500Z"
+      },
+      "operation": {
+        "started_at": null,
+        "finished_at": null,
+        "duration_ms": null,
+        "attempts": 0,
+        "forwarded": false,
+        "request_bytes": 0,
+        "response_bytes": 0,
+        "generation_tokens": null,
+        "request_digest": "sha256:54a7dd941aeed59511616f98305061340ecda46db80fb3c8836056dfa38515c7",
+        "response_digest": null,
+        "gateway_receipt_ref": null,
+        "result": "DENIED"
+      },
+      "enforcement": {
+        "level": "NOT_PROVEN",
+        "policy_applied": false,
+        "declared_observations": [],
+        "observations_status": "NONE",
+        "proof_acquired": false
+      },
+      "recorded_at": "2026-10-04T16:00:05.600Z"
+    }
+  }
+}

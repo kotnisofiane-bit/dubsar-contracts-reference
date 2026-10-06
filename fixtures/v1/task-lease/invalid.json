@@ -1,0 +1,39 @@
+{
+  "schema": "dubsar.task-lease.v1",
+  "contract_version": "1.0.0",
+  "lease_id": "lease_s0_fixture_patch_001",
+  "authority": "DUBSAR_CORE",
+  "audience": "dubsar-task-manager",
+  "task_id": "task_s0_fixture_patch_001",
+  "action_id": "action_s0_fixture_patch_001",
+  "tenant_id": "tenant_dubsar_lab_001",
+  "mission_id": "mission_compose_s0_001",
+  "task_manager": {"workload_id": "workload_task_manager_s0_001", "instance_id": "instance_task_manager_s0_001"},
+  "task": {
+    "profile_id": "dubsar.fixture.patch.v0",
+    "effect": "none",
+    "image": "ghcr.io/example/task:latest",
+    "input_digest": "sha256:8df8dc7cf6fe0c133710a9291348a30e9f0bc0b79b9de482395f7769f8d813e6",
+    "runtime_lock_digest": "sha256:f9434602ef8981e214cd36d5e4190c46edf476d0afd2317dbfeb45f7b684f0ff",
+    "profile_digest": "sha256:2a4e33e11dea305ebc489ca5730de1da248b9a56c76324ba840472bc2dfe1bb6",
+    "limits": {"cpu_millicores": 500, "memory_bytes": 134217728, "pids": 256, "disk_bytes": 27262976, "ttl_seconds": 60, "command_timeout_ms": 20000, "output_bytes": 1048576},
+    "identity": {"uid": 0, "gid": 0},
+    "filesystem": {
+      "rootfs_read_only": true,
+      "mounts": [
+        {"path": "/run", "kind": "tmpfs", "size_bytes": 2097152, "flags": ["nodev", "noexec", "nosuid"]},
+        {"path": "/tmp", "kind": "tmpfs", "size_bytes": 8388608, "flags": ["nodev", "noexec", "nosuid"]},
+        {"path": "/workspace", "kind": "tmpfs", "size_bytes": 16777216, "flags": ["nodev", "nosuid"]}
+      ]
+    },
+    "capabilities": {"drop": ["ALL"], "add": ["CHOWN", "KILL", "SETGID", "SETUID"]},
+    "network": {"policy": "egress_none"},
+    "allowed_operations": ["collect", "create", "execute", "inspect", "terminate"]
+  },
+  "evidence_correlation_id": "evidence_compose_s0_001",
+  "issued_at": "2026-08-14T10:00:00.000Z",
+  "not_before": "2026-08-14T10:00:00.000Z",
+  "expires_at": "2026-08-14T10:10:00.000Z",
+  "nonce": "nonce_s0fixturepatch0123456789abcdefghij",
+  "replay_protection": {"replay_key": "replay_s0fixturepatch0123456789abcdefghij", "single_use": true}
+}

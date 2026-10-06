@@ -1,0 +1,99 @@
+{
+  "format": "dubsar.agent-context/1",
+  "kind": "agent_context_view",
+  "authority": "none",
+  "content_trust": "advisory_data",
+  "text_role": "data",
+  "truth": "not_selected",
+  "captured_at": "2026-09-29T20:00:00.000Z",
+  "context_digest": "08c5a5b549da8f64bddc4e5af8c20379d8339cb9b328f93a2e8aeb13b29c3cd1",
+  "bot_id": "hub",
+  "profile_id": "hub",
+  "mission_id": "mission-fixture",
+  "project_id": "alpha",
+  "identity_source": "profile_name",
+  "manual_keys_used": false,
+  "resolution": "trusted_mapping",
+  "resolved_focus_key": "mission:mission-fixture",
+  "resolved_subject_key": "project:alpha",
+  "namespaces_searched": [
+    "private/bot/hub",
+    "shared/project/alpha"
+  ],
+  "namespaces_refused": [],
+  "memory": {
+    "api": "v2",
+    "availability": "available",
+    "freshness": "current",
+    "source_contract": "memory-plane.v2/context-view",
+    "relations": [
+      {
+        "depth": 1,
+        "namespace_id": "shared/project/alpha",
+        "predicate": "decided",
+        "relation_id": "rel-1",
+        "statement": "Keep the Human Gate.",
+        "subject_key": "project:alpha",
+        "supersedes": null,
+        "provenance": {
+          "source_id": "source-1",
+          "content_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "evidence_ref": "evidence-1",
+          "mywork_mission_ref": "mission-1",
+          "oc_observation_ref": "observation-1"
+        }
+      }
+    ],
+    "truncated": false,
+    "v1_fallback": false,
+    "limits": []
+  },
+  "my_work": {
+    "availability": "available",
+    "freshness": "unknown",
+    "source": "list_tickets",
+    "source_contract": "dubsar.my-work-tickets/1",
+    "tickets": [
+      {
+        "state": "In Progress",
+        "ticket_id": "DUB-900",
+        "title": "Agent Context"
+      }
+    ],
+    "truncated": false,
+    "limits": []
+  },
+  "operational_context": {
+    "availability": "available",
+    "freshness": "current",
+    "source": "get_oc_context_view",
+    "source_contract": "dubsar.my-work-oc-context-view/2",
+    "truncated": false,
+    "view": {
+      "format": "dubsar.my-work-oc-context-view/2",
+      "view_instant": "2026-09-29T20:00:00.000Z"
+    },
+    "limits": []
+  },
+  "coverage": {
+    "status": "complete",
+    "selection_method": "trusted_profile_readonly_ports",
+    "capabilities": [
+      "memory",
+      "my_work",
+      "operational_context"
+    ]
+  },
+  "limits": [],
+  "bounds": {
+    "depth": 1,
+    "max_depth": 1,
+    "max_relations": 20,
+    "max_render_chars": 9000,
+    "max_serialized_bytes": 32768,
+    "ordering": "namespace_id,predicate,subject_key,relation_id",
+    "relation_count": 1,
+    "render_chars": 0,
+    "serialized_bytes": 0
+  }
+}

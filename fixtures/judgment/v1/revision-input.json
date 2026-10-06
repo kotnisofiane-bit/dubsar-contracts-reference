@@ -1,0 +1,157 @@
+{
+  "format": "dubsar.judgment.input/1",
+  "authority": "none",
+  "content_trust": "advisory_data",
+  "text_role": "data",
+  "truth": "not_selected",
+  "executable": false,
+  "scope": {
+    "project_id": "project-fixture",
+    "mission_id": "mission-fixture",
+    "ticket_id": "DUB-900"
+  },
+  "question": "La valeur courante de mywork.release.current_sha est-elle documentée ?",
+  "context": {
+    "agent_context_digest": null,
+    "snapshot_atomic": false,
+    "elements": [
+      {
+        "element_id": "e_oc",
+        "source": "operational_context",
+        "kind": "oc_state",
+        "reference": {
+          "ref": "oc-state:mywork.release.current_sha:old-snapshot",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "digest_scheme": "sha256-bytes"
+        },
+        "availability": "available",
+        "content_verification": "matched",
+        "text": "La sélection de release est stale ; aucune valeur courante n’est affirmée.",
+        "freshness": "stale",
+        "temporal_scope": "historical",
+        "source_observed_at": "2026-10-04T00:00:00.000Z",
+        "origin_ids": [
+          "origin_old"
+        ],
+        "provenance_complete": true,
+        "limit_ids": [
+          "l_history",
+          "l_stale"
+        ],
+        "facts": {
+          "automation": null,
+          "oc": {
+            "property": "mywork.release.current_sha",
+            "value": null,
+            "eligible": false
+          }
+        }
+      },
+      {
+        "element_id": "e_now",
+        "source": "operational_context",
+        "kind": "oc_state",
+        "reference": {
+          "ref": "oc-state:mywork.release.current_sha",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "digest_scheme": "sha256-bytes"
+        },
+        "availability": "available",
+        "content_verification": "matched",
+        "text": "mywork.release.current_sha=1111111111111111111111111111111111111111",
+        "freshness": "current",
+        "temporal_scope": "current",
+        "source_observed_at": "2026-10-04T00:00:00.000Z",
+        "origin_ids": [
+          "origin_now"
+        ],
+        "provenance_complete": true,
+        "limit_ids": [],
+        "facts": {
+          "automation": null,
+          "oc": {
+            "property": "mywork.release.current_sha",
+            "value": "1111111111111111111111111111111111111111",
+            "eligible": true
+          }
+        }
+      }
+    ],
+    "origins": [
+      {
+        "origin_id": "origin_old",
+        "reference": {
+          "ref": "oc-state:mywork.release.current_sha:old-snapshot",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "digest_scheme": "sha256-bytes"
+        }
+      },
+      {
+        "origin_id": "origin_now",
+        "reference": {
+          "ref": "oc-state:mywork.release.current_sha",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "digest_scheme": "sha256-bytes"
+        }
+      }
+    ],
+    "limits": [
+      {
+        "limit_id": "l_history",
+        "code": "HISTORICAL_ONLY",
+        "detail": "La date source décrit un événement historique.",
+        "mandatory": true
+      },
+      {
+        "limit_id": "l_stale",
+        "code": "STALE",
+        "detail": "La donnée est périmée selon la qualification de sa source.",
+        "mandatory": true
+      }
+    ],
+    "omissions": {
+      "elements": 0,
+      "claims": 0,
+      "consults": 0,
+      "truncated": false
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "c_current",
+      "kind": "current_state",
+      "statement": "La valeur courante de mywork.release.current_sha est documentée.",
+      "candidate_element_ids": [
+        "e_now"
+      ],
+      "required_limit_ids": [],
+      "requirements": {
+        "min_independent_origins": 1,
+        "requires_current": true,
+        "requires_verified_content": true
+      }
+    }
+  ],
+  "missing_information": [],
+  "consult_catalog": {
+    "owner": "server",
+    "effect": "readonly",
+    "entries": []
+  },
+  "budget": {
+    "consults_remaining": 2,
+    "tokens_remaining": 512,
+    "cost_remaining_microusd": null,
+    "latency_remaining_ms": null
+  },
+  "previous_judgment": {
+    "response_ref": "response_prior",
+    "status": "undetermined",
+    "claim_ids": [
+      "c_current"
+    ],
+    "element_ids": [
+      "e_oc"
+    ]
+  }
+}

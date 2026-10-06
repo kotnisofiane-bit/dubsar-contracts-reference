@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/task-runtime-s1/task-lease.schema.json",
+  "title": "DUBSAR Task Lease v2 — closed S1 Gateway probe",
+  "description": "Core authority, same Task Manager audience, single-use envelope. The S1 profile authorizes one mediated synthetic Gateway operation. Contract validation is not admission.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "contract_version",
+    "lease_id",
+    "authority",
+    "audience",
+    "task_id",
+    "action_id",
+    "tenant_id",
+    "mission_id",
+    "task_manager",
+    "task",
+    "evidence_correlation_id",
+    "issued_at",
+    "not_before",
+    "expires_at",
+    "nonce",
+    "replay_protection"
+  ],
+  "properties": {
+    "schema": {
+      "const": "dubsar.task-lease.v2"
+    },
+    "contract_version": {
+      "const": "2.0.0"
+    },
+    "lease_id": {
+      "type": "string",
+      "pattern": "^lease_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "authority": {
+      "const": "DUBSAR_CORE"
+    },
+    "audience": {
+      "const": "dubsar-task-manager"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^task_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "action_id": {
+      "type": "string",
+      "pattern": "^action_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^tenant_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "mission_id": {
+      "type": "string",
+      "pattern": "^mission_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "task_manager": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/workload"
+    },
+    "task": {
+      "$ref": "#/$defs/closedTask"
+    },
+    "evidence_correlation_id": {
+      "type": "string",
+      "pattern": "^evidence_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "issued_at": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/timestamp"
+    },
+    "not_before": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/timestamp"
+    },
+    "expires_at": {
+      "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/timestamp"
+    },
+    "nonce": {
+      "type": "string",
+      "pattern": "^nonce_[A-Za-z0-9_-]{32,128}$"
+    },
+    "replay_protection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "replay_key",
+        "single_use"
+      ],
+      "properties": {
+        "replay_key": {
+          "type": "string",
+          "pattern": "^replay_[A-Za-z0-9_-]{32,128}$"
+        },
+        "single_use": {
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "closedTask": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_id",
+        "effect",
+        "input_digest",
+        "runtime_lock_digest",
+        "profile_digest",
+        "limits",
+        "identity",
+        "filesystem",
+        "capabilities",
+        "network",
+        "allowed_operations"
+      ],
+      "properties": {
+        "profile_id": {
+          "const": "dubsar.gateway.probe.v1"
+        },
+        "effect": {
+          "const": "none"
+        },
+        "input_digest": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "runtime_lock_digest": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "profile_digest": {
+          "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+        },
+        "limits": {
+          "const": {
+            "cpu_millicores": 500,
+            "memory_bytes": 134217728,
+            "pids": 256,
+            "disk_bytes": 27262976,
+            "ttl_seconds": 60,
+            "command_timeout_ms": 20000,
+            "output_bytes": 1048576
+          }
+        },
+        "identity": {
+          "const": {
+            "uid": 65532,
+            "gid": 65532
+          }
+        },
+        "filesystem": {
+          "const": {
+            "rootfs_read_only": true,
+            "mounts": [
+              {
+                "path": "/run",
+                "kind": "tmpfs",
+                "size_bytes": 2097152,
+                "flags": [
+                  "nodev",
+                  "noexec",
+                  "nosuid"
+                ]
+              },
+              {
+                "path": "/tmp",
+                "kind": "tmpfs",
+                "size_bytes": 8388608,
+                "flags": [
+                  "nodev",
+                  "noexec",
+                  "nosuid"
+                ]
+              },
+              {
+                "path": "/workspace",
+                "kind": "tmpfs",
+                "size_bytes": 16777216,
+                "flags": [
+                  "nodev",
+                  "nosuid"
+                ]
+              }
+            ]
+          }
+        },
+        "capabilities": {
+          "const": {
+            "drop": [
+              "ALL"
+            ],
+            "add": [
+              "CHOWN",
+              "KILL",
+              "SETGID",
+              "SETUID"
+            ]
+          }
+        },
+        "network": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "policy",
+            "enforcer_ref",
+            "enforcer_digest",
+            "egress_policy"
+          ],
+          "properties": {
+            "policy": {
+              "const": "egress_mediated_gateway"
+            },
+            "enforcer_ref": {
+              "const": "dubsar.mediated.egress.v1"
+            },
+            "enforcer_digest": {
+              "$ref": "https://contracts.dubsar.invalid/v1/common.schema.json#/$defs/digest"
+            },
+            "egress_policy": {
+              "$ref": "./egress-policy.schema.json"
+            }
+          }
+        },
+        "allowed_operations": {
+          "const": [
+            "collect",
+            "create",
+            "execute",
+            "inspect",
+            "terminate"
+          ]
+        }
+      }
+    }
+  }
+}

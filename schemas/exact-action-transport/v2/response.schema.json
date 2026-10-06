@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema", "generation", "request_id", "ok"],
+  "properties": {
+    "schema": {"const": "dubsar.exact-ipc/2"},
+    "generation": {"type": "string", "minLength": 1, "maxLength": 256},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "ok": {"type": "boolean"},
+    "result": {}, "error": {"type": "string"}
+  },
+  "oneOf": [
+    {"properties": {"ok": {"const": true}}, "required": ["result"], "not": {"required": ["error"]}},
+    {"properties": {"ok": {"const": false}}, "required": ["error"], "not": {"required": ["result"]}}
+  ]
+}

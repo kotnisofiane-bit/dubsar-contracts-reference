@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dubsar.dev/schemas/v2/proof.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision_ref",
+    "binding",
+    "binding_digest",
+    "prepared_digest",
+    "decision_digest",
+    "display_digest",
+    "material",
+    "expected_effect",
+    "expires_at"
+  ],
+  "properties": {
+    "decision_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "tenant_ref",
+        "mission",
+        "legacy_refs",
+        "project_ref",
+        "run_id",
+        "step_id",
+        "proposal_id",
+        "workload_identity"
+      ],
+      "properties": {
+        "schema": {
+          "const": "dubsar.mission-binding.v2"
+        },
+        "tenant_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "mission": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "namespace",
+            "id"
+          ],
+          "properties": {
+            "namespace": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        },
+        "legacy_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "namespace",
+              "id"
+            ],
+            "properties": {
+              "namespace": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              }
+            }
+          },
+          "maxItems": 32,
+          "uniqueItems": true
+        },
+        "project_ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "step_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "proposal_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "workload_identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "workload_id",
+            "instance_id"
+          ],
+          "properties": {
+            "workload_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            },
+            "instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          }
+        }
+      }
+    },
+    "binding_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "prepared_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "decision_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "display_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adapter_digest",
+        "configuration_digest",
+        "configuration"
+      ],
+      "properties": {
+        "adapter_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "configuration_digest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "configuration": {
+          "type": "object",
+          "description": "Complete resolved material configuration; no mutable defaults may be read at execution."
+        }
+      }
+    },
+    "expected_effect": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

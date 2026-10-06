@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/judgment/v1/input.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "authority",
+    "content_trust",
+    "text_role",
+    "truth",
+    "executable",
+    "scope",
+    "question",
+    "context",
+    "claims",
+    "missing_information",
+    "consult_catalog",
+    "budget",
+    "previous_judgment"
+  ],
+  "properties": {
+    "format": {
+      "const": "dubsar.judgment.input/1"
+    },
+    "authority": {
+      "const": "none"
+    },
+    "content_trust": {
+      "const": "advisory_data"
+    },
+    "text_role": {
+      "const": "data"
+    },
+    "truth": {
+      "const": "not_selected"
+    },
+    "executable": {
+      "const": false
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_id",
+        "mission_id",
+        "ticket_id"
+      ],
+      "properties": {
+        "project_id": {
+          "$ref": "common.schema.json#/$defs/opaqueRef"
+        },
+        "mission_id": {
+          "$ref": "common.schema.json#/$defs/opaqueRef"
+        },
+        "ticket_id": {
+          "$ref": "common.schema.json#/$defs/opaqueRef"
+        }
+      }
+    },
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "agent_context_digest",
+        "snapshot_atomic",
+        "elements",
+        "origins",
+        "limits",
+        "omissions"
+      ],
+      "properties": {
+        "agent_context_digest": {
+          "anyOf": [
+            {
+              "$ref": "common.schema.json#/$defs/agentContextDigest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "snapshot_atomic": {
+          "const": false
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/element"
+          },
+          "maxItems": 32,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "origins": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/origin"
+          },
+          "maxItems": 64,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "limits": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/limit"
+          },
+          "maxItems": 32,
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "omissions": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "elements",
+            "claims",
+            "consults",
+            "truncated"
+          ],
+          "properties": {
+            "elements": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "claims": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "consults": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "truncated": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/claim"
+      },
+      "maxItems": 8,
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "missing_information": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/missing"
+      },
+      "maxItems": 16,
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "consult_catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner",
+        "effect",
+        "entries"
+      ],
+      "properties": {
+        "owner": {
+          "const": "server"
+        },
+        "effect": {
+          "const": "readonly"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/consultEntry"
+          },
+          "maxItems": 16,
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consults_remaining",
+        "tokens_remaining",
+        "cost_remaining_microusd",
+        "latency_remaining_ms"
+      ],
+      "properties": {
+        "consults_remaining": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16
+        },
+        "tokens_remaining": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 32768
+        },
+        "cost_remaining_microusd": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "latency_remaining_ms": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "previous_judgment": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "response_ref",
+            "status",
+            "claim_ids",
+            "element_ids"
+          ],
+          "properties": {
+            "response_ref": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "status": {
+              "$ref": "common.schema.json#/$defs/status"
+            },
+            "claim_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            },
+            "element_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

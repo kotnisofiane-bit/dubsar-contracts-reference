@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/run-request.schema.json",
+  "title": "run-request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "launch_request_id",
+    "mission_ref",
+    "mission_revision",
+    "automation_run_id",
+    "workflow_ref",
+    "workflow_version",
+    "workflow_digest",
+    "workflow_digest_scheme",
+    "authority_ref",
+    "human_gate_refs",
+    "context",
+    "deadline",
+    "step_plan",
+    "policy",
+    "scope_ref"
+  ],
+  "properties": {
+    "contract": {
+      "const": "dubsar.automation.run-request/1"
+    },
+    "launch_request_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "mission_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "mission_revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "automation_run_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "workflow_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "workflow_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "workflow_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "workflow_digest_scheme": {
+      "const": "dubsar.automation.workflow.v1"
+    },
+    "authority_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "human_gate_refs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/ref"
+      }
+    },
+    "context": {
+      "$ref": "context-capsule.schema.json"
+    },
+    "deadline": {
+      "$ref": "common.schema.json#/$defs/time"
+    },
+    "step_plan": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "$ref": "step-plan.schema.json"
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempts",
+        "auto_retry",
+        "max_active_runs",
+        "effect"
+      ],
+      "properties": {
+        "attempts": {
+          "const": 1
+        },
+        "auto_retry": {
+          "const": false
+        },
+        "max_active_runs": {
+          "const": 1
+        },
+        "effect": {
+          "const": "read"
+        }
+      }
+    },
+    "scope_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    }
+  }
+}

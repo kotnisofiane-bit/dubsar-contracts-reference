@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dubsar.local/document-access/v1/revalidation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proof",
+    "decision_id",
+    "scope_digest"
+  ],
+  "properties": {
+    "proof": {
+      "type": "object"
+    },
+    "decision_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "^[^\\u0000-\\u001f*]+$"
+    },
+    "scope_digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}

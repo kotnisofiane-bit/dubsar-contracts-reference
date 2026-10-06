@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/run-event.schema.json",
+  "title": "run-event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "event_id",
+    "event_sequence",
+    "mission_ref",
+    "automation_run_id",
+    "workflow_digest",
+    "request_digest",
+    "occurred_at",
+    "event_type",
+    "run_state",
+    "native_run_state",
+    "steps",
+    "evidence_refs"
+  ],
+  "properties": {
+    "contract": {
+      "const": "dubsar.automation.run-event/1"
+    },
+    "event_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "event_sequence": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "mission_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "automation_run_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "workflow_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "request_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    },
+    "occurred_at": {
+      "$ref": "common.schema.json#/$defs/time"
+    },
+    "event_type": {
+      "enum": [
+        "started",
+        "step_result",
+        "terminal",
+        "reconciled"
+      ]
+    },
+    "run_state": {
+      "enum": [
+        "running",
+        "succeeded",
+        "failed",
+        "rejected",
+        "indeterminate"
+      ]
+    },
+    "native_run_state": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "step_id",
+          "step_instance_id",
+          "execution_id",
+          "native_step_state",
+          "transport_state",
+          "tool_status",
+          "tool_receipt_ref",
+          "tool_receipt_digest",
+          "remote_durable",
+          "provider_dispatch_count",
+          "retry_allowed"
+        ],
+        "properties": {
+          "step_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "step_instance_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "execution_id": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "native_step_state": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "transport_state": {
+            "enum": [
+              "not_sent_proved",
+              "post_committed",
+              "response_received",
+              "response_lost",
+              "receipt_read"
+            ]
+          },
+          "tool_status": {
+            "enum": [
+              null,
+              "succeeded",
+              "rejected",
+              "failed",
+              "indeterminate"
+            ]
+          },
+          "tool_receipt_ref": {
+            "oneOf": [
+              {
+                "$ref": "common.schema.json#/$defs/ref"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tool_receipt_digest": {
+            "oneOf": [
+              {
+                "$ref": "common.schema.json#/$defs/digest"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "remote_durable": {
+            "type": "boolean"
+          },
+          "provider_dispatch_count": {
+            "enum": [
+              null,
+              0,
+              1
+            ]
+          },
+          "retry_allowed": {
+            "const": false
+          }
+        },
+        "allOf": [
+          {
+            "oneOf": [
+              {
+                "properties": {
+                  "tool_receipt_ref": {
+                    "type": "null"
+                  },
+                  "tool_receipt_digest": {
+                    "type": "null"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "tool_receipt_ref": {
+                    "$ref": "common.schema.json#/$defs/ref"
+                  },
+                  "tool_receipt_digest": {
+                    "$ref": "common.schema.json#/$defs/digest"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "oneOf": [
+              {
+                "properties": {
+                  "tool_status": {
+                    "const": "succeeded"
+                  },
+                  "remote_durable": {
+                    "const": true
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "tool_status": {
+                    "enum": [
+                      null,
+                      "rejected",
+                      "failed",
+                      "indeterminate"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref",
+          "digest",
+          "media_type",
+          "size_bytes"
+        ],
+        "properties": {
+          "ref": {
+            "$ref": "common.schema.json#/$defs/ref"
+          },
+          "digest": {
+            "$ref": "common.schema.json#/$defs/digest"
+          },
+          "media_type": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "size_bytes": {
+            "$ref": "common.schema.json#/$defs/int"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "anyOf": [
+        {
+          "properties": {
+            "steps": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "properties": {
+            "event_type": {
+              "const": "started"
+            }
+          }
+        },
+        {
+          "properties": {
+            "run_state": {
+              "const": "rejected"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

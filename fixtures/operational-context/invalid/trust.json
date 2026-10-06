@@ -1,0 +1,7 @@
+{
+  "contract": "dubsar.operational-context.trust/9",
+  "tenant_id": "tenant:lab",
+  "environment_id": "env:test",
+  "principal_id": "principal:ops",
+  "principal_kind": "human"
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "dubsar.exact-decision.v2",
+  "decision_ref": "decision:exact:1",
+  "binding_digest": "sha256:a20528cc70942d3e09c3d357482a2a3e1e88d048b05505f0d64be75d8d5042b7",
+  "prepared_digest": "sha256:da822152ca94878dc8a6614e7cb69987148f2371be6ea18842748bce5d8a8ebf",
+  "display_digest": "sha256:acfe0f14c347332142b438c3ae53824c97583adecbb979f4a7152196e5ec78e8",
+  "approver": {
+    "subject": "test-user:1",
+    "active_function": "reviewer"
+  },
+  "policy_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+  "decision": "APPROVE",
+  "issued_at": "2026-08-14T10:00:10.000Z",
+  "expires_at": "2026-08-14T10:01:20.000Z",
+  "unexpected_field": true
+}

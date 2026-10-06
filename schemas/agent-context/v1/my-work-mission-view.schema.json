@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/agent-context/v1/my-work-mission-view.schema.json",
+  "title": "dubsar.my-work-mission-view/1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format","availability","project_id","mission_id","ticket_id","work_id","state","title","objective","criteria","blocker","references","repository","execution_refs","evidence_refs","limits","truncated","source_digest"],
+  "properties": {
+    "format": {"const": "dubsar.my-work-mission-view/1"},
+    "availability": {"enum": ["available","missing","unavailable"]},
+    "project_id": {"type": "string","minLength":1,"maxLength":64},
+    "mission_id": {"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},
+    "ticket_id": {"anyOf":[{"type":"string","pattern":"^DUB-[0-9]{3}$"},{"type":"null"}]},
+    "work_id": {"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},
+    "state": {"anyOf":[{"type":"string","minLength":1,"maxLength":64},{"type":"null"}]},
+    "title": {"anyOf":[{"type":"string","minLength":1,"maxLength":160},{"type":"null"}]},
+    "objective": {"anyOf":[{"type":"string","minLength":1,"maxLength":1000},{"type":"null"}]},
+    "criteria": {"type":"array","maxItems":20,"items":{"type":"string","minLength":1,"maxLength":300}},
+    "blocker": {"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},
+    "references": {"type":"array","maxItems":20,"items":{"type":"string","minLength":1,"maxLength":300}},
+    "repository": {
+      "type":"object","additionalProperties":false,
+      "required":["repository_url","starting_sha","workspace_root","branch","pr"],
+      "properties":{
+        "repository_url":{"anyOf":[{"type":"string","minLength":1,"maxLength":2000},{"type":"null"}]},
+        "starting_sha":{"anyOf":[{"type":"string","pattern":"^[0-9a-f]{40}$"},{"type":"null"}]},
+        "workspace_root":{"anyOf":[{"type":"string","minLength":1,"maxLength":4096},{"type":"null"}]},
+        "branch":{"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},
+        "pr":{"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]}
+      }
+    },
+    "execution_refs": {
+      "type":"object","additionalProperties":false,"required":["cursor","codex","automation"],
+      "properties":{
+        "cursor":{"anyOf":[{"$ref":"#/$defs/cursor"},{"type":"null"}]},
+        "codex":{"anyOf":[{"$ref":"#/$defs/codex"},{"type":"null"}]},
+        "automation":{"type":"null"}
+      }
+    },
+    "evidence_refs":{"type":"array","maxItems":20,"items":{"type":"string","minLength":1,"maxLength":300}},
+    "limits":{"type":"array","maxItems":32,"items":{"$ref":"#/$defs/limit"}},
+    "truncated":{"type":"boolean"},
+    "source_digest":{"type":"string","pattern":"^[0-9a-f]{64}$"}
+  },
+  "$defs":{
+    "limit":{"type":"object","additionalProperties":false,"required":["code","detail"],"properties":{"code":{"type":"string","pattern":"^[A-Z0-9_]+$","maxLength":96},"detail":{"type":"string","minLength":1,"maxLength":256}}},
+    "cursor":{"type":"object","additionalProperties":false,"required":["agent_id","run_id","status","lifecycle"],"properties":{"agent_id":{"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},"run_id":{"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},"status":{"anyOf":[{"type":"string","minLength":1,"maxLength":64},{"type":"null"}]},"lifecycle":{"anyOf":[{"type":"string","minLength":1,"maxLength":64},{"type":"null"}]}}},
+    "codex":{"type":"object","additionalProperties":false,"required":["codex_session_id","herdr_id","status","exit_code"],"properties":{"codex_session_id":{"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},"herdr_id":{"anyOf":[{"type":"string","minLength":1,"maxLength":300},{"type":"null"}]},"status":{"anyOf":[{"type":"string","minLength":1,"maxLength":64},{"type":"null"}]},"exit_code":{"anyOf":[{"type":"integer"},{"type":"null"}]}}}
+  }
+}

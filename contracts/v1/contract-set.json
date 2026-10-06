@@ -1,0 +1,63 @@
+{
+  "schema": "dubsar.contract-set.v1",
+  "contract_version": "1.0.0",
+  "canonical_location": "dubsar-contracts",
+  "contracts": [
+    {
+      "name": "action-proposal",
+      "schema_path": "schemas/v1/action-proposal.schema.json",
+      "domain_separator": "dubsar.contract.action-proposal.v1",
+      "canonical_owner": "AUTOMATION_ENGINE",
+      "consumer": "FUTURE_BROKER"
+    },
+    {
+      "name": "action-receipt",
+      "schema_path": "schemas/v1/action-receipt.schema.json",
+      "domain_separator": "dubsar.contract.action-receipt.v1",
+      "canonical_owner": "EVIDENCE_PLANE",
+      "consumer": "GOVERNANCE_CORE"
+    },
+    {
+      "name": "approval-record",
+      "schema_path": "schemas/v1/approval-record.schema.json",
+      "domain_separator": "dubsar.contract.approval-record.v1",
+      "canonical_owner": "GOVERNANCE_CORE",
+      "consumer": "AUTOMATION_ENGINE"
+    },
+    {
+      "name": "capability-claims",
+      "schema_path": "schemas/v1/capability-claims.schema.json",
+      "domain_separator": "dubsar.contract.capability-claims.v1",
+      "canonical_owner": "GOVERNANCE_CORE",
+      "consumer": "FUTURE_BROKER"
+    },
+    {
+      "name": "execution-lease",
+      "schema_path": "schemas/v1/execution-lease.schema.json",
+      "domain_separator": "dubsar.contract.execution-lease.v1",
+      "canonical_owner": "GOVERNANCE_CORE",
+      "consumer": "WORKER"
+    },
+    {
+      "name": "state-transition",
+      "schema_path": "schemas/v1/state-transition.schema.json",
+      "domain_separator": "dubsar.contract.state-transition.v1",
+      "canonical_owner": "EVIDENCE_PLANE",
+      "consumer": "GOVERNANCE_CORE"
+    },
+    {
+      "name": "task-lease",
+      "schema_path": "schemas/v1/task-lease.schema.json",
+      "domain_separator": "dubsar.contract.task-lease.v1",
+      "canonical_owner": "GOVERNANCE_CORE",
+      "consumer": "TASK_MANAGER"
+    },
+    {
+      "name": "workflow-ir",
+      "schema_path": "schemas/v1/workflow-ir.schema.json",
+      "domain_separator": "dubsar.contract.workflow-ir.v1",
+      "canonical_owner": "AUTOMATION_ENGINE",
+      "consumer": "GOVERNANCE_CORE"
+    }
+  ]
+}

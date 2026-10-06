@@ -1,0 +1,28 @@
+{
+  "contract": "dubsar.operational-context.observation/1",
+  "delivery_id": "delivery:valid-1",
+  "measurement_id": { "absence": "not_provided" },
+  "subject": {
+    "contract": "dubsar.operational-context.resource/1",
+    "tenant_id": "tenant:lab",
+    "environment_id": "env:test",
+    "source_instance_id": "src:n8n-a",
+    "namespace": "workflow",
+    "type": "workflow",
+    "source_id": "export-commandes",
+    "incarnation": { "absence": "not_available" }
+  },
+  "property": "enabled",
+  "result": { "kind": "measured", "value_type": "boolean", "value": true },
+  "provenance": {
+    "producer_id": "producer:a",
+    "connector_revision": "connector:1",
+    "mapping_ref": "map:enabled",
+    "mapping_version": 1
+  },
+  "source_observed_at": "2026-09-18T09:00:00Z",
+  "scope": {
+    "period": { "start": "2026-09-18T08:00:00Z", "end": "2026-09-18T12:00:00Z" },
+    "complete": true
+  }
+}

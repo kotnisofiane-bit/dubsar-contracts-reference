@@ -1,0 +1,22 @@
+{
+  "format": "dubsar.judgment.output/1",
+  "authority": "none",
+  "content_trust": "advisory_data",
+  "text_role": "data",
+  "truth": "not_selected",
+  "executable": false,
+  "move": "conclude",
+  "payload": {
+    "status": "supported",
+    "claim_ids": [
+      "c_run"
+    ],
+    "element_ids": [
+      "e_e5"
+    ],
+    "limit_ids": [
+      "l_history",
+      "l_mission"
+    ]
+  }
+}

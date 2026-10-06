@@ -1,0 +1,133 @@
+{
+  "algorithm": "sha256",
+  "vectors": [
+    {
+      "kind": "workflow",
+      "domain": "dubsar.automation.workflow.v1",
+      "preimage": "dubsar.automation.workflow.v1\n{\"nodes\":[\"read\"],\"version\":1}",
+      "expected_sha256": "298913d58dbe9a9dcecaa50a8aae1e8f206d2fe38a90ee382fc2e6135890d63c",
+      "value": {
+        "nodes": [
+          "read"
+        ],
+        "version": 1
+      }
+    },
+    {
+      "kind": "context",
+      "domain": "dubsar.automation.context.v1",
+      "preimage": "dubsar.automation.context.v1\n{\"captured_at\":\"2026-09-28T10:00:00.000Z\",\"context_ref\":\"context:mission-001\",\"expires_at\":\"2026-09-28T10:10:00.000Z\",\"items\":[]}",
+      "expected_sha256": "37fb3973ee6cac35ba633be3e3b3e257b95cceb9e2344593d812c267313f6395",
+      "value": {
+        "context_ref": "context:mission-001",
+        "captured_at": "2026-09-28T10:00:00.000Z",
+        "expires_at": "2026-09-28T10:10:00.000Z",
+        "items": []
+      }
+    },
+    {
+      "kind": "request",
+      "domain": "dubsar.automation.request.v1",
+      "preimage": "dubsar.automation.request.v1\n{\"authority_ref\":\"authority:decision-001\",\"automation_run_id\":\"run_00000001\",\"context\":{\"captured_at\":\"2026-09-28T10:00:00.000Z\",\"context_digest\":\"37fb3973ee6cac35ba633be3e3b3e257b95cceb9e2344593d812c267313f6395\",\"context_ref\":\"context:mission-001\",\"expires_at\":\"2026-09-28T10:10:00.000Z\",\"items\":[]},\"contract\":\"dubsar.automation.run-request/1\",\"deadline\":\"2026-09-28T10:15:00.000Z\",\"human_gate_refs\":[\"gate:approval-001\"],\"launch_request_id\":\"launch_00000001\",\"mission_ref\":\"mission:automation-001\",\"mission_revision\":1,\"policy\":{\"attempts\":1,\"auto_retry\":false,\"effect\":\"read\",\"max_active_runs\":1},\"scope_ref\":\"scope:project-alpha\",\"step_plan\":[{\"capability_id\":\"dubsar.capability.github.list_issues\",\"connection_ref\":\"connection:github-read\",\"correlation_id\":\"corr_00000001\",\"execution_id\":\"exec_00000001\",\"idempotency_key\":\"idem_00000001\",\"input\":{\"owner\":\"example-org\",\"repo\":\"example-repo\"},\"request_digest\":\"97caa0a40fa711dcc7033fd6322d0fb6ed5a8e5f355aec18f1023ef23b06df25\",\"step_id\":\"step_00000001\",\"step_instance_id\":\"stepinst_00000001\"}],\"workflow_digest\":\"9abf7822ebc3b19280e26bb9dc55da452a7c01d22ef5778b2d2359135670319f\",\"workflow_digest_scheme\":\"dubsar.automation.workflow.v1\",\"workflow_ref\":\"workflow:github-issues\",\"workflow_version\":\"1.0.0\"}",
+      "expected_sha256": "85be2b3e50e5470df42835cdda142340b82f090d58cb2faba0f5ed12c599d380",
+      "value": {
+        "contract": "dubsar.automation.run-request/1",
+        "launch_request_id": "launch_00000001",
+        "mission_ref": "mission:automation-001",
+        "mission_revision": 1,
+        "automation_run_id": "run_00000001",
+        "workflow_ref": "workflow:github-issues",
+        "workflow_version": "1.0.0",
+        "workflow_digest": "9abf7822ebc3b19280e26bb9dc55da452a7c01d22ef5778b2d2359135670319f",
+        "workflow_digest_scheme": "dubsar.automation.workflow.v1",
+        "authority_ref": "authority:decision-001",
+        "human_gate_refs": [
+          "gate:approval-001"
+        ],
+        "context": {
+          "context_ref": "context:mission-001",
+          "context_digest": "37fb3973ee6cac35ba633be3e3b3e257b95cceb9e2344593d812c267313f6395",
+          "captured_at": "2026-09-28T10:00:00.000Z",
+          "expires_at": "2026-09-28T10:10:00.000Z",
+          "items": []
+        },
+        "deadline": "2026-09-28T10:15:00.000Z",
+        "step_plan": [
+          {
+            "step_id": "step_00000001",
+            "step_instance_id": "stepinst_00000001",
+            "execution_id": "exec_00000001",
+            "capability_id": "dubsar.capability.github.list_issues",
+            "connection_ref": "connection:github-read",
+            "input": {
+              "owner": "example-org",
+              "repo": "example-repo"
+            },
+            "correlation_id": "corr_00000001",
+            "idempotency_key": "idem_00000001",
+            "request_digest": "97caa0a40fa711dcc7033fd6322d0fb6ed5a8e5f355aec18f1023ef23b06df25"
+          }
+        ],
+        "policy": {
+          "attempts": 1,
+          "auto_retry": false,
+          "max_active_runs": 1,
+          "effect": "read"
+        },
+        "scope_ref": "scope:project-alpha"
+      }
+    },
+    {
+      "kind": "invocation",
+      "domain": "dubsar.automation.tool-request.v1",
+      "preimage": "dubsar.automation.tool-request.v1\n{\"capability_id\":\"dubsar.capability.github.list_issues\",\"connection_ref\":\"connection:github-read\",\"correlation_id\":\"corr_00000001\",\"execution_id\":\"exec_00000001\",\"idempotency_key\":\"idem_00000001\",\"input\":{\"owner\":\"example-org\",\"repo\":\"example-repo\"}}",
+      "expected_sha256": "97caa0a40fa711dcc7033fd6322d0fb6ed5a8e5f355aec18f1023ef23b06df25",
+      "value": {
+        "execution_id": "exec_00000001",
+        "capability_id": "dubsar.capability.github.list_issues",
+        "connection_ref": "connection:github-read",
+        "input": {
+          "owner": "example-org",
+          "repo": "example-repo"
+        },
+        "correlation_id": "corr_00000001",
+        "idempotency_key": "idem_00000001"
+      }
+    },
+    {
+      "kind": "event",
+      "domain": "dubsar.automation.run-event.v1",
+      "preimage": "dubsar.automation.run-event.v1\n{\"automation_run_id\":\"run_00000001\",\"contract\":\"dubsar.automation.run-event/1\",\"event_id\":\"event_00000001\",\"event_sequence\":2,\"event_type\":\"terminal\",\"evidence_refs\":[],\"mission_ref\":\"mission:automation-001\",\"native_run_state\":\"FINISHED\",\"occurred_at\":\"2026-09-28T10:00:30.000Z\",\"request_digest\":\"85be2b3e50e5470df42835cdda142340b82f090d58cb2faba0f5ed12c599d380\",\"run_state\":\"succeeded\",\"steps\":[{\"execution_id\":\"exec_00000001\",\"native_step_state\":\"SUCCEEDED\",\"provider_dispatch_count\":1,\"remote_durable\":true,\"retry_allowed\":false,\"step_id\":\"step_00000001\",\"step_instance_id\":\"stepinst_00000001\",\"tool_receipt_digest\":\"9e85aa95f04db5f108534e48b63e75e8045a7ecab59988405e70a9260300a0d6\",\"tool_receipt_ref\":\"artifact:receipt-001\",\"tool_status\":\"succeeded\",\"transport_state\":\"response_received\"}],\"workflow_digest\":\"9abf7822ebc3b19280e26bb9dc55da452a7c01d22ef5778b2d2359135670319f\"}",
+      "expected_sha256": "311646942ee025b86e9d0639687e784f95af372005e16f0d5513d3d999ec1b0b",
+      "value": {
+        "contract": "dubsar.automation.run-event/1",
+        "event_id": "event_00000001",
+        "event_sequence": 2,
+        "mission_ref": "mission:automation-001",
+        "automation_run_id": "run_00000001",
+        "workflow_digest": "9abf7822ebc3b19280e26bb9dc55da452a7c01d22ef5778b2d2359135670319f",
+        "request_digest": "85be2b3e50e5470df42835cdda142340b82f090d58cb2faba0f5ed12c599d380",
+        "occurred_at": "2026-09-28T10:00:30.000Z",
+        "event_type": "terminal",
+        "run_state": "succeeded",
+        "native_run_state": "FINISHED",
+        "steps": [
+          {
+            "step_id": "step_00000001",
+            "step_instance_id": "stepinst_00000001",
+            "execution_id": "exec_00000001",
+            "native_step_state": "SUCCEEDED",
+            "transport_state": "response_received",
+            "tool_status": "succeeded",
+            "tool_receipt_ref": "artifact:receipt-001",
+            "tool_receipt_digest": "9e85aa95f04db5f108534e48b63e75e8045a7ecab59988405e70a9260300a0d6",
+            "remote_durable": true,
+            "provider_dispatch_count": 1,
+            "retry_allowed": false
+          }
+        ],
+        "evidence_refs": []
+      }
+    }
+  ]
+}

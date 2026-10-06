@@ -1,0 +1,19 @@
+{
+  "format":"dubsar.my-work-oc-context-read/1",
+  "availability":"not_applicable",
+  "selection":{
+    "format":"dubsar.my-work-oc-selection/1",
+    "availability":"not_applicable",
+    "selection_id":null,
+    "project_id":"other-project",
+    "mission_id":"other-mission",
+    "resource_ref":null,
+    "property":null,
+    "relation_depth":null,
+    "source":"trusted_mapping",
+    "mapping_version":1,
+    "limits":[{"code":"OC_SELECTION_NOT_APPLICABLE","detail":"No trusted OC selection is declared for this mission/project binding."}]
+  },
+  "receipt":null,
+  "limits":[{"code":"OC_SELECTION_NOT_APPLICABLE","detail":"No trusted OC selection is declared for this mission/project binding."}]
+}

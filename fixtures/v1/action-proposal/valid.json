@@ -1,0 +1,17 @@
+{
+  "schema": "dubsar.action-proposal.v1",
+  "contract_version": "1.0.0",
+  "proposal_id": "proposal_ticketpilot_001",
+  "run_id": "run_ticketpilot_001",
+  "step_id": "step_create_ticket_001",
+  "workflow_id": "wf_ticketpilot_001",
+  "workflow_digest": "sha256:e58d82aba2903c47e3006468c5fa0f28d659b72f7d876da5a2c4c8895593be6d",
+  "approval_id": "approval_ticketpilot_001",
+  "action": {"kind": "connector_action", "connector": {"name": "dubsar.ticketing", "version": "1.2.3"}, "operation": "create_ticket"},
+  "payload": {"priority": "normal", "summary": "DUBSAR Community"},
+  "connection_ref": "conn_ticketing_demo",
+  "destination": {"scheme": "https", "host": "tickets.example.invalid", "port": 443, "path_prefix": "/api/v1/tickets", "methods": ["POST"]},
+  "context": {"tenant_ref": "tenant_contract_demo_001", "project_ref": "project_contract_demo_001"},
+  "idempotency_key": "idem_ticketpilot_action_001",
+  "workload_identity": {"workload_id": "workload_worker_demo_001", "instance_id": "instance_worker_demo_001"}
+}

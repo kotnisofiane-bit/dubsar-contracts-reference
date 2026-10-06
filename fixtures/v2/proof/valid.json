@@ -1,0 +1,39 @@
+{
+  "binding": {
+    "legacy_refs": [
+      {
+        "id": "mission_demo_001",
+        "namespace": "task-runtime"
+      }
+    ],
+    "mission": {
+      "id": "mis_1234567890abcdef",
+      "namespace": "scribe-backend"
+    },
+    "project_ref": "project_contract_demo_001",
+    "proposal_id": "proposal_ticketpilot_001",
+    "run_id": "run_ticketpilot_001",
+    "schema": "dubsar.mission-binding.v2",
+    "step_id": "step_create_ticket_001",
+    "tenant_ref": "tenant_contract_demo_001",
+    "workload_identity": {
+      "instance_id": "instance_worker_demo_001",
+      "workload_id": "workload_worker_demo_001"
+    }
+  },
+  "binding_digest": "sha256:a20528cc70942d3e09c3d357482a2a3e1e88d048b05505f0d64be75d8d5042b7",
+  "decision_digest": "sha256:e5e2bcc3d91e2cd852ba434b4740221176d22f7e865c7e82a38189900a716627",
+  "decision_ref": "decision:exact:1",
+  "display_digest": "sha256:acfe0f14c347332142b438c3ae53824c97583adecbb979f4a7152196e5ec78e8",
+  "expected_effect": "Instrumented exact content capture",
+  "expires_at": "2026-08-14T10:01:20.000Z",
+  "material": {
+    "adapter_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "configuration": {
+      "defaults": {},
+      "mode": "instrumented"
+    },
+    "configuration_digest": "sha256:5b1e10d918c25043e46db2b5391a57a8f1e06035b7826529af92909ee7c74ac1"
+  },
+  "prepared_digest": "sha256:da822152ca94878dc8a6614e7cb69987148f2371be6ea18842748bce5d8a8ebf"
+}

@@ -1,0 +1,6 @@
+{
+  "001_durable_action_broker.sql": "e1cfdce4e2ee68e9ede3c4426560873e2078437e8e82f887aa439ca052831284",
+  "002_exact_action_records.sql": "346b5544434c7f0bb4da9577e65d9516125ad5ba59e9a440f196c45eace245af",
+  "003_artifact_store.sql": "90d400db936466d2ccd138ce4ace4e4d48a43bc77b2c0a3df73107c6cb97a1a4",
+  "004_human_identity.sql": "691d64a28fd37e93372f8e4ee82b037e20a681b7ad0a91147dba1520d3847f00"
+}

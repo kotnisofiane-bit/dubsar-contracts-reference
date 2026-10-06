@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/lookup-run.schema.json",
+  "title": "lookup-run",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "automation_run_id",
+    "mission_ref"
+  ],
+  "properties": {
+    "automation_run_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "mission_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    }
+  }
+}

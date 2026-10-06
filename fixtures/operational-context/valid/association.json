@@ -1,0 +1,24 @@
+{
+  "contract": "dubsar.operational-context.association/1",
+  "association_type": "same_resource",
+  "left": {
+    "contract": "dubsar.operational-context.resource/1",
+    "tenant_id": "tenant:lab",
+    "environment_id": "env:test",
+    "source_instance_id": "src:n8n-a",
+    "namespace": "workflow",
+    "type": "workflow",
+    "source_id": "export-commandes",
+    "incarnation": { "absence": "not_available" }
+  },
+  "right": {
+    "contract": "dubsar.operational-context.resource/1",
+    "tenant_id": "tenant:lab",
+    "environment_id": "env:test",
+    "source_instance_id": "src:n8n-b",
+    "namespace": "workflow",
+    "type": "workflow",
+    "source_id": "export-commandes",
+    "incarnation": { "absence": "not_available" }
+  }
+}

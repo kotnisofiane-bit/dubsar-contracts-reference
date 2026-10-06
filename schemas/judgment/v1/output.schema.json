@@ -1,0 +1,354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/judgment/v1/output.schema.json",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "authority",
+        "content_trust",
+        "text_role",
+        "truth",
+        "executable",
+        "move",
+        "payload"
+      ],
+      "properties": {
+        "format": {
+          "const": "dubsar.judgment.output/1"
+        },
+        "authority": {
+          "const": "none"
+        },
+        "content_trust": {
+          "const": "advisory_data"
+        },
+        "text_role": {
+          "const": "data"
+        },
+        "truth": {
+          "const": "not_selected"
+        },
+        "executable": {
+          "const": false
+        },
+        "move": {
+          "const": "consult"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "consult_id",
+            "reason",
+            "limit_ids"
+          ],
+          "properties": {
+            "consult_id": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "reason": {
+              "enum": [
+                "verify_reference",
+                "resolve_conflict",
+                "check_freshness",
+                "fill_missing_source",
+                "assess_relevance"
+              ]
+            },
+            "limit_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            }
+          }
+        },
+        "advisory": {
+          "$ref": "common.schema.json#/$defs/advisory"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "authority",
+        "content_trust",
+        "text_role",
+        "truth",
+        "executable",
+        "move",
+        "payload"
+      ],
+      "properties": {
+        "format": {
+          "const": "dubsar.judgment.output/1"
+        },
+        "authority": {
+          "const": "none"
+        },
+        "content_trust": {
+          "const": "advisory_data"
+        },
+        "text_role": {
+          "const": "data"
+        },
+        "truth": {
+          "const": "not_selected"
+        },
+        "executable": {
+          "const": false
+        },
+        "move": {
+          "const": "conclude"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "claim_ids",
+            "element_ids",
+            "limit_ids"
+          ],
+          "properties": {
+            "status": {
+              "$ref": "common.schema.json#/$defs/status"
+            },
+            "claim_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/id"
+              },
+              "maxItems": 8,
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "element_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            },
+            "limit_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            }
+          }
+        },
+        "advisory": {
+          "$ref": "common.schema.json#/$defs/advisory"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "authority",
+        "content_trust",
+        "text_role",
+        "truth",
+        "executable",
+        "move",
+        "payload"
+      ],
+      "properties": {
+        "format": {
+          "const": "dubsar.judgment.output/1"
+        },
+        "authority": {
+          "const": "none"
+        },
+        "content_trust": {
+          "const": "advisory_data"
+        },
+        "text_role": {
+          "const": "data"
+        },
+        "truth": {
+          "const": "not_selected"
+        },
+        "executable": {
+          "const": false
+        },
+        "move": {
+          "const": "clarify"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "missing_ids",
+            "limit_ids"
+          ],
+          "properties": {
+            "missing_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/id"
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "limit_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            }
+          }
+        },
+        "advisory": {
+          "$ref": "common.schema.json#/$defs/advisory"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "authority",
+        "content_trust",
+        "text_role",
+        "truth",
+        "executable",
+        "move",
+        "payload"
+      ],
+      "properties": {
+        "format": {
+          "const": "dubsar.judgment.output/1"
+        },
+        "authority": {
+          "const": "none"
+        },
+        "content_trust": {
+          "const": "advisory_data"
+        },
+        "text_role": {
+          "const": "data"
+        },
+        "truth": {
+          "const": "not_selected"
+        },
+        "executable": {
+          "const": false
+        },
+        "move": {
+          "const": "revise"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "previous_response_ref",
+            "change",
+            "status",
+            "claim_ids",
+            "element_ids",
+            "new_element_ids",
+            "limit_ids"
+          ],
+          "properties": {
+            "previous_response_ref": {
+              "$ref": "common.schema.json#/$defs/id"
+            },
+            "change": {
+              "enum": [
+                "strengthened",
+                "weakened",
+                "contradiction_identified",
+                "conflict_resolved",
+                "withdrawn"
+              ]
+            },
+            "status": {
+              "$ref": "common.schema.json#/$defs/status"
+            },
+            "claim_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/id"
+              },
+              "maxItems": 8,
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "element_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            },
+            "new_element_ids": {
+              "type": "array",
+              "items": {
+                "$ref": "common.schema.json#/$defs/id"
+              },
+              "maxItems": 32,
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "limit_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            }
+          }
+        },
+        "advisory": {
+          "$ref": "common.schema.json#/$defs/advisory"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "authority",
+        "content_trust",
+        "text_role",
+        "truth",
+        "executable",
+        "move",
+        "payload"
+      ],
+      "properties": {
+        "format": {
+          "const": "dubsar.judgment.output/1"
+        },
+        "authority": {
+          "const": "none"
+        },
+        "content_trust": {
+          "const": "advisory_data"
+        },
+        "text_role": {
+          "const": "data"
+        },
+        "truth": {
+          "const": "not_selected"
+        },
+        "executable": {
+          "const": false
+        },
+        "move": {
+          "const": "stop"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "cause",
+            "limit_ids"
+          ],
+          "properties": {
+            "cause": {
+              "$ref": "common.schema.json#/$defs/stopCause"
+            },
+            "limit_ids": {
+              "$ref": "common.schema.json#/$defs/ids"
+            }
+          }
+        },
+        "advisory": {
+          "$ref": "common.schema.json#/$defs/advisory"
+        }
+      }
+    }
+  ]
+}

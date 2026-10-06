@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://contracts.dubsar.invalid/agent-context/v1/my-work-oc-context-read.schema.json",
+  "title":"dubsar.my-work-oc-context-read/1",
+  "type":"object","additionalProperties":false,
+  "required":["format","availability","selection","receipt","limits"],
+  "properties":{
+    "format":{"const":"dubsar.my-work-oc-context-read/1"},
+    "availability":{"enum":["available","not_applicable"]},
+    "selection":{"$ref":"my-work-oc-selection.schema.json"},
+    "receipt":{"anyOf":[{"type":"object"},{"type":"null"}]},
+    "limits":{"type":"array","maxItems":16,"items":{"type":"object","additionalProperties":false,"required":["code","detail"],"properties":{"code":{"type":"string","pattern":"^[A-Z0-9_]+$","maxLength":96},"detail":{"type":"string","minLength":1,"maxLength":256}}}}
+  }
+}

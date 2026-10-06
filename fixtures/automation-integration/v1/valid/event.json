@@ -1,0 +1,29 @@
+{
+  "contract": "dubsar.automation.run-event/1",
+  "event_id": "event_00000001",
+  "event_sequence": 2,
+  "mission_ref": "mission:automation-001",
+  "automation_run_id": "run_00000001",
+  "workflow_digest": "9abf7822ebc3b19280e26bb9dc55da452a7c01d22ef5778b2d2359135670319f",
+  "request_digest": "85be2b3e50e5470df42835cdda142340b82f090d58cb2faba0f5ed12c599d380",
+  "occurred_at": "2026-09-28T10:00:30.000Z",
+  "event_type": "terminal",
+  "run_state": "succeeded",
+  "native_run_state": "FINISHED",
+  "steps": [
+    {
+      "step_id": "step_00000001",
+      "step_instance_id": "stepinst_00000001",
+      "execution_id": "exec_00000001",
+      "native_step_state": "SUCCEEDED",
+      "transport_state": "response_received",
+      "tool_status": "succeeded",
+      "tool_receipt_ref": "artifact:receipt-001",
+      "tool_receipt_digest": "9e85aa95f04db5f108534e48b63e75e8045a7ecab59988405e70a9260300a0d6",
+      "remote_durable": true,
+      "provider_dispatch_count": 1,
+      "retry_allowed": false
+    }
+  ],
+  "evidence_refs": []
+}

@@ -1,0 +1,46 @@
+{
+  "contract": "dubsar.automation.run-request/1",
+  "launch_request_id": "launch_00000001",
+  "mission_ref": "mission:automation-001",
+  "mission_revision": 1,
+  "automation_run_id": "run_00000001",
+  "workflow_ref": "workflow:github-issues",
+  "workflow_version": "1.0.0",
+  "workflow_digest": "9abf7822ebc3b19280e26bb9dc55da452a7c01d22ef5778b2d2359135670319f",
+  "workflow_digest_scheme": "dubsar.automation.workflow.v1",
+  "authority_ref": "authority:decision-001",
+  "human_gate_refs": [
+    "gate:approval-001"
+  ],
+  "context": {
+    "context_ref": "context:mission-001",
+    "context_digest": "37fb3973ee6cac35ba633be3e3b3e257b95cceb9e2344593d812c267313f6395",
+    "captured_at": "2026-09-28T10:00:00.000Z",
+    "expires_at": "2026-09-28T10:10:00.000Z",
+    "items": []
+  },
+  "deadline": "2026-09-28T10:15:00.000Z",
+  "step_plan": [
+    {
+      "step_id": "step_00000001",
+      "step_instance_id": "stepinst_00000001",
+      "execution_id": "exec_00000001",
+      "capability_id": "dubsar.capability.github.list_issues",
+      "connection_ref": "connection:github-read",
+      "input": {
+        "owner": "example-org",
+        "repo": "example-repo"
+      },
+      "correlation_id": "corr_00000001",
+      "idempotency_key": "idem_00000001",
+      "request_digest": "97caa0a40fa711dcc7033fd6322d0fb6ed5a8e5f355aec18f1023ef23b06df25"
+    }
+  ],
+  "policy": {
+    "attempts": 2,
+    "auto_retry": false,
+    "max_active_runs": 1,
+    "effect": "read"
+  },
+  "scope_ref": "scope:project-alpha"
+}

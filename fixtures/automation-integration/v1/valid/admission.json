@@ -1,0 +1,25 @@
+{
+  "contract": "dubsar.automation.step-admission/1",
+  "admission_request_id": "admit_00000001",
+  "mission_ref": "mission:automation-001",
+  "automation_run_id": "run_00000001",
+  "step_id": "step_00000001",
+  "step_instance_id": "stepinst_00000001",
+  "execution_id": "exec_00000001",
+  "request_digest": "97caa0a40fa711dcc7033fd6322d0fb6ed5a8e5f355aec18f1023ef23b06df25",
+  "authority_ref": "authority:decision-001",
+  "engine_permit_ref": "permit:engine-001",
+  "engine_generation": 1,
+  "tool_permit_ref": "permit:tool-001",
+  "tool_binding": {
+    "principal": "principal:automation",
+    "execution_id": "exec_00000001",
+    "capability_id": "dubsar.capability.github.list_issues",
+    "catalog_revision": "catalog:revision-001",
+    "connection_ref": "connection:github-read",
+    "connection_revision": "connection:revision-001",
+    "input_hash": "7dbc3a4c266ce4d20d8031fd673f15497c09b6d9bd3bde69c3bf3d7ebff69d02"
+  },
+  "expires_at": "2026-09-28T10:01:00.000Z",
+  "issuance_state": "ready"
+}

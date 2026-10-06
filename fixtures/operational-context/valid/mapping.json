@@ -1,0 +1,8 @@
+{
+  "contract": "dubsar.operational-context.mapping/1",
+  "mapping_ref": "map:enabled",
+  "version": 1,
+  "property": "enabled",
+  "value_type": "boolean",
+  "comparable_source_instances": ["src:n8n-a", "src:n8n-b"]
+}

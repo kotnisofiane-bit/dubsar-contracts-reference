@@ -1,0 +1,33 @@
+{
+  "schema": "dubsar.exact-action-contract-set.v2",
+  "contract_version": "2.0.0",
+  "legacy_contract_version": "1.0.0",
+  "signed_envelope": "dubsar.signed-capability.v2",
+  "contracts": [
+    {
+      "name": "binding",
+      "schema_path": "schemas/v2/binding.schema.json",
+      "validator": "assertExact"
+    },
+    {
+      "name": "prepared",
+      "schema_path": "schemas/v2/prepared.schema.json",
+      "validator": "assertExact"
+    },
+    {
+      "name": "decision",
+      "schema_path": "schemas/v2/decision.schema.json",
+      "validator": "assertExact"
+    },
+    {
+      "name": "proof",
+      "schema_path": "schemas/v2/proof.schema.json",
+      "validator": "assertExact"
+    },
+    {
+      "name": "receipt",
+      "schema_path": "schemas/v2/receipt.schema.json",
+      "validator": "assertExactReceipt"
+    }
+  ]
+}

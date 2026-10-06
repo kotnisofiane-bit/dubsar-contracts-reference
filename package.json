@@ -1,0 +1,33 @@
+{
+  "name": "@dubsar/contracts",
+  "version": "1.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check:judgment": "node tools/judgment/check.mjs",
+    "test:judgment": "node --test --test-isolation=none tests/judgment/*.test.mjs",
+    "check": "node tools/check-contracts.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:postgres": "node --test --test-concurrency=1 tests/postgres/durable-broker.integration.test.mjs",
+    "verify:broker": "node tools/verify-broker-proof.mjs",
+    "verify:hashes": "node tools/verify-hashes.mjs",
+    "test:document-access": "node --test tests/document-access.test.mjs",
+    "test:document-access:postgres": "node --test tests/document-access-postgres.test.mjs",
+    "check:operational-context": "node tools/operational-context/check.mjs",
+    "test:operational-context": "node --test tests/operational-context/*.test.mjs",
+    "test:operational-context:postgres": "node tools/operational-context/run-postgres-tests.mjs",
+    "demo:operational-context": "node tools/operational-context/demo.mjs",
+    "test:contracts": "node --test tests/agent-context-automation-results.test.mjs tests/agent-context.test.mjs tests/agent-context-v1b.test.mjs tests/automation-integration.test.mjs tests/contracts.test.mjs tests/core-authority.test.mjs tests/document-access.test.mjs tests/human-identity.test.mjs tests/mission-automation-results.test.mjs tests/postgres-schema.test.mjs tests/session-lifecycle.test.mjs",
+    "test:s1": "node --test tests/task-runtime-s1/contracts.test.mjs tests/task-lease.test.mjs",
+    "test:broker": "node --test tests/broker.test.mjs tests/broker-boundary.test.mjs tests/durable-broker-unit.test.mjs tests/concurrency-diagnostic.test.mjs tests/exact-action.test.mjs tests/exact-action-records.test.mjs tests/exact-action-transport.test.mjs tests/artifact-store.test.mjs tests/synthetic-exact-action.test.mjs",
+    "test:session-lifecycle:postgres": "node --test tests/postgres/session-lifecycle.integration.test.mjs",
+    "verify:public-manifest": "node tools/verify-public-manifest.mjs"
+  },
+  "dependencies": {
+    "pg": "8.16.3"
+  }
+}

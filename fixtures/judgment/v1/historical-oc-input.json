@@ -1,0 +1,196 @@
+{
+  "format": "dubsar.judgment.input/1",
+  "authority": "none",
+  "content_trust": "advisory_data",
+  "text_role": "data",
+  "truth": "not_selected",
+  "executable": false,
+  "scope": {
+    "project_id": "project-fixture",
+    "mission_id": "mission-fixture",
+    "ticket_id": "DUB-900"
+  },
+  "question": "Ce résultat technique exact est-il documenté ?",
+  "context": {
+    "agent_context_digest": null,
+    "snapshot_atomic": false,
+    "elements": [
+      {
+        "element_id": "e_e5",
+        "source": "my_work",
+        "kind": "automation_result",
+        "reference": {
+          "ref": "event_run_fixture_example_1",
+          "digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+          "digest_scheme": "dubsar.automation.run-event.v1"
+        },
+        "availability": "available",
+        "content_verification": "matched",
+        "text": "E5 succeeded accepté ; mission_criteria=not_evaluated.",
+        "freshness": "unknown",
+        "temporal_scope": "historical",
+        "source_observed_at": "2026-09-28T19:00:00.000Z",
+        "origin_ids": [
+          "origin_e5"
+        ],
+        "provenance_complete": true,
+        "limit_ids": [
+          "l_history",
+          "l_mission"
+        ],
+        "facts": {
+          "automation": {
+            "run_id": "run_fixture_example",
+            "event_id": "event_run_fixture_example_1",
+            "state": "succeeded",
+            "result": "documented",
+            "mission_criteria": "not_evaluated",
+            "reference_contents_read": false,
+            "reference_availability": "not_checked"
+          },
+          "oc": null
+        }
+      },
+      {
+        "element_id": "e_oc",
+        "source": "operational_context",
+        "kind": "oc_observation",
+        "reference": {
+          "ref": "oco_00000000000000000000000000000001",
+          "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "digest_scheme": "dubsar.oc.observation.v1"
+        },
+        "availability": "available",
+        "content_verification": "matched",
+        "text": "OC conserve le résultat succeeded de ce même E5.",
+        "freshness": "stale",
+        "temporal_scope": "historical",
+        "source_observed_at": "2026-10-04T00:00:00.000Z",
+        "origin_ids": [
+          "origin_e5"
+        ],
+        "provenance_complete": true,
+        "limit_ids": [
+          "l_history",
+          "l_stale"
+        ],
+        "facts": {
+          "automation": null,
+          "oc": {
+            "property": "automation.run.receipt_status",
+            "value": "succeeded",
+            "eligible": false
+          }
+        }
+      }
+    ],
+    "origins": [
+      {
+        "origin_id": "origin_e5",
+        "reference": {
+          "ref": "event_run_fixture_example_1",
+          "digest": "95d61d03953af2d90c801f35c4f9896855ea6dc2758ad6562473fde18a8aaab7",
+          "digest_scheme": "dubsar.automation.run-event.v1"
+        }
+      }
+    ],
+    "limits": [
+      {
+        "limit_id": "l_history",
+        "code": "HISTORICAL_ONLY",
+        "detail": "La date source décrit un événement historique.",
+        "mandatory": true
+      },
+      {
+        "limit_id": "l_mission",
+        "code": "MISSION_CRITERIA_NOT_EVALUATED",
+        "detail": "Résultat de run distinct des critères de mission.",
+        "mandatory": true
+      },
+      {
+        "limit_id": "l_stale",
+        "code": "STALE",
+        "detail": "La donnée est périmée selon la qualification de sa source.",
+        "mandatory": true
+      }
+    ],
+    "omissions": {
+      "elements": 0,
+      "claims": 0,
+      "consults": 0,
+      "truncated": false
+    }
+  },
+  "claims": [
+    {
+      "claim_id": "c_run",
+      "kind": "automation_result",
+      "statement": "Le résultat exact est documenté.",
+      "candidate_element_ids": [
+        "e_e5"
+      ],
+      "required_limit_ids": [],
+      "requirements": {
+        "min_independent_origins": 1,
+        "requires_current": false,
+        "requires_verified_content": true
+      }
+    },
+    {
+      "claim_id": "c_mission",
+      "kind": "mission_criteria",
+      "statement": "Le résultat exact est documenté.",
+      "candidate_element_ids": [
+        "e_e5"
+      ],
+      "required_limit_ids": [],
+      "requirements": {
+        "min_independent_origins": 1,
+        "requires_current": false,
+        "requires_verified_content": true
+      }
+    },
+    {
+      "claim_id": "c_current",
+      "kind": "current_state",
+      "statement": "Le résultat exact est documenté.",
+      "candidate_element_ids": [
+        "e_oc"
+      ],
+      "required_limit_ids": [],
+      "requirements": {
+        "min_independent_origins": 1,
+        "requires_current": true,
+        "requires_verified_content": true
+      }
+    },
+    {
+      "claim_id": "c_two_sources",
+      "kind": "evidence_sufficiency",
+      "statement": "Le résultat exact est documenté.",
+      "candidate_element_ids": [
+        "e_e5",
+        "e_oc"
+      ],
+      "required_limit_ids": [],
+      "requirements": {
+        "min_independent_origins": 2,
+        "requires_current": false,
+        "requires_verified_content": true
+      }
+    }
+  ],
+  "missing_information": [],
+  "consult_catalog": {
+    "owner": "server",
+    "effect": "readonly",
+    "entries": []
+  },
+  "budget": {
+    "consults_remaining": 2,
+    "tokens_remaining": 512,
+    "cost_remaining_microusd": null,
+    "latency_remaining_ms": null
+  },
+  "previous_judgment": null
+}

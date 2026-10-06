@@ -1,0 +1,23 @@
+{
+  "schema": "dubsar.capability-claims.v1",
+  "contract_version": "1.0.0",
+  "jti": "jti_abcdefghijklmnopqrstuvwxyz0123456789",
+  "issuer": "dubsar-governance-core",
+  "audience": "dubsar-action-broker",
+  "subject_workload_id": "workload_worker_demo_001",
+  "run_id": "run_ticketpilot_001",
+  "step_id": "step_create_ticket_001",
+  "workflow_id": "wf_ticketpilot_001",
+  "workflow_digest": "sha256:e58d82aba2903c47e3006468c5fa0f28d659b72f7d876da5a2c4c8895593be6d",
+  "approval_id": "approval_ticketpilot_001",
+  "proposal_id": "proposal_ticketpilot_001",
+  "action": {"kind": "connector_action", "connector": {"name": "dubsar.ticketing", "version": "1.2.3"}, "operation": "create_ticket"},
+  "connection_ref": "conn_ticketing_demo",
+  "payload_digest": "sha256:65c7a677e2d0dac7623ec68e2ce46877229590e352966b22f5ec28931a4cd335",
+  "destinations": [{"scheme": "https", "host": "tickets.example.invalid", "port": 443, "path_prefix": "/api/v1/tickets", "methods": ["POST"]}],
+  "bounds": {"timeout_ms": 5000, "max_attempts": 1, "max_payload_bytes": 4096, "allowed_destinations": [{"scheme": "https", "host": "tickets.example.invalid", "port": 443, "path_prefix": "/api/v1/tickets", "methods": ["POST"]}]},
+  "issued_at": "2026-08-14T10:00:00.000Z",
+  "not_before": "2026-08-14T10:00:00.000Z",
+  "expires_at": "2026-08-14T10:01:00.000Z",
+  "revoked_at": null
+}

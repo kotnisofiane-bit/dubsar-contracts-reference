@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v1/trust.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract", "tenant_id", "environment_id", "principal_id", "principal_kind"],
+  "properties": {
+    "contract": { "const": "dubsar.operational-context.trust/1" },
+    "tenant_id": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "environment_id": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "principal_id": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "principal_kind": { "enum": ["human", "workload", "producer", "admin"] }
+  }
+}

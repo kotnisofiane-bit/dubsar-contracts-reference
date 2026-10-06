@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v1/ingest-result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract", "outcome"],
+  "properties": {
+    "contract": { "const": "dubsar.operational-context.ingest-result/1" },
+    "outcome": {
+      "enum": ["applied", "duplicate_identical", "integrity_conflict", "rejected", "unavailable"]
+    },
+    "observation_ref": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "aggregate_version": { "type": "integer", "minimum": 0 },
+    "qualification_status": { "enum": ["current", "historical", "invalidated", "pending_recalculation"] }
+  }
+}

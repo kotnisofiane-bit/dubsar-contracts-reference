@@ -1,0 +1,22 @@
+{
+  "schema": "dubsar.mission-binding.v2",
+  "tenant_ref": "tenant_contract_demo_001",
+  "mission": {
+    "namespace": "scribe-backend",
+    "id": "mis_1234567890abcdef"
+  },
+  "legacy_refs": [
+    {
+      "namespace": "task-runtime",
+      "id": "mission_demo_001"
+    }
+  ],
+  "project_ref": "project_contract_demo_001",
+  "run_id": "run_ticketpilot_001",
+  "step_id": "step_create_ticket_001",
+  "proposal_id": "proposal_ticketpilot_001",
+  "workload_identity": {
+    "workload_id": "workload_worker_demo_001",
+    "instance_id": "instance_worker_demo_001"
+  }
+}

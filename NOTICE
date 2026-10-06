@@ -1,0 +1,9 @@
+DUBSAR Contracts
+Copyright © 2026 Sofiane Kotni
+
+This product includes software developed as part of the DUBSAR project and is
+licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This repository does not vendor third-party source code. Runtime dependencies
+installed from package-lock.json are distributed under their own licenses;
+see THIRD_PARTY_NOTICES.md.

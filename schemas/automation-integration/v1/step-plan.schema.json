@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/step-plan.schema.json",
+  "title": "Public E3 step plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "step_id",
+    "step_instance_id",
+    "execution_id",
+    "capability_id",
+    "connection_ref",
+    "input",
+    "correlation_id",
+    "idempotency_key",
+    "request_digest"
+  ],
+  "properties": {
+    "step_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "step_instance_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "execution_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "capability_id": {
+      "const": "dubsar.capability.github.list_issues"
+    },
+    "connection_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner",
+        "repo"
+      ],
+      "properties": {
+        "owner": {
+          "$ref": "common.schema.json#/$defs/repository-part"
+        },
+        "repo": {
+          "$ref": "common.schema.json#/$defs/repository-part"
+        }
+      }
+    },
+    "correlation_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "idempotency_key": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "request_digest": {
+      "$ref": "common.schema.json#/$defs/digest"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "format":"dubsar.my-work-mission-view/1",
+  "availability":"available",
+  "project_id":"project-fixture",
+  "mission_id":"mission-fixture",
+  "ticket_id":"DUB-901",
+  "work_id":"mission-fixture",
+  "state":"In Progress",
+  "title":"Agent Context V1-B",
+  "objective":"Expose a readonly mission view.",
+  "criteria":["No mutation","Exact binding only"],
+  "blocker":null,
+  "references":["evidence:contract"],
+  "repository":{"repository_url":"https://github.com/example-org/example-repo","starting_sha":"1111111111111111111111111111111111111111","workspace_root":"/work/example","branch":"fixture/example","pr":"example-org/example-repo#1"},
+  "execution_refs":{"cursor":{"agent_id":"cx-1","run_id":"run-1","status":"running","lifecycle":"running"},"codex":{"codex_session_id":"sess-1","herdr_id":"w1:p1","status":"completed","exit_code":0},"automation":null},
+  "evidence_refs":["evidence-1"],
+  "limits":[{"code":"AUTOMATION_BINDING_UNAVAILABLE","detail":"No canonical mission-to-automation binding exists."}],
+  "truncated":false,
+  "source_digest":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+}

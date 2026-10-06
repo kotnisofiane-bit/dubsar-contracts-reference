@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://contracts.dubsar.invalid/agent-context/v1/hermes-mission-context-read-request.schema.json",
+  "title":"dubsar.hermes-mission-context-read-request/1",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["format"],
+  "properties":{
+    "format":{"const":"dubsar.hermes-mission-context-read-request/1"}
+  }
+}

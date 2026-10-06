@@ -1,0 +1,12 @@
+{
+  "profile_id": "dubsar.s1.synthetic.v1",
+  "context_id": "ctx-s1-synthetic",
+  "model": "dubsar-s1-synthetic",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Return exactly S1_OK."
+    }
+  ],
+  "stream": false
+}

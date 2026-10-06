@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/accept-run-event.schema.json",
+  "title": "accept-run-event",
+  "$ref": "run-event.schema.json"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v1/resource.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract", "tenant_id", "environment_id", "source_instance_id", "namespace", "type", "source_id", "incarnation"],
+  "properties": {
+    "contract": { "const": "dubsar.operational-context.resource/1" },
+    "tenant_id": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "environment_id": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "source_instance_id": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "namespace": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "type": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "source_id": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "incarnation": {
+      "oneOf": [
+        { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+        { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/incarnationAbsence" }
+      ]
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    }
+  }
+}

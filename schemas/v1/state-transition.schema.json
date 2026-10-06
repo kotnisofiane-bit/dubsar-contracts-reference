@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/v1/state-transition.schema.json",
+  "title": "DUBSAR External Action State Transition v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contract_version", "transition_id", "action_id", "from_state", "to_state", "actor", "reason_code", "observed_at"],
+  "properties": {
+    "schema": {
+      "const": "dubsar.state-transition.v1"
+    },
+    "contract_version": {
+      "$ref": "./common.schema.json#/$defs/contractVersion"
+    },
+    "transition_id": {
+      "type": "string",
+      "pattern": "^transition_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "action_id": {
+      "type": "string",
+      "pattern": "^action_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "from_state": {
+      "$ref": "#/$defs/state"
+    },
+    "to_state": {
+      "$ref": "#/$defs/state"
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "identity_ref"],
+      "properties": {
+        "authority": {
+          "enum": ["BROKER", "CORE", "EVIDENCE_PLANE", "HUMAN", "TASK_MANAGER"]
+        },
+        "identity_ref": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_-]{7,127}$"
+        }
+      }
+    },
+    "reason_code": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+    },
+    "observed_at": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    }
+  },
+  "$defs": {
+    "state": {
+      "enum": ["AUTHORIZED", "DENIED", "EXPIRED", "FAILED_FINAL", "FAILED_RETRYABLE", "HUMAN_DECISION_REQUIRED", "INDETERMINATE", "IN_FLIGHT", "RECEIVED", "RECONCILED_FAILED", "RECONCILED_SUCCEEDED", "SUCCEEDED"]
+    }
+  }
+}

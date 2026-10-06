@@ -1,0 +1,35 @@
+{
+  "schema": "dubsar.task-runtime-s1.contract-set.v1",
+  "status": "CONTRACT_ONLY_NOT_RUNTIME_QUALIFIED",
+  "authority": "DUBSAR_CORE",
+  "audience": "dubsar-task-manager",
+  "runtime_reference": "0da13956f14fcf33ab4dd21d3467c5c0d6d63d02",
+  "contracts": [
+    {
+      "name": "task-lease",
+      "schema_path": "schemas/task-runtime-s1/task-lease.schema.json",
+      "domain_separator": "dubsar.contract.task-lease.v2"
+    },
+    {
+      "name": "closed-profile",
+      "schema_path": "schemas/task-runtime-s1/closed-profile.schema.json",
+      "domain_separator": "dubsar.task-profile.v2"
+    },
+    {
+      "name": "egress-policy",
+      "schema_path": "schemas/task-runtime-s1/egress-policy.schema.json",
+      "domain_separator": "dubsar.s1.egress-policy.v1"
+    },
+    {
+      "name": "egress-receipt",
+      "schema_path": "schemas/task-runtime-s1/egress-receipt.schema.json",
+      "domain_separator": "dubsar.s1.egress-receipt.v1"
+    },
+    {
+      "name": "signed-envelope",
+      "schema_path": "schemas/task-runtime-s1/signed-envelope.schema.json",
+      "signed_schema": "dubsar.signed-task-lease.v2",
+      "header_version": 2
+    }
+  ]
+}

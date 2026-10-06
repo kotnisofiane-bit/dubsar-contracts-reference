@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v1/view.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contract", "view_ref", "instant", "selection_receipt", "resources", "associations", "reserves", "bounds"],
+  "properties": {
+    "contract": { "const": "dubsar.operational-context.view/1" },
+    "view_ref": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token" },
+    "instant": { "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/timestamp" },
+    "selection_receipt": { "enum": ["complete_in_authorized_selection", "partial", "unavailable"] },
+    "resources": { "type": "array", "maxItems": 20 },
+    "associations": { "type": "array", "maxItems": 40 },
+    "reserves": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code"],
+        "properties": {
+          "code": { "type": "string", "minLength": 1, "maxLength": 64 }
+        }
+      }
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_resources", "relation_depth", "max_observations_examined"],
+      "properties": {
+        "max_resources": { "type": "integer" },
+        "relation_depth": { "type": "integer" },
+        "max_observations_examined": { "type": "integer" },
+        "truncated": { "type": "boolean" }
+      }
+    }
+  }
+}

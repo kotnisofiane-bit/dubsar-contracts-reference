@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/operational-context/v2/view.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "view_ref",
+    "instant",
+    "selection_receipt",
+    "resources",
+    "associations",
+    "reserves",
+    "bounds",
+    "tenant_id",
+    "environment_id",
+    "reader_id",
+    "created_at"
+  ],
+  "properties": {
+    "contract": {
+      "const": "dubsar.operational-context.view/2"
+    },
+    "view_ref": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/token"
+    },
+    "instant": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/timestamp"
+    },
+    "selection_receipt": {
+      "enum": [
+        "complete_in_authorized_selection",
+        "partial",
+        "unavailable"
+      ]
+    },
+    "resources": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resolution"
+        ],
+        "properties": {
+          "resolution": {
+            "enum": [
+              "resolved",
+              "unknown",
+              "type_mismatch"
+            ]
+          },
+          "requested": {
+            "type": "string"
+          },
+          "local_ref": {
+            "type": "string"
+          },
+          "identity": {
+            "type": "object"
+          },
+          "qualifications": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "property",
+                "qualification",
+                "observations",
+                "state_projection"
+              ],
+              "properties": {
+                "property": {
+                  "type": "string"
+                },
+                "qualification": {
+                  "type": "object"
+                },
+                "observations": {
+                  "type": "array",
+                  "maxItems": 200
+                },
+                "state_projection": {
+                  "$ref": "https://contracts.dubsar.invalid/operational-context/v2/state-projection.schema.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "associations": {
+      "type": "array",
+      "maxItems": 40
+    },
+    "reserves": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
+        }
+      }
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_resources",
+        "relation_depth",
+        "max_observations_examined"
+      ],
+      "properties": {
+        "max_resources": {
+          "type": "integer"
+        },
+        "relation_depth": {
+          "type": "integer"
+        },
+        "max_observations_examined": {
+          "type": "integer"
+        },
+        "truncated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "environment_id": {
+      "type": "string"
+    },
+    "reader_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "$ref": "https://contracts.dubsar.invalid/operational-context/v1/common.schema.json#/$defs/timestamp"
+    }
+  }
+}

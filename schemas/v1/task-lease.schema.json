@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/v1/task-lease.schema.json",
+  "title": "DUBSAR Task Lease v1",
+  "description": "Core-issued, single-use authorization for one closed Task executed by the Task Manager inside an isolated sandbox. The lease authorizes an exact closed profile; it never parameterizes the workload.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contract_version", "lease_id", "authority", "audience", "task_id", "action_id", "tenant_id", "mission_id", "task_manager", "task", "evidence_correlation_id", "issued_at", "not_before", "expires_at", "nonce", "replay_protection"],
+  "properties": {
+    "schema": {
+      "const": "dubsar.task-lease.v1"
+    },
+    "contract_version": {
+      "$ref": "./common.schema.json#/$defs/contractVersion"
+    },
+    "lease_id": {
+      "type": "string",
+      "pattern": "^lease_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "authority": {
+      "const": "DUBSAR_CORE"
+    },
+    "audience": {
+      "const": "dubsar-task-manager"
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^task_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "action_id": {
+      "type": "string",
+      "pattern": "^action_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "pattern": "^tenant_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "mission_id": {
+      "type": "string",
+      "pattern": "^mission_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "task_manager": {
+      "$ref": "./common.schema.json#/$defs/workload"
+    },
+    "task": {
+      "$ref": "#/$defs/closedTask"
+    },
+    "evidence_correlation_id": {
+      "type": "string",
+      "pattern": "^evidence_[a-z0-9][a-z0-9_-]{7,127}$"
+    },
+    "issued_at": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "not_before": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "expires_at": {
+      "$ref": "./common.schema.json#/$defs/timestamp"
+    },
+    "nonce": {
+      "type": "string",
+      "pattern": "^nonce_[A-Za-z0-9_-]{32,128}$"
+    },
+    "replay_protection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["replay_key", "single_use"],
+      "properties": {
+        "replay_key": {
+          "type": "string",
+          "pattern": "^replay_[A-Za-z0-9_-]{32,128}$"
+        },
+        "single_use": {
+          "const": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "closedTask": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "effect", "input_digest", "runtime_lock_digest", "profile_digest", "limits", "identity", "filesystem", "capabilities", "network", "allowed_operations"],
+      "properties": {
+        "profile_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(\\.[a-z0-9]+)*\\.v(0|[1-9][0-9]*)$"
+        },
+        "effect": {
+          "const": "none"
+        },
+        "input_digest": {
+          "$ref": "./common.schema.json#/$defs/digest"
+        },
+        "runtime_lock_digest": {
+          "$ref": "./common.schema.json#/$defs/digest"
+        },
+        "profile_digest": {
+          "$ref": "./common.schema.json#/$defs/digest"
+        },
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["cpu_millicores", "memory_bytes", "pids", "disk_bytes", "ttl_seconds", "command_timeout_ms", "output_bytes"],
+          "properties": {
+            "cpu_millicores": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4000
+            },
+            "memory_bytes": {
+              "type": "integer",
+              "minimum": 1048576,
+              "maximum": 4294967296
+            },
+            "pids": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4096
+            },
+            "disk_bytes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1073741824
+            },
+            "ttl_seconds": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 300
+            },
+            "command_timeout_ms": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 300000
+            },
+            "output_bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 104857600
+            }
+          }
+        },
+        "identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["uid", "gid"],
+          "properties": {
+            "uid": {
+              "type": "integer",
+              "minimum": 1000,
+              "maximum": 2147483647
+            },
+            "gid": {
+              "type": "integer",
+              "minimum": 1000,
+              "maximum": 2147483647
+            }
+          }
+        },
+        "filesystem": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rootfs_read_only", "mounts"],
+          "properties": {
+            "rootfs_read_only": {
+              "const": true
+            },
+            "mounts": {
+              "type": "array",
+              "maxItems": 8,
+              "items": {
+                "$ref": "#/$defs/boundedMount"
+              }
+            }
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["drop", "add"],
+          "properties": {
+            "drop": {
+              "const": ["ALL"]
+            },
+            "add": {
+              "type": "array",
+              "maxItems": 4,
+              "uniqueItems": true,
+              "items": {
+                "enum": ["CHOWN", "KILL", "SETGID", "SETUID"]
+              }
+            }
+          }
+        },
+        "network": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policy"],
+          "properties": {
+            "policy": {
+              "enum": ["egress_none"]
+            }
+          }
+        },
+        "allowed_operations": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["collect", "create", "execute", "inspect", "terminate"]
+          }
+        }
+      }
+    },
+    "boundedMount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "kind", "size_bytes", "flags"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "enum": ["/run", "/tmp", "/workspace"]
+        },
+        "kind": {
+          "enum": ["tmpfs"]
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 268435456
+        },
+        "flags": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["nodev", "noexec", "nosuid"]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "dubsar.approval-record.v1",
+  "contract_version": "1.0.0",
+  "approval_id": "approval_ticketpilot_001",
+  "workflow": {
+    "workflow_id": "wf_ticketpilot_001",
+    "workflow_version": 1,
+    "workflow_digest": "sha256:e58d82aba2903c47e3006468c5fa0f28d659b72f7d876da5a2c4c8895593be6d"
+  },
+  "scope": {
+    "node_ids": ["node_create_ticket", "node_manual_start"],
+    "connection_refs": ["conn_ticketing_demo"],
+    "destinations": [
+      {
+        "scheme": "https",
+        "host": "tickets.example.invalid",
+        "port": 443,
+        "path_prefix": "/api/v1/tickets",
+        "methods": ["POST"]
+      }
+    ],
+    "max_actions": 1,
+    "max_duration_seconds": 300
+  },
+  "approver": {
+    "principal_id": "principal_reviewer_001",
+    "role": "AUTOMATION_APPROVER"
+  },
+  "policy_evaluation": {
+    "decision_id": "decision_ticketpilot_001",
+    "policy_id": "policy_external_action_001",
+    "policy_version": "1.0.0",
+    "policy_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222",
+    "decision": "ALLOW",
+    "evaluated_at": "2026-08-14T09:59:59.000Z"
+  },
+  "issued_at": "2026-08-14T10:00:00.000Z",
+  "expires_at": "2026-08-14T11:00:00.000Z",
+  "revoked_at": null,
+  "revocation_reason": null
+}

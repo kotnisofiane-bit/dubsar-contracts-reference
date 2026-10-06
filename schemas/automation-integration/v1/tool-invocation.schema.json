@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/tool-invocation.schema.json",
+  "title": "tool-invocation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "execution_id",
+    "capability_id",
+    "connection_ref",
+    "input",
+    "correlation_id",
+    "idempotency_key"
+  ],
+  "properties": {
+    "execution_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "capability_id": {
+      "const": "dubsar.capability.github.list_issues"
+    },
+    "connection_ref": {
+      "$ref": "common.schema.json#/$defs/ref"
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "owner",
+        "repo"
+      ],
+      "properties": {
+        "owner": {
+          "$ref": "common.schema.json#/$defs/repository-part"
+        },
+        "repo": {
+          "$ref": "common.schema.json#/$defs/repository-part"
+        }
+      }
+    },
+    "correlation_id": {
+      "$ref": "common.schema.json#/$defs/id"
+    },
+    "idempotency_key": {
+      "$ref": "common.schema.json#/$defs/id"
+    }
+  }
+}

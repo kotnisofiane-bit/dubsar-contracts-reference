@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://contracts.dubsar.invalid/automation-integration/v1/rpc-result.schema.json",
+  "title": "rpc-result",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "ok",
+        "result"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc-result/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "ok": {
+          "const": true
+        },
+        "result": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contract",
+        "request_id",
+        "ok",
+        "error"
+      ],
+      "properties": {
+        "contract": {
+          "const": "dubsar.automation.rpc-result/1"
+        },
+        "request_id": {
+          "$ref": "common.schema.json#/$defs/id"
+        },
+        "ok": {
+          "const": false
+        },
+        "error": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code"
+          ],
+          "properties": {
+            "code": {
+              "enum": [
+                "UNAUTHORIZED",
+                "INVALID_MESSAGE",
+                "BINDING_CONFLICT",
+                "NOT_FOUND",
+                "BUSY",
+                "UNAVAILABLE",
+                "INDETERMINATE"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

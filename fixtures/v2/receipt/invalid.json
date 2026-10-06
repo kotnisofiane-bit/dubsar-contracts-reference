@@ -1,0 +1,81 @@
+{
+  "schema": "dubsar.action-receipt.v2",
+  "contract_version": "2.0.0",
+  "receipt_id": "receipt_ticketpilot_001",
+  "proposal_id": "proposal_ticketpilot_001",
+  "run_id": "run_ticketpilot_001",
+  "step_id": "step_create_ticket_001",
+  "workflow_digest": "sha256:e58d82aba2903c47e3006468c5fa0f28d659b72f7d876da5a2c4c8895593be6d",
+  "action": {
+    "kind": "connector_action",
+    "connector": {
+      "name": "dubsar.ticketing",
+      "version": "1.2.3"
+    },
+    "operation": "create_ticket"
+  },
+  "broker_identity": {
+    "workload_id": "workload_broker_demo_001",
+    "instance_id": "instance_broker_demo_001"
+  },
+  "core_decision": {
+    "decision_id": "decision_ticketpilot_001",
+    "approval_id": "approval_ticketpilot_001",
+    "policy_digest": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "capability_jti": "jti_kB5W8bZb40QoX1f2KGoQOuBRBb2_CTGK",
+  "before_state": "IN_FLIGHT",
+  "after_state": "SUCCEEDED",
+  "result": {
+    "kind": "success",
+    "outcome_digest": "sha256:34d4e8cc4fa1da2fe066992318ccea0d3de96f6650275c997d94c14ddbdac6df",
+    "provider_status": 202
+  },
+  "recorded_at": "2026-08-14T10:00:30.000Z",
+  "evidence_chain": {
+    "event_id": "event_ticketpilot_001",
+    "previous_event_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+    "event_digest": "sha256:52c2fc2bb2a87c3864cb96f22eff63fc6c4b47b18e949b538bcca4919c721f26"
+  },
+  "exact_action": {
+    "binding": {
+      "legacy_refs": [
+        {
+          "id": "mission_demo_001",
+          "namespace": "task-runtime"
+        }
+      ],
+      "mission": {
+        "id": "mis_1234567890abcdef",
+        "namespace": "scribe-backend"
+      },
+      "project_ref": "project_contract_demo_001",
+      "proposal_id": "proposal_ticketpilot_001",
+      "run_id": "run_ticketpilot_001",
+      "schema": "dubsar.mission-binding.v2",
+      "step_id": "step_create_ticket_001",
+      "tenant_ref": "tenant_contract_demo_001",
+      "workload_identity": {
+        "instance_id": "instance_worker_demo_001",
+        "workload_id": "workload_worker_demo_001"
+      }
+    },
+    "binding_digest": "sha256:a20528cc70942d3e09c3d357482a2a3e1e88d048b05505f0d64be75d8d5042b7",
+    "decision_digest": "sha256:e5e2bcc3d91e2cd852ba434b4740221176d22f7e865c7e82a38189900a716627",
+    "decision_ref": "decision:exact:1",
+    "display_digest": "sha256:acfe0f14c347332142b438c3ae53824c97583adecbb979f4a7152196e5ec78e8",
+    "expected_effect": "Instrumented exact content capture",
+    "expires_at": "2026-08-14T10:01:20.000Z",
+    "material": {
+      "adapter_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "configuration": {
+        "defaults": {},
+        "mode": "instrumented"
+      },
+      "configuration_digest": "sha256:5b1e10d918c25043e46db2b5391a57a8f1e06035b7826529af92909ee7c74ac1"
+    },
+    "prepared_digest": "sha256:da822152ca94878dc8a6614e7cb69987148f2371be6ea18842748bce5d8a8ebf"
+  },
+  "business_outcome": "UNOBSERVED",
+  "unexpected_field": true
+}
